@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es_MX">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Autenticación</title>
+</head>
+<body>
+    <form action="/login" id="loginID" method="POST">
+        <div class="login">
+            <div>
+                <label>Usuario</label><br>
+                <input type="text" class="inputLogin" name="username" id="username">   
+            </div>
+            <div>
+                <label>Contraseña</label> <br>
+                <input type="password" class="inputLogin" name="password" id="password"><span class="verOcultar">Mostrar</span>
+            </div>
+            <input type="submit" va lue="Iniciar sesión">
+        </div>
+    </form>
+    
+    <script src="./js/funciones.js"></script>
+</body>
+</html>

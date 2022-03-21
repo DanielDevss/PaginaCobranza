@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+button {
+ cursor: pointer;
+}
+body{
+    background: linear-gradient( 180deg, #AAE0F9, #EAD1D3);
+    background-size: auto;
+    background-repeat: initial;
+}
+/**Configuración de variables CSS*/
+:root{
+    /* CONFIGURACIÓN DE NAVBAR*/
+    --navbarColorTuttor: #9292CD; /*Color de barra de navegación del tutor*/
+    --navbarColorEnfermeria: #FF2B2B; /*Color de barra de navegación de Enfermeria*/
+    --navbarColorAdmin: #0B0B8F; /*Color de barra de navegación de Administración*/
+    /*CONFIGURACIÓN DE PALETAS DE COLORES*/
+    --colorTutor: #9292CD; /*Color principal para tutores*/
+    --colorEnfermeria: #FF2B2B; /*Color principal para Enfermeria*/
+    --colorAdmin: #0B0B8F; /*Color principal para Administración*/
+    /*CONFIGURACION DE ESTILOS Y TAMAÑOS DE LETRAS*/
+    --fuenteNavbar:sans-serif, Verdana, Geneva, Tahoma; /*Fuentes para navbars*/
+    --fuenteTitulo: ; /*Fuente para Titulos*/
+    --fuenteTexto: Arial, Verdana; /*Fuente para Textos*/
+    --FuenteBtn: Arial, Verdana;
+    --fontSizeTitulos: 3.75 rem; /*Tamaño de letras para Titulos*/
+    --fontSizeSubtitulos: 3.125 rem; /*Tamaño de letras para Subtitulos*/
+    --fontSizeTexto: 1.56 rem; /*Tamaño de letras para textos*/
+    /*CONFIGURACION DE CARDS Y RECUADROS*/
+    --fondoContainer: #FFF; /*Fondo para containers*/
+    --bordesRedondos: 25px; /*Fondo redondeado para containers*/
+    --sombra1:  0px 0px 18px 5px rgba(0, 0, 0, 0.301); /*Sombra para containers*/
+    --sombra2: inset 0px 0px 18px 5px rgba(0, 0, 0, 0.123); /*Sombra para inputs*/
+
+}
+
+/**Fin de configuración de variables*/
+
+/*ANCHOR Estilos del Login*/
+.login div .verOcultar{
+    cursor: pointer;
+}
+#loginID {
+    background: var(--fondoContainer);
+    border-radius: var(--bordesRedondos);
+    -webkit-border-radius: var(--bordesRedondos);
+    -moz-border-radius: var(--bordesRedondos);
+    -ms-border-radius: var(--bordesRedondos);
+    -o-border-radius: var(--bordesRedondos);
+    box-shadow: var(--sombra1);
+    max-width: 624px;
+    width: 624px;
+    font-family: var(--fuenteTexto);
+    padding: 45px;
+    margin: auto;
+    text-align: center;
+}
+.inputLogin{
+    width: 100%;
+    height: 40px;
+    margin: 15px;
+    border-radius: var(--bordesRedondos);
+    -webkit-border-radius: var(--bordesRedondos);
+    -moz-border-radius: var(--bordesRedondos);
+    -ms-border-radius: var(--bordesRedondos);
+    -o-border-radius: var(--bordesRedondos);
+    border: none;
+    box-shadow: var(--sombra2);
+
+}
