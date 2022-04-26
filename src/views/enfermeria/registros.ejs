@@ -19,7 +19,30 @@
     </div>
 
 
+    <section>
 
+        <table>
+            <thead>
+                <tr>
+                    <th>Matricula</th>
+                    <th>Nombre</th>
+                    <th>Sección y Grupo</th>
+                    <th>Gestión</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% enfermeria.forEach((datosEnfermeria) => { %>
+                    <tr>
+                        <td><%= datosEnfermeria.id_estudiante %></td>
+                        <td><%= datosEnfermeria.nombre %></td>
+                        <td><%= datosEnfermeria.seccion %> del Grupo <%= datosEnfermeria.grupo %></td>
+                        <td><a class="btn" href="/enfermeria/mas-informacion/<%= datosEnfermeria.id_estudiante %>">Ver más Información</a></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+    </section>
 
 
 

@@ -5,6 +5,15 @@ const session = require('express-session');
 const passport = require('passport');
 const PassportLocal = require('passport-local').Strategy;
 const app = express();
+//PARA BASES DE DATOS
+const myconnection = require('express-myconnection');
+const mysql = require('mysql')
+const bodyParser = require('body-parser')
+
+//RUTAS
+const tutorRoutes = require('./router/tutorRouter')
+const adminRoutes = require('./router/adminRouter')
+const enfermeriaRoutes = require('./router/enfermeriaRouter')
 
 
 //Declaración de rutas
@@ -13,6 +22,15 @@ app.set('view engine', 'ejs');
 // Ruta de archivos estaticos
 app.use(express.static('./src/public'))
 
+// !CONEXIÓN DE LA BASE DE DATOS
+app.use(bodyParser.json());
+app.use(myconnection(mysql,{
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    port: 3306,
+    database: 'proyectoccp'
+}));
 
 // NOTE Configuración del Servidor
 const host = process.env.HOST || '0.0.0.0'; //En caso de no tener un host se asignara el host 0.0.0.0
@@ -67,7 +85,8 @@ app.post('/login', passport.authenticate('local', {
 //})
 
 
-Fuente: https://www.iteramos.com/pregunta/15253/como-redirigir-404-errores-a-una-pagina-en-expressjs
+//Fuente: https://www.iteramos.com/pregunta/15253/como-redirigir-404-errores-a-una-pagina-en-expressjs
+
 
 app.get('/Usuarios', (req, res) => {
     res.render('extras/usersSelect', {
@@ -76,43 +95,47 @@ app.get('/Usuarios', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.render('login', {
+    res.render('extras/login', {
         title: 'Autorización'
     })
 });
-app.get('/', (req, res) => {
-    res.render('index', {
-        title: 'HomePage',
-        h1: 'home'
-    });
-})
+
+
 /* RUTAS ADMINISTRADOR MICKY */
-app.get('/admin', (req, res) => {
-    res.render('admin/index', {
-        title: 'Administrador'
-    })
-})
+app.use('/', adminRoutes);
 
 /* RUTAS ENFERMERIA SAYDEL */
-app.get('/enfermeria', (req, res) => {
-    res.render('enfermeria/registros', {
-        title: 'Estudiantes regitrados'
-    })
-})
-app.get('/enfermeria/datos', (req, res) => {
-    res.render('enfermeria/registros', {
-        title: 'Informacion de alumno'
-    })
-})
 
-/* RUTAS TUTORADOS  NOE*/
-app.get('/tutor/', (req, res) => {
-    res.render('/tutor/home', {
-        title: 'Home Page'
+
+app.use('/', enfermeriaRoutes);
+
+app.get('/enfermeria/editar-Registro', (req, res) => {
+    res.render('enfermeria/editar', {
+        title: 'Editar Registro'
     })
+})
+app.get('/enfermeria/ver-Registro', (req,res) => {
+    res.render('enfermeria/ver', {
+        title: 'Información Alumno'
+    })
+})
+/* RUTAS TUTORADOS  NOE*/
+
+app.use('/', tutorRoutes);
+
+app.get('/', (req,res) => {
+    res.render('tutor/home', {
+        title: 'HomePage'
+    })
+})
+app.get('/ayuda', (req,res) =>{
+    res.render('ayuda')
+})
+app.get('/contactanos', (req,res) => {
+    res.render('contacto')
+})
 
 //Otras Rutas
 app.get('*', (req,res) => {
-    res.render('error404')
-  })
-})
+    res.render('extras/error404')
+});

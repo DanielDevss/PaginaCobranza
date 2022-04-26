@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="" method="POST">
+
+        <% admin.forEach((datosAdmin) => { %>
+            <div>
+                <div>
+                    <label>Matricula</label>
+                    <input type="number" value="<%= datosAdmin.id_estudiante %>" name="id_estudiante" id="id">
+                </div>
+                <div>
+                    <label>Nombre</label>
+                    <input type="text" value="<%= datosAdmin.nombre %>" name="nombre" id="">
+                </div>
+                <div>
+                    <label>Sección</label>
+                    <select name="seccion">
+                        <option value="<%= datosAdmin.seccion %>">--- <%= datosAdmin.seccion %> ---</option>
+                        <option value="Educacion Inicial">Esducacion Inicial</option>
+                        <option value="Preescolar">Preescolar</option>
+                        <option value="Primaria">Primaria</option>
+                        <option value="Secundaria">Secundaria</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Grupo</label>
+                    <input type="text" value="<%= datosAdmin.grupo %>" name="grupo" id="">
+                </div>
+                <div>
+                    <label>Nombre del Tutor</label>
+                    <input type="text" value="<%= datosAdmin.nombre_tutor %>" name="nombre_tutor" id="">
+                </div>
+                <div>
+                    <label>Telefono del Tutor</label>
+                    <input type="tel" value="<%= datosAdmin.tel_tutor %>" name="tel_tutor" id="">
+                </div>
+                <div>
+                    <label>Enlace Boleta</label>
+                    <input type="text" value="<%= datosAdmin.link_boleta %>" name="link_boleta" id="">
+                </div>
+                <div>
+                    <label>Cambiar Monto</label>
+                    <input type="number" value="<%= datosAdmin.colegiatura %>" name="colegiatura">
+                </div>
+                <div>
+                    <input type="submit" value="Actualizar Registro">
+                </div>
+            </div>
+    
+        <% }) %>
+        
+    </form>
+
+</body>
+</html>
