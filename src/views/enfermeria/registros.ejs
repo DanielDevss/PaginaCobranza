@@ -8,40 +8,73 @@
     <title>Registros enfermeria</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://frameworkccpcss.000webhostapp.com/framework.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div>
-        <nav class="">
-            <span class="Titulonavbar">Centro Cultural de Petatlán</span>
-        </nav>
+<!--Nav-->
+<nav class="navbar navbar-light bg-c4 mb-2">
+    <div class="container-fluid">
+      <a class="navbar-brand txt-c7" href="#">
+        <img >
+        Centro Cultural de Petatlán - Enfermería
+      </a>
     </div>
-
-
+  </nav>
+  
+  <!--Botones-->
+    <div align="center">
+      <button class="btn-nv btn btn2 bg-c4 mx-2">Eduación Incial</button>
+      <button class="btn-nv btn btn2 bg-c4 mx-2">Prescolar</button>
+      <button class="btn-nv btn btn2 bg-c4 mx-2">Primaria</button>
+      <button class="btn-nv btn btn2 bg-c4 mx-2">Secundaria</button>  
+    </div><br>
+  
     <section>
-
-        <table>
-            <thead>
+        <div>
+            <h2 class="text-center">Estudiantes Registrados</h2>
+          </div>
+          <hr>
+          <div>
+            <h4 class="text-center txt-c2">Enfermería</h4>
+          </div>
+          <!--Barra de busqueda-->
+            <div class="text-center">
+                <form action="#"> 
+                <div>
+                <input type="text" placeholder="Buscar Alumnos" class="busqueda" >
+                <button class="btn-sh"><i class="bi bi-search"></i></button>
+                </div>
+                </form>
+            </div>
+    </section>
+<br>
+    <!--Tabla de alumnos-->
+    <section>
+        <div class="container">
+            <table class="table table-striped">
+              <thead>
                 <tr>
-                    <th>Matricula</th>
-                    <th>Nombre</th>
-                    <th>Sección y Grupo</th>
-                    <th>Gestión</th>
+                  <th>Matricula</th>
+                  <th>Nombre del Alumno</th>
+                  <th>Seccion y Grupo</th>
+                  <th>Acción</th>
                 </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
                 <% enfermeria.forEach((datosEnfermeria) => { %>
                     <tr>
                         <td><%= datosEnfermeria.id_estudiante %></td>
                         <td><%= datosEnfermeria.nombre %></td>
                         <td><%= datosEnfermeria.seccion %> del Grupo <%= datosEnfermeria.grupo %></td>
-                        <td><a class="btn" href="/enfermeria/mas-informacion/<%= datosEnfermeria.id_estudiante %>">Ver más Información</a></td>
+                        <td><a class="btn bg-c3 txt-c7 btn2" href="/enfermeria/mas-informacion/<%= datosEnfermeria.id_estudiante %>">Ver más</a></td>
                     </tr>
                 <% }) %>
             </tbody>
-        </table>
-
+          </table>
+          </div>
     </section>
 
 

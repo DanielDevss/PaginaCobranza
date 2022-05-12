@@ -1,0 +1,25 @@
+/* Enfermeria */
+.btn-nv{
+    width:     200px;
+}
+    
+.busqueda{
+    width: 350px;
+    padding: 4px;
+    border-radius: 10px;
+    border: solid 1px;
+}
+
+.btn-sh{
+    border:  none;
+    margin-left: -40px;
+    background: none;
+}
+
+.container{
+    border-radius: 25px;
+}
+.paddin-c{
+    padding: 10px;
+}
+

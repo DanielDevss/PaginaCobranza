@@ -7,22 +7,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Registros enfermeria</title>
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://frameworkccpcss.000webhostapp.com/framework.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 
 <body>
-    <div>
-        <nav class="">
-            <span class="Titulonavbar">Centro Cultural de Petatlán</span>
-        </nav>
+<!--Nav-->
+<nav class="navbar navbar-light bg-c4 mb-2">
+    <div class="container-fluid">
+      <a class="navbar-brand txt-c7" href="#">
+        <img >
+        Centro Cultural de Petatlán - Enfermería
+      </a>
     </div>
-
+  </nav>
 
     <section>
         <% enfermeria.forEach((datosEnfermeria) => { %>
             
-            <div class="container">
+            <div class="container sbr-1 mt-4">
+
+                <div class="d-flex justify-content-between">
+                    <a href="/enfermeria"><i class="bi bi-box-arrow-left" style="font-size: 35px;"></i></a>
+                    <a href="/enfermeria/editar-registro/<%= datosEnfermeria.id_estudiante %>"><i class="bi bi-pencil-square" style="font-size: 35px;"></i></a>
+                </div>
+                <div class="paddin-c">
+                    <h3 class="text-center txt-c4">Datos de Alumno - Enfermería</h3>
+                <div class="row mb-4">
+                    <div class="col">
+                        <h4 class="txt-c2">Nombre del estudiante</h4>
+                        <h6><%= datosEnfermeria.nombre %></h6>
+                        <p><b>Sección: </b><%= datosEnfermeria.seccion %></p><p><b>Grupo: </b><%= datosEnfermeria.grupo %></p>
+                    </div>
+                    <div class="col">
+                        <h4 class="txt-c2">Matricula</h4>
+                        <h6><%= datosEnfermeria.id_estudiante %></h6>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <h4 class="txt-c2">IMC</h4> 
+                        <h6><%= datosEnfermeria.IMC %></h6>
+                    </div>
+                    <div class="col">
+                        <h4 class="txt-c2">Peso</h4>
+                        <h6><%= datosEnfermeria.peso %></h6>
+                    </div>
+                    <div class="col">
+                        <h4 class="txt-c2">Talla</h4>
+                        <h6><%= datosEnfermeria.talla %></h6>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <h4 class="txt-c2">Alergías</h4>
+                        <textarea disabled name="" cols="30" rows="3" style="border: none;resize: none;"><%= datosEnfermeria.alergias %></textarea>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <h4 class="txt-c2">Enfermedades</h4>
+                        <textarea disabled name="" cols="30" rows="3" style="border: none;resize: none;"><%= datosEnfermeria.enfermedades %></textarea>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <h4 class="txt-c2">Observaciones</h4>
+                        <textarea disabled name="" cols="30" rows="3" style="border: none;resize: none;"><%= datosEnfermeria.observaciones %></textarea>
+                    </div>
+                </div>
+                </div>
+            
+                <div class="paddin-c">
+                    <h3 class="text-center txt-c4">Datos del Tutor - Enfermería</h3>
+                <div class="row mb-2">
+                    <div class="col">
+                        <h4 class="txt-c2">Nombre del Tutor</h4>
+                        <h6><%= datosEnfermeria.nombre_tutor %></h6>
+                    </div>
+                    <div class="col">
+                        <h4 class="txt-c2">Teléfono</h4>
+                        <h6><%= datosEnfermeria.tel_tutor %></h6>
+                    </div>
+            
+
+<!--
                 <a href="/enfermeria/editar-registro/<%= datosEnfermeria.id_estudiante %>">Editar</a>
                 <a href="/enfermeria">Volver</a>
                 <div>
@@ -47,7 +118,7 @@
                     <h5>Observaciones</h5>
                     <textarea disabled name="" cols="30" rows="3" style="border: none;resize: none;"><%= datosEnfermeria.observaciones %></textarea>
                 </div>
-            </div>
+            </div> -->
         <% }) %>
 
     </section>
