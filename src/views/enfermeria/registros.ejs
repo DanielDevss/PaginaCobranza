@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Registros enfermeria</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://frameworkccpcss.000webhostapp.com/framework.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<%- include('../partials/head.ejs') %> 
 
 <body>
 <!--Nav-->
 <nav class="navbar navbar-light bg-c4 mb-2">
     <div class="container-fluid">
       <a class="navbar-brand txt-c7" href="#">
-        <img >
+        <img src="img\otros\iconCCP.svg" alt="" width="30" height="40" style="margin: -5px; margin-right: 10px;" class="d-inline-block align-text-top">
         Centro Cultural de Petatlán - Enfermería
       </a>
+      <a href="/" class="btn btn1 navbar-brand txt-c7"><i class="bi bi-door-open"></i> Salir de Enfermeria</a>
     </div>
   </nav>
   
   <!--Botones-->
     <div align="center">
-      <button class="btn-nv btn btn2 bg-c4 mx-2">Eduación Incial</button>
-      <button class="btn-nv btn btn2 bg-c4 mx-2">Prescolar</button>
-      <button class="btn-nv btn btn2 bg-c4 mx-2">Primaria</button>
-      <button class="btn-nv btn btn2 bg-c4 mx-2">Secundaria</button>  
+      <a href="/enfermeria" class="btn-nv btn btn2 bg-c4 mx-2">Ver Todos</a>  
+      <a href="/enfermeria-educacion_inicial" class="btn-nv btn btn2 bg-c4 mx-2">Eduación Incial</a>
+      <a href="/enfermeria-prescolar" class="btn-nv btn btn2 bg-c4 mx-2">Prescolar</a>
+      <a href="/enfermeria-primaria" class="btn-nv btn btn2 bg-c4 mx-2">Primaria</a>
+      <a href="/enfermeria-secundaria" class="btn-nv btn btn2 bg-c4 mx-2">Secundaria</a>  
     </div><br>
   
     <section>
         <div>
-            <h2 class="text-center">Estudiantes Registrados</h2>
+            <h2 class="text-center txt-c7"><%- subtitle %> </h2>
           </div>
           <hr>
           <div>
@@ -44,8 +36,7 @@
             <div class="text-center">
                 <form action="#"> 
                 <div>
-                <input type="text" placeholder="Buscar Alumnos" class="busqueda" >
-                <button class="btn-sh"><i class="bi bi-search"></i></button>
+                <input type="text" placeholder="&#xF52A; Buscar Alumnos" id="Buscador" class="busqueda" >
                 </div>
                 </form>
             </div>
@@ -54,7 +45,7 @@
     <!--Tabla de alumnos-->
     <section>
         <div class="container">
-            <table class="table table-striped">
+            <table class="table table-striped bg-c7 sbr-1">
               <thead>
                 <tr>
                   <th>Matricula</th>
@@ -63,13 +54,13 @@
                   <th>Acción</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="Tbody">
                 <% enfermeria.forEach((datosEnfermeria) => { %>
-                    <tr>
+                    <tr class="text-center">
                         <td><%= datosEnfermeria.id_estudiante %></td>
                         <td><%= datosEnfermeria.nombre %></td>
-                        <td><%= datosEnfermeria.seccion %> del Grupo <%= datosEnfermeria.grupo %></td>
-                        <td><a class="btn bg-c3 txt-c7 btn2" href="/enfermeria/mas-informacion/<%= datosEnfermeria.id_estudiante %>">Ver más</a></td>
+                        <td><%= datosEnfermeria.seccion %> del <%= datosEnfermeria.grupo %></td>
+                        <td><a class="btn txt-c7 bg-c5 btn2" href="/enfermeria/mas-informacion/<%= datosEnfermeria.id_estudiante %>"><i class="bi bi-info-circle"></i> Ver más</a></td>
                     </tr>
                 <% }) %>
             </tbody>
@@ -77,14 +68,18 @@
           </div>
     </section>
 
-
-
-
-
-
-
-
-
+    <%- include('../partials/footer.ejs') %> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function(){
+            $("#Buscador").on("keyup",function(){
+                var value = $(this).val().toLowerCase();
+                $("#Tbody tr").filter(function(){
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    </script>
 
 
 

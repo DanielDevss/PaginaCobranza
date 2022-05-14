@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> 
-    <link rel="stylesheet" href="https://frameworkccpcss.000webhostapp.com/framework.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Pruebas</title>
-</head>
+<%- include('../partials/head.ejs') %> 
 
 <body>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <nav class="menu">
-        <ul>
-            <li><a href="">Inicio<a></li>
-            <li><a href="admin/nuevoRegistro">registrar<a></li>
-            <li><a href="">servicios<a></li>
-            <li><a href="">Historia<a></li>
-            <li><a href="">Contacto<a></li>	
-        </ul>
-    </nav>
+    <%- include('partials/navbar.ejs') %> 
+<br>
+      <div align="center">
+        <a href="/admin" class="btn-nv btn btn2 bg-c2 mx-2">Ver Todos</a>  
+        <a href="/admin-Educacion_Inicial" class="btn-nv btn btn2 bg-c2 mx-2">Eduación Incial</a>
+        <a href="/admin-Preescolar" class="btn-nv btn btn2 bg-c2 mx-2">Prescolar</a>
+        <a href="/admin-Primaria" class="btn-nv btn btn2 bg-c2 mx-2">Primaria</a>
+        <a href="/admin-Secundaria" class="btn-nv btn btn2 bg-c2 mx-2">Secundaria</a>  
+      </div>
+      <br>
+      <h1><%- subtitle %></h1>
+<hr>
+  <div>
+    <h4 class="text-center txt-c2">Administración</h4>
+  </div>
+        <div class="text-center">
+            <form action="#"> 
+            <div>
+            <input type="text" placeholder="&#xF52A; Buscar Alumnos" id="Buscador" class="busqueda" >
+            </div>
+            </form>
+        </div>
 
-    <section>
-
-        <table>
+    <section class="container mt-4">
+        <table class="table table-striped bg-c7 sbr-1">
             <thead>
                 <tr>
                     <th>Matricula</th>
@@ -42,7 +45,7 @@
             </thead>
             <tbody>
                 <% admin.forEach((datosAdmin) => { %>
-                    <tr>
+                    <tr class="text-center">
                         <td><%= datosAdmin.id_estudiante %> </td>
                         <td><%= datosAdmin.nombre %> </td>
                         <td><%= datosAdmin.seccion %> </td>
@@ -50,18 +53,18 @@
                         <td><%= datosAdmin.nombre_tutor %> </td>
                         <td><%= datosAdmin.tel_tutor %> </td>
                         <td>$ <%= datosAdmin.colegiatura %></td>
-                        <td><a href="<%= datosAdmin.link_boleta %>">Ver enlace</a></td>
-                        <td>
+                        <td><a href="<%= datosAdmin.link_boleta %>" class="btn btn2 bg-c3" style="font-family: Bootstrap-icons;">&#xF470;</a></td>
+                        <td class="d-flex justify-content-center acciones">
                             <form action="/admin/borrar" method="POST">
                                 <input type="hidden" value="<%= datosAdmin.id_estudiante %>" name="id">
-                                <button>Borrar</button>
+                                <button class="btn delr" style="font-family: bootstrap-icons;">&#xF78A;</button>
                             </form>
                             <form action="/admin/enviarEnfermeria" method="POST">
                                 <input type="hidden" value="<%= datosAdmin.id_estudiante %>" name="id_estudiante">
                                 <input type="hidden" value="" name="talla"><input type="hidden" value="" name="peso"><input type="hidden" value="" name="IMC"><input type="hidden" value="Sin Informaciòn" name="alergias"><input type="hidden" value="Sin Informaciòn" name="enfermedades"><input type="hidden" value="Sin Informaciòn" name="observaciones">
-                                <button>Enfermeria</button>
+                                <button class="btn subirenf" style="font-family: bootstrap-icons;">&#xF783;</button>
                             </form>
-                            <a href="/admin/editarRegistro/<%= datosAdmin.id_estudiante %>">Editar</a>
+                            <a class="btn editRegist" style="font-family: bootstrap-icons;" href="/admin/editarRegistro/<%= datosAdmin.id_estudiante %>">&#xF4CA;</a>
                         </td>
                     </tr>
                 <% }) %>
@@ -69,6 +72,12 @@
         </table>
     </section>
  
+    <%- include('../partials/footer.ejs') %>
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 </body>
 
 </html>

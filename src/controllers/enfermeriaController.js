@@ -6,7 +6,9 @@ function index(req,res) {
                 res.json(err)
             }
             res.render('enfermeria/registros', {
-                enfermeria:enfermeria
+                enfermeria:enfermeria,
+                title:'Enfermeria',
+                subtitle: 'Estudiantes Registrados'
             })
         })
     })
@@ -20,7 +22,8 @@ function verMas(req,res) {
                 res.json(err)
             }
             res.render('enfermeria/ver', {
-                enfermeria:enfermeria
+                enfermeria:enfermeria,
+                title: 'Registro '+id
             })
         })
     })
@@ -33,7 +36,8 @@ function editar(req,res) {
                 res.json(err)
             }
             res.render('enfermeria/editar', {
-                enfermeria:enfermeria
+                enfermeria:enfermeria,
+                title:'Editar ' +id
             })
         })
     })
@@ -49,8 +53,75 @@ function actualizar(req,res) {
     })
 }
 
+
+//Ver REGISTROS ESPECIFICOS
+function indexEduIni(req,res) {
+    const datosEnfermeria = req.body;
+    req.getConnection((err,conn)=> {
+        conn.query('SELECT * FROM vista_enfermeria WHERE seccion = "Educacion Inicial"', (err,enfermeria) => {
+            if(err){
+                res.json(err)
+            }
+            res.render('enfermeria/registros', {
+                enfermeria:enfermeria,
+                title:'Enfermeria',
+                subtitle: 'Estudiantes de Educación Inicial'
+            })
+        })
+    })
+}
+function indexPres(req,res) {
+    const datosEnfermeria = req.body;
+    req.getConnection((err,conn)=> {
+        conn.query('SELECT * FROM vista_enfermeria WHERE seccion = "Preescolar"', (err,enfermeria) => {
+            if(err){
+                res.json(err)
+            }
+            res.render('enfermeria/registros', {
+                enfermeria:enfermeria,
+                title:'Enfermeria',
+                subtitle: 'Estudiantes de Preescolar'
+            })
+        })
+    })
+}
+function indexPri(req,res) {
+    const datosEnfermeria = req.body;
+    req.getConnection((err,conn)=> {
+        conn.query('SELECT * FROM vista_enfermeria WHERE seccion = "Primaria"', (err,enfermeria) => {
+            if(err){
+                res.json(err)
+            }
+            res.render('enfermeria/registros', {
+                enfermeria:enfermeria,
+                title:'Enfermeria',
+                subtitle: 'Estudiantes de Primaria'
+            })
+        })
+    })
+}
+function indexSec(req,res) {
+    const datosEnfermeria = req.body;
+    req.getConnection((err,conn)=> {
+        conn.query('SELECT * FROM vista_enfermeria WHERE seccion = "Secundaria"', (err,enfermeria) => {
+            if(err){
+                res.json(err)
+            }
+            res.render('enfermeria/registros', {
+                enfermeria:enfermeria,
+                title:'Enfermeria',
+                subtitle: 'Estudiantes de Secundaria'
+            })
+        })
+    })
+}
+
 module.exports = {
     index:index,
+    indexEduIni:indexEduIni,
+    indexPres:indexPres,
+    indexPri:indexPri,
+    indexSec:indexSec,
     verMas:verMas,
     editar:editar,
     actualizar:actualizar

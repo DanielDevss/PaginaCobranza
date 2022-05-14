@@ -8,7 +8,9 @@ function index(req,res) {
                 res.json(err);
             }
             res.render('admin/index', {
-                admin:admin
+                admin:admin,
+                subtitle: 'Estudiantes Registrados',
+                title: 'Registros Administracion'
             })
         })
     })
@@ -34,7 +36,9 @@ function subirENF(req,res){
 }
 
 function create(req,res) {
-    res.render('admin/nuevoRegistro')
+    res.render('admin/nuevoRegistro', {
+        title: 'Nuevo Registro'
+    })
 };
 
 function borrar(req,res){
@@ -54,7 +58,8 @@ function editar(req,res) {
                 res.json(err);
             }
             res.render('admin/editarRegistro', {
-                admin:admin
+                admin:admin,
+                title: 'Editar Registro ' + idEdit
             })
         })
     })
@@ -70,12 +75,77 @@ function actualizar(req,res) {
     })
 }
 
+//VER ESTUDIANTES CATEGORIAS
+function indexEduIni(req,res) {
+    req.getConnection((err,conn) => {
+        conn.query('SELECT * FROM estudiantes WHERE seccion = "Educacion Inicial"', (err,admin) => {
+            if (err){
+                res.json(err);
+            }
+            res.render('admin/index', {
+                admin:admin,
+                subtitle: 'Estudiantes de Eduación Inicial',
+                title: 'Registros Administracion'
+            })
+        })
+    })
+}
+
+function indexPre(req,res) {
+    req.getConnection((err,conn) => {
+        conn.query('SELECT * FROM estudiantes WHERE seccion = "Preescolar"', (err,admin) => {
+            if (err){
+                res.json(err);
+            }
+            res.render('admin/index', {
+                admin:admin,
+                subtitle: 'Estudiantes de Preescolar',
+                title: 'Registros Administracion'
+            })
+        })
+    })
+}
+function indexPri(req,res) {
+    req.getConnection((err,conn) => {
+        conn.query('SELECT * FROM estudiantes WHERE seccion = "Primaria"', (err,admin) => {
+            if (err){
+                res.json(err);
+            }
+            res.render('admin/index', {
+                admin:admin,
+                subtitle: 'Estudiantes Primaria',
+                title: 'Registros Administracion'
+            })
+        })
+    })
+}
+function indexSec(req,res) {
+    req.getConnection((err,conn) => {
+        conn.query('SELECT * FROM estudiantes WHERE seccion = "Secundaria"', (err,admin) => {
+            if (err){
+                res.json(err);
+            }
+            res.render('admin/index', {
+                admin:admin,
+                subtitle: 'Estudiantes de Secundaria',
+                title: 'Registros Administracion'
+            })
+        })
+    })
+}
+
 module.exports = {
     index:index,
+    indexEduIni:indexEduIni,
+    indexPre:indexPre,
+    indexPri:indexPri,
+    indexSec:indexSec,
+
     store:store,
     create:create,
     borrar:borrar,
     subirENF:subirENF,
     editar:editar,
-    actualizar:actualizar
+    actualizar:actualizar,
+    indexSec:indexSec
 }

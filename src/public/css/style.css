@@ -1,3 +1,14 @@
+/*FONDO EN GENERAL*/
+body {
+    background: rgb(170, 224, 249);
+    background: -moz-linear-gradient(180deg, rgba(170, 224, 249, 1) 0%, rgba(234, 209, 211, 1) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(170, 224, 249, 1) 0%, rgba(234, 209, 211, 1) 100%);
+    background: linear-gradient(180deg, rgba(170, 224, 249, 1) 0%, rgba(234, 209, 211, 1) 100%);
+    filter: ;
+    progid: DXImageTransform.Microsoft.gradient(startColorstr="#aae0f9", endColorstr="#ead1d3", GradientType=1);
+    -webkit-filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#aae0f9", endColorstr="#ead1d3", GradientType=1);
+}
+
 /* Enfermeria */
 .btn-nv{
     width:     200px;
@@ -6,8 +17,20 @@
 .busqueda{
     width: 350px;
     padding: 4px;
-    border-radius: 10px;
-    border: solid 1px;
+    border-radius: 30px;
+    border: none;
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-style: italic !important;
+    padding-left: 10px;
+}
+.busqueda:hover{
+    border: solid 1px rgba(0, 0, 0, 0.563);
+}
+
+::placeholder{
+    font-family: Bootstrap-icons !important;
+    font-style: italic !important;
+    padding: 4px;
 }
 
 .btn-sh{
@@ -16,10 +39,89 @@
     background: none;
 }
 
-.container{
-    border-radius: 25px;
-}
-.paddin-c{
-    padding: 10px;
-}
 
+
+/* CSS DE ADMINISTRACIÓN */
+/*navbar*/
+.alinear-izquierda{
+    float: left;
+    }
+    h1{
+      text-align: center  ;
+      font-size: 33px;
+      font-family: Arial;
+      color: #ffffff;
+    }
+     h2{
+      text-align: center  ;
+      font-size: 33px;
+      font-family: Arial;
+      color: #4e00ce;
+     }
+    .navbar{
+      display: block;
+      padding: 10px 30px;
+    }
+    .navbar a {
+        text-decoration: none !important;
+        color: #fff;
+    }
+    .nav{
+      padding: 6px 30px;
+      }
+    li a{
+        text-decoration: none;
+        padding-right: 20px;
+    }
+
+    .delr{
+        transition: 500ms;
+        border-radius: 50%;
+        color: red;
+    }
+    .delr:hover{
+        color: white;
+        background-color: red;
+
+
+    }
+    
+    .subirenf{
+        transition: 500ms;
+        border-radius: 50%;
+        color: rgb(254, 61, 219);
+    }
+    .subirenf:hover{
+        color: white;
+        background-color: rgb(254, 61, 219);
+
+    }
+
+    .editRegist{
+        transition: 500ms;
+        border-radius: 50%;
+        color: #4e00ce;
+    }
+    .editRegist:hover{
+        color: white;
+        background-color: #4e00ce;
+
+    }
+
+    /*CONFIGURACION DEL FOOTER*/
+    footer div div a {
+        color: #1A78F3 !important;
+        transition: all 800ms !important;
+    }
+    footer div div a:hover{
+        background-color: #1A78F3;
+        color: white !important;
+    }
+
+    /*configuración de la tabla*/
+    table{
+        border-radius: 20px;
+    }
+    thead{
+        text-align: center;
+    }
