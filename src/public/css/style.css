@@ -8,6 +8,23 @@ body {
     progid: DXImageTransform.Microsoft.gradient(startColorstr="#aae0f9", endColorstr="#ead1d3", GradientType=1);
     -webkit-filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#aae0f9", endColorstr="#ead1d3", GradientType=1);
 }
+/*HOME Tutor*/
+
+.nav-seccion a{
+    margin: 8px;
+    margin-top: 20px;
+}
+
+.homeTutor textarea{
+    border: none;
+    width: 100%;
+    resize: none;
+}
+.homeTutor .card-notice{
+    border-radius: 20px;
+    padding: 30px;
+}
+
 
 /* Enfermeria */
 .btn-nv{
@@ -107,21 +124,62 @@ body {
         background-color: #4e00ce;
 
     }
+    .textareaCountainer{
+        border: none;
+        width: 100%;
+        resize: none;
+    }
 
     /*CONFIGURACION DEL FOOTER*/
-    footer div div a {
-        color: #1A78F3 !important;
-        transition: all 800ms !important;
+footer div div a {
+    color: #1A78F3 !important;
+    transition: all 800ms !important;
     }
-    footer div div a:hover{
-        background-color: #1A78F3;
-        color: white !important;
+footer div div a:hover{
+    background-color: #1A78F3;
+    color: white !important;
     }
 
     /*configuración de la tabla*/
-    table{
-        border-radius: 20px;
+table{
+    border-radius: 20px;
     }
-    thead{
-        text-align: center;
+thead{
+    text-align: center;
     }
+
+    /*CONTACTANOS*/
+.contactanos-containers{
+    border-radius: 30px;
+    border: none;
+    width:100% !important;
+    }
+.contactanos-containers form input{
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    }
+.contactanos-containers form textarea{
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    }
+.red-contactanos a{
+    width: 100%;
+}
+.btn-message{
+    width: 100%;
+}
+
+/*MENSAJES ADMIN*/
+.mensaje-ver{
+    border-radius: 10px;
+}
+.container-roud{
+    border-radius: 25px !important;
+}
+.footercard{
+    margin-bottom: -20px !important;
+}

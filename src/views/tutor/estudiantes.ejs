@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include('../partials/head.ejs') %> 
 <body>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Sección</th>
-                <th>Grupo</th>
-                <th>Boleta</th>
-                <th>Colegiatura</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% tutor.forEach(datos => { %>
-             <tr>
-                 <td><%= datos.nombre %></td>
-                 <td><%= datos.seccion %></td>
-                 <td><%= datos.grupo %></td>
-                 <td><a href="<%= datos.link_boleta %>">Ver boleta</a></td>
-                 <td><%= datos.colegiatura %></td>
-             </tr>
-            <% }) %>
-        </tbody>
-    </table>
+    <%- include('partials/navbar.ejs') %> 
 
+    <%- include('partials/nav.ejs') %> 
+
+      <section>
+        <div>
+            <h2 class="text-center txt-c7"><%- subtitle %> </h2>
+          </div>
+          <hr>
+          <!--Barra de busqueda-->
+            <div class="text-center">
+                <form action="#"> 
+                <div>
+                <input type="text" placeholder="&#xF52A; Buscar Alumnos" id="Buscador" class="busqueda" >
+                </div>
+                </form>
+            </div>
+    </section>
+<br>
+      <section class="container">
+        <table class="table table-striped bg-c7 sbr-1 text-center">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Sección y Grupo</th>
+                    <th>Boleta</th>
+                    <th>Colegiatura</th>
+                </tr>
+            </thead>
+            <tbody id="Tbody">
+                <% tutor.forEach(datos => { %>
+                 <tr>
+                     <td><%= datos.nombre %></td>
+                     <td><%= datos.seccion %> del <%= datos.grupo %></td>
+                     <td><a href="<%= datos.link_boleta %>">Ver boleta</a></td>
+                     <td>$ <%= datos.colegiatura %></td>
+                 </tr>
+                <% }) %>
+            </tbody>
+        </table>
+      </section>
+      <%- include('../partials/footer.ejs') %> 
+
+      
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+        $(document).ready(function(){
+              $("#Buscador").on("keyup",function(){
+                  var value = $(this).val().toLowerCase();
+                  $("#Tbody tr").filter(function(){
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+              });
+          });
+      });
+      </script>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 </body>
 </html>

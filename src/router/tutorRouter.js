@@ -2,6 +2,13 @@ const express = require ('express');
 const TutorController = require ('../controllers/tutorController');
 const router = express.Router();
 
-router.get('/registro', TutorController.index);
+router.get('/registros', TutorController.index);
+router.get('/registros-educacion_inicial', TutorController.indexEduInc);
+router.get('/registros-preescolar', TutorController.indexPre);
+router.get('/registros-primaria', TutorController.indexPri);
+router.get('/registros-secundaria', TutorController.indexSec);
+
+router.get('/contactanos', TutorController.redesContactanos);
+router.post('/enviar-mensaje', TutorController.enviarMessage);
 
 module.exports = router;

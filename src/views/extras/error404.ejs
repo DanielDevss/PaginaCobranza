@@ -4,24 +4,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <title>Paágina no encontrada</title>
 </head>
+
+<style>
+    body {
+        background: rgb(170, 224, 249);
+        background: -moz-linear-gradient(180deg, rgba(170, 224, 249, 1) 0%, rgba(234, 209, 211, 1) 100%);
+        background: -webkit-linear-gradient(180deg, rgba(170, 224, 249, 1) 0%, rgba(234, 209, 211, 1) 100%);
+        background: linear-gradient(180deg, rgba(170, 224, 249, 1) 0%, rgba(234, 209, 211, 1) 100%);
+        filter: ;
+        progid: DXImageTransform.Microsoft.gradient(startColorstr="#aae0f9", endColorstr="#ead1d3", GradientType=1);
+        -webkit-filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#aae0f9", endColorstr="#ead1d3", GradientType=1);
+    }
+    img{
+        width: 100%;
+    }
+    footer{
+        background-color: white;
+    }
+    .divimg{
+        width: 80%;
+        display: block;
+        margin: auto;
+    }
+    .header{
+        margin-top: 30px;
+    }
+    h1{
+        
+        color: white;
+        text-shadow: 0px 0px 18px rgba(0, 0, 0, 0.366);
+    }
+    hr{
+        border: solid 1px #fff;
+    }
+    button{
+        margin-top: -250px;
+        background-color: #fff !important;
+        border-radius: 15px !important;
+        border: solid 1px !important;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.366);   
+        transition: 400ms !important; 
+    }
+    button:hover{
+        box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.400);
+        margin-bottom: 6px;
+        background-color: rgb(0, 42, 140) !important;
+        border-radius: 30px !important;
+        border: none !important;
+        color: white !important;
+        padding: 12px;
+        transform: scale(1.2);
+    }
+</style>
+
 <body>
-    
-    <div class="error404">
-        <div>
+    <div class="container">
+        <div class="text-center header">
             <h1>Lo sentimos, la página no ha sido encontrada</h1>
             <hr>
             <p><b>OPPS!!</b>, la página que haz intentado buscar no existe, prueba de otro modo</p>
         </div>
-        <div class="centrarDiv">
-            <img class="imgError404" src="./img/otros/error404.png" alt="Imagen de error 404">
+        <div class="divimg">
+            <img src="https://raw.githubusercontent.com/Daniel-trece/PaginaCobranza/main/src/public/img/otros/error404.png?token=GHSAT0AAAAAABUTD46QGFCHATOCKU6TS44EYUBXHBQ" alt="Imagen de error 404">
         </div>
-        <div>
-            <button onclick="history.back()" class="volver404 simple">Volver al sitio</button>
+        <div class="button" align="center">
+            <button onclick="history.back()" class="btn">Volver al sitio</button>
         </div>
     </div>
-
+    <%- include('../partials/footer.ejs') %> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

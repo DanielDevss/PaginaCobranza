@@ -35,6 +35,8 @@ function subirENF(req,res){
     console.log(datosSubirEnfermeria)
 }
 
+
+
 function create(req,res) {
     res.render('admin/nuevoRegistro', {
         title: 'Nuevo Registro'
@@ -134,6 +136,57 @@ function indexSec(req,res) {
     })
 }
 
+//CONFIGURACIONES
+
+function settingContac(req,res){
+    req.getConnection((err,conn) => {
+        conn.query('SELECT * FROM contacto', (err,setting) => {
+            if (err){
+                res.json(err);
+            }
+            res.render('admin/settings', {
+                setting:setting,
+                subtitle: 'Estudiantes Registrados',
+                title: 'Configuraciones'
+            })
+        })
+    })
+}
+function settingContacUpdate(req,res){
+    const datosSettings = req.body;
+    req.getConnection((err,conn) => {
+        conn.query('UPDATE contacto SET ? WHERE id = ?', [datosSettings, datosSettings.id], (err,rows) => {
+            res.redirect('/admin')
+        })
+    })
+}
+
+//MENSAJES
+
+function adminMensajes(req,res) {
+    req.getConnection((err,conn) => {
+        conn.query('SELECT * FROM mensajes ORDER BY fecha DESC', (err,adminMensajes) => {
+            if (err){
+                res.json(err);
+            }
+            res.render('admin/mensajes', {
+                adminMensajes:adminMensajes,
+                subtitle: 'Estudiantes Registrados',
+                title: 'Registros Administracion'
+            })
+        })
+    })
+}
+function borrarMensajes(req,res){
+    const idmensaje = req.body.idmensajes;
+    req.getConnection((err,conn)=>{
+        conn.query('DELETE FROM mensajes WHERE idmensajes = ?',[idmensaje],(err,rows)=>{
+            res.redirect('/admin-mensajes')
+        })
+    })
+}
+
+
 module.exports = {
     index:index,
     indexEduIni:indexEduIni,
@@ -147,5 +200,11 @@ module.exports = {
     subirENF:subirENF,
     editar:editar,
     actualizar:actualizar,
-    indexSec:indexSec
+    indexSec:indexSec,
+
+    settingContac:settingContac,
+    settingContacUpdate:settingContacUpdate,
+
+    adminMensajes:adminMensajes,
+    borrarMensajes:borrarMensajes,
 }

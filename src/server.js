@@ -5,15 +5,16 @@ const session = require('express-session');
 const passport = require('passport');
 const PassportLocal = require('passport-local').Strategy;
 const app = express();
-//PARA BASES DE DATOS
-const myconnection = require('express-myconnection');
-const mysql = require('mysql')
-const bodyParser = require('body-parser')
 
 //RUTAS
 const tutorRoutes = require('./router/tutorRouter')
 const adminRoutes = require('./router/adminRouter')
 const enfermeriaRoutes = require('./router/enfermeriaRouter')
+
+//PARA BASES DE DATOS
+const myconnection = require('express-myconnection');
+const mysql = require('mysql')
+const bodyParser = require('body-parser')
 
 
 //Declaración de rutas
@@ -129,12 +130,10 @@ app.get('/', (req,res) => {
     })
 })
 app.get('/ayuda', (req,res) =>{
-    res.render('ayuda')
+    res.render('tutor/ayuda', {
+        title:'Ayuda'
+    })
 })
-app.get('/contactanos', (req,res) => {
-    res.render('contacto')
-})
-
 //Otras Rutas
 app.get('*', (req,res) => {
     res.render('extras/error404')

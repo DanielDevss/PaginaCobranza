@@ -1,0 +1,21 @@
+/*NAV SECCION*/
+.nav-seccion a{
+    width: 100% !important;
+    margin: 0px !important;
+    margin-top: 0px;
+    border-radius: 0px !important;
+    background-color: white !important;
+    color: #0B0B9B;
+    padding: 5px;
+}
+.nav-seccion{
+    border-top: solid 1px #9292CD;
+    background-color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/*TABLAS*/
+table{
+    font-size: 0.8rem;
+}

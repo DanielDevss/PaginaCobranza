@@ -44,10 +44,13 @@
         background-color: #1A78F3;
         color: white !important;
     }
-    textarea{
-        width: 100%;
+    .textareaContainer{
+        border: none !important;
+        width: 100% !important;
+        resize: none !important;
     }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <body>
 <!--Nav-->
 <%- include('./partials/navbar.ejs') %> 
@@ -95,19 +98,19 @@
                     <div class="row mb-4">
                         <div class="col-12">
                             <h4 class="txt-c2">Alergías</h4>
-                            <textarea disabled name="" cols="30" rows="3" style="border: none;resize: none;"><%= datosEnfermeria.alergias %></textarea>
+                            <textarea class="textareaContainer"><%= datosEnfermeria.alergias %></textarea>
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-12">
                             <h4 class="txt-c2">Enfermedades</h4>
-                            <textarea disabled name="" cols="30" rows="3" style="border: none;resize: none;"><%= datosEnfermeria.enfermedades %></textarea>
+                            <textarea  class="textareaContainer"><%= datosEnfermeria.enfermedades %></textarea>
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-12">
                             <h4 class="txt-c2">Observaciones</h4>
-                            <textarea disabled style="border: none;resize: none;"><%= datosEnfermeria.observaciones %></textarea>
+                            <textarea class="textareaContainer"><%= datosEnfermeria.observaciones %></textarea>
                         </div>
                     </div>
                 </div>
@@ -127,6 +130,15 @@
 
             </div>
         <% }) %>
+
+        <script>
+            $("textarea").each(function () {
+              this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+            }).on("input", function () {
+              this.style.height = "auto";
+              this.style.height = (this.scrollHeight) + "px";
+            });
+          </script>
 
     </section>
     <%- include('../partials/footer.ejs') %> 
