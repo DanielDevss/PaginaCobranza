@@ -1,21 +1,36 @@
 <%- include('../partials/head');%>
     <body>
-        <h1 class="titles texto-centrado margin-top-grande">¿Qué Usuario eres?</h1>
-        <div class="btnsUsers">
-            <!-- * USUARIO ADMINISTRACIÓN -->
-            <div class="btn-cards-users">
-                <a id="#btnUser1" href="#">
-                    <img class="imgusers" id="imgU1" src="img/selectUser/adminUserBTN.svg" alt="Imagen botón de administrador">
-                    <span id="txtU1">Administrador</span>
-                </a>
+        <section class="container mt-5 ">
+            <h1 class="sbr-text">¿Qué Usuario eres?</h1>
+            <div class="row mt-5">
+                <article class="col-md-6">
+                    <div class="userAdmin" align="center">
+                        <a class="btn" href="/admin">
+                            <div class="d-flex align-items-center contenedor-img bg-c7">
+                                <img src="img/selectUser/adminUserBTN.svg" alt="">
+                            </div>
+                            <div class="userTextSelec">
+                                <h3 class="txt-c2">Administración</h3>
+                            </div>
+                        </a>
+                    </div>
+                </article>
+                <article class="col-md-6">
+                    <div class="userEnfer" align="center">
+                        <a class="btn" href="/enfermeria">
+                            <div class="d-flex align-items-center contenedor-img bg-c7">
+                                <img src="img/selectUser/enfermeriaBTN.svg"" alt="">
+                            </div>
+                            <div class="userTextSelec">
+                                <h3 class="txt-c4">Enfermeria</h3>
+                            </div>
+                        </a>
+                    </div>
+                </article>
             </div>
-            <!-- * USUARIO ENFERMERÍA -->
-            <div class="btn-cards-users">
-                <a id="btnUser2" href="#">
-                    <img class="imgusers" id="imgU2" src="img/selectUser/enfermeriaBTN.svg" alt="Imagen botón de administrador">
-                    <span id="txtU2">Enfermeria</span>
-                </a>
-            </div>
-        </div>
-    </body>
+                
+                <!-- * USUARIO ADMINISTRACIÓN -->
+
+        </section>
+        </body>
     </html>

@@ -15,21 +15,21 @@
         <a href="/admin-Secundaria" class="btn-nv btn btn2 bg-c2 mx-2">Secundaria</a>  
       </div>
       <br>
-      <h1><%- subtitle %></h1>
+      <h1 class="sbr-text"><%- subtitle %></h1>
 <hr>
   <div>
-    <h4 class="text-center txt-c2">Administración</h4>
+    <h4 class="text-center txt-c2 ">Administración</h4>
   </div>
         <div class="text-center">
             <form action="#"> 
             <div>
-            <input type="text" placeholder="&#xF52A; Buscar Alumnos" id="Buscador" class="busqueda" >
+            <input autocomplete="off" type="search" placeholder="&#xF52A; Buscar Alumnos" id="Buscador" class="busqueda" >
             </div>
             </form>
         </div>
 
     <section class="container mt-4">
-        <table class="table table-striped bg-c7 sbr-1">
+        <table class="table align-middle table-striped bg-c7 sbr-1">
             <thead>
                 <tr>
                     <th>Matricula</th>
@@ -43,10 +43,10 @@
                     <th>Gestionar</th>
                 </tr>
             </thead>
-            <tbody id="Tbody">
+            <tbody class="table align-middle" id="Tbody">
                 <% admin.forEach((datosAdmin) => { %>
-                    <tr class="text-center">
-                        <td><%= datosAdmin.id_estudiante %> </td>
+                    <tr class="border text-center align-items-center align-center">
+                        <td><%= datosAdmin.id_estudiante %></td>
                         <td><%= datosAdmin.nombre %> </td>
                         <td><%= datosAdmin.seccion %> </td>
                         <td><%= datosAdmin.grupo %> </td>
@@ -55,16 +55,19 @@
                         <td>$ <%= datosAdmin.colegiatura %></td>
                         <!--<td><a href="<%= datosAdmin.link_boleta %>" class="btn btn2 bg-c3 hint--top hint--medium hint--bounce" aria-label="Editar enlace de boleta" style="font-family: Bootstrap-icons;">&#xF470;</a></td> -->
                         <td class="d-flex justify-content-center acciones">
+                        <!--ANCHOR BUTTON ELIMINAR-->
                             <form action="/admin/borrar" method="POST">
                                 <input type="hidden" value="<%= datosAdmin.id_estudiante %>" name="id">
-                                <button class="btn delr hint--top-left hint--error hint--medium hint--bounce" aria-label="Eliminar el registro de la base de datos" style="font-family: bootstrap-icons;">&#xF78A;</button>
+                                <button class="btn delr hint--top-left hint--error hint--medium hint--bounce btn-gestion-admin" aria-label="Eliminar el registro de la base de datos"><!--&#xF78A;--><i class="bi bi-person-dash"></i></button>
                             </form>
+                        <!--ANCHOR BUTTON SUBIR A ENFERMEIA-->
                             <form action="/admin/enviarEnfermeria" method="POST">
                                 <input type="hidden" value="<%= datosAdmin.id_estudiante %>" name="id_estudiante">
                                 <input type="hidden" value="" name="talla"><input type="hidden" value="" name="peso"><input type="hidden" value="" name="IMC"><input type="hidden" value="Sin Informaciòn" name="alergias"><input type="hidden" value="Sin Informaciòn" name="enfermedades"><input type="hidden" value="Sin Informaciòn" name="observaciones">
-                                <button class="btn subirenf hint--top hint--medium hint--bounce" aria-label="Subir registro a enfermeria. Esto solo funciona una vez" style="font-family: bootstrap-icons;">&#xF783;</button>
+                                <button class="btn subirenf hint--top hint--medium hint--bounce btn-gestion-admin" aria-label="Subir registro a enfermeria. Esto solo funciona una vez""><!--&#xF783;--><i class="bi bi-clipboard2-pulse"></i></button>
                             </form>
-                            <a class="btn editRegist hint--top-right hint--info hint--medium hint--bounce" aria-label="Editar el registro <%= datosAdmin.id_estudiante %>"  style="font-family: bootstrap-icons;" href="/admin/editarRegistro/<%= datosAdmin.id_estudiante %>">&#xF4CA;</a>
+                        <!--ANCHOR BUTTON EDITAR-->
+                            <a class="btn editRegist hint--top-right hint--info hint--medium hint--bounce btn-gestion-admin" aria-label="Editar el registro <%= datosAdmin.id_estudiante %>" href="/admin/editarRegistro/<%= datosAdmin.id_estudiante %>"><!--&#xF4CA;--><i class="bi bi-pencil-square"></i></a>
                         </td>
                     </tr>
                 <% }) %>

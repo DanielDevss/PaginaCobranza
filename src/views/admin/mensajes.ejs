@@ -7,34 +7,38 @@
 
         <section class="container ">
             <br>
-            <h1>Mensajes Disponibles</h1>
+            <h1 class="sbr-text">Mensajes Disponibles</h1>
             <br>
             <div class="bg-c7 p-4 sbr-1 container-roud">
 
-                <% adminMensajes.forEach( datosAdmin => { %>
-                    <article class="m-3">
-                        <form action="/admin-mensajes/delete" method="POST">
-                            <div class="card mensaje-ver sbr-1">
-                                <div class="card-header d-flex justify-content-between"><h6><%= datosAdmin.nombre %></h6><button class="btn btn2 bg-c4"><i class="bi bi-trash-fill"></i> Borrar</button></div>
-                                <div class="card-body">
-                                    <textarea class="textareaContainer"><%= datosAdmin.mensaje %></textarea>
-                                    <hr>
-                                    <div class="d-flex justify-content-between footercard">
-                                        <i><%= datosAdmin.contacto %></i><p><%= datosAdmin.fecha %> </p>
+                <% adminMensajes.forEach( datosAdmin => {%>
+                   <% if (datosAdmin.num == 0) {%> 
+                        <article class="m-3">
+                            <form action="/admin-mensajes/delete" method="POST">
+                                <div class="card mensaje-ver sbr-1">
+                                    <div class="card-header d-flex justify-content-between"><h6><%= datosAdmin.nombre %></h6>
+                                        <input type="hidden" name="idmensajes" value="<%= datosAdmin.idmensajes %>">
+                                        <button type="submit" class="btn btn2 bg-c4"><i class="bi bi-trash-fill"></i> Borrar</button>
+                                    </div>
+                                    <div class="card-body">
+                                        <textarea disabled class="textareaCountainer"><%= datosAdmin.mensaje %></textarea>
+                                        <hr>
+                                        <div class="d-flex justify-content-between footercard">
+                                            <i><%= datosAdmin.contacto %></i><p><%= datosAdmin.fecha %> </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <input type="hidden" name="idmensajes" value="<%= datosAdmin.idmensajes %>">
-                            
-                        </form>
-                    </article>
+                            </form>
+                        </article>
+                    <% }else{ %> 
+                            <div class="text-center">
+                                <h4><i class="bi bi-envelope-exclamation"></i> Por el momento no hay nuevos mensajes...</h4>
+                                <hr>
+                                <a href="javascript: history.go(-1)" class="btn btn7">Volver atrás</a>
+                            </div>  
+                        <% } %> 
                 <% }) %>
-                    
-                    <div hidden class="text-center">
-                        <h4><i class="bi bi-envelope-exclamation"></i> Por el momento no hay nuevos mensajes...</h4>
-                        <hr>
-                        <a href="javascript: history.go(-1)" class="btn btn7">Volver atrás</a>
-                    </div>
+
                     
             </div>
         </section>

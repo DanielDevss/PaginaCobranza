@@ -25,14 +25,14 @@ body {
     padding: 30px;
 }
 
-
 /* Enfermeria */
 .btn-nv{
-    width:     200px;
+    width:200px;
 }
     
 .busqueda{
-    width: 350px;
+    width: 100%;
+    max-width: 350px;
     padding: 4px;
     border-radius: 30px;
     border: none;
@@ -56,9 +56,7 @@ body {
     background: none;
 }
 
-
-
-/* CSS DE ADMINISTRACIÓN */
+/* ? ANCHOR CSS DE ADMINISTRACIÓN */
 /*navbar*/
 .alinear-izquierda{
     float: left;
@@ -101,6 +99,10 @@ body {
         background-color: red;
 
 
+    }
+
+    .btn-gestion-admin{
+        font-size: 25px;
     }
     
     .subirenf{
@@ -147,7 +149,16 @@ table{
 thead{
     text-align: center;
     }
-
+.btn-res{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    max-width: 100px;
+    margin: auto;
+}
+.btn-res p{
+    margin: 0;
+}
     /*CONTACTANOS*/
 .contactanos-containers{
     border-radius: 30px;
@@ -183,3 +194,87 @@ thead{
 .footercard{
     margin-bottom: -20px !important;
 }
+
+/*REGISTRAR ALUMNOS*/
+
+.contact_form{  
+    width: 460px; 
+    height: auto;
+    margin: 80px auto;
+    border-radius: 10px;  
+    padding-top: 30px;
+    padding-bottom: 20px;  
+    background-color: #fbfbfb; 
+    padding-left: 30px; 
+  }  
+.contact_form input, select{
+    background-color: #fbfbfb; 
+    width: 408px; 
+    height: 40px; 
+    border-radius: 5px;  
+    border-style: solid; 
+    border-width: 1px; 
+    border-color: #9292CD; 
+    margin-top: 10px;  
+    padding-left: 10px;
+    margin-bottom: 20px; 
+}
+.contact_form label{
+    display: block;
+    float: center;
+}
+/* *ANCHOR login*/
+.login{
+    width: 350px;
+    border-radius: 20px;
+    margin-top: 20px !important;
+    display: block;
+    margin: auto;
+}
+.login input{
+    width: 100%;
+    border-radius: 15px;
+    border: none;
+    padding: 7px;
+}
+.login span{
+    border-radius: 0px 15px 15px 0px !important;
+    transition: 300ms;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+.login span:hover{
+    box-shadow: inset 0 0px 10px #0000002a;
+}
+#loginID{
+    border-bottom: solid 1px #4e00ce;
+}
+.top{
+    margin-top: 150px !important;
+}
+/*ANCHOR SELECCIONAR USUARIO*/
+.contenedor-img{
+    padding: 50px;
+    width: 350px;
+    height: 350px;
+    border-radius: 30px;
+    margin: auto;
+}
+.contenedor-img img{
+    width: 100%;
+}
+.userTextSelec{
+    text-align: center;
+    margin-top: 20px;
+}
+.userTextSelec h3{
+    text-decoration: none !important;
+}
+
+/*
+tr{
+    margin-bottom: 12rem;
+}
+*/

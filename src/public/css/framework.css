@@ -1,0 +1,194 @@
+/* ! CONFIGURACION DE COLORES */
+:root{
+    --color1: #9292CD;
+    --color2: #0B0B8F;
+    --color3: #38CF2D;
+    --color4: #FF3838;
+    --color5: #C0C0C0;
+    --color6: #D6DBDF;
+    --color7: #fff;
+}
+/* ? TEXTOS DE COLORES */
+.txt-c1{
+    color: var(--color1) !important;
+}
+.txt-c2{
+    color: var(--color2) !important;
+}
+.txt-c3{
+    color: var(--color3) !important;
+}
+.txt-c4{
+    color: var(--color4) !important;
+}
+.txt-c5{
+    color: var(--color5) !important;
+}
+.txt-c6{
+    color: var(--color6) !important;
+}
+.txt-c7{
+    color: var(--color7) !important;
+}
+
+/* ?BACKGROUNDS COLORS */
+.bg-c1{
+    background-color: var(--color1) !important;
+}
+.bg-c2{
+    background-color: var(--color2) !important;
+}
+.bg-c3{
+    background-color: var(--color3) !important;
+}
+.bg-c4{
+    background-color: var(--color4) !important;
+}
+.bg-c5{
+    background-color: var(--color5) !important;
+}
+.bg-c6{
+    background-color: var(--color6) !important;
+}
+.bg-c7{
+    background-color: var(--color7) !important;
+}
+
+
+
+/* ? TIPOS BOTONES*/
+.btn1{
+    background-color: none;
+    color: #000;
+}
+.btn1:hover{
+    background-color: none;
+    opacity: 0.5;
+}
+
+.btn2{
+    background-color: var(--color5); /*ESTE ES ES COLOR DE FONDO*/
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    color: var(--color7);
+    transition: .3s;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -ms-transition: .3s;
+    -o-transition: .3s;
+}
+.btn2:hover{
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    -ms-border-radius: 18px;
+    -o-border-radius: 18px;
+    color: var(--color7);
+    opacity: .6;
+}
+
+.btn3{
+    border: solid 1.7px var(--color3);
+    color: var(--color3);
+    transition: 500ms;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+}
+.btn3:hover{
+    background-color: var(--color3); /*ESTE ES EL COLOR DE FONDO*/
+    color: var(--color7);
+}
+
+.btn4{
+    background-color: var(--color7);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    transition: 500ms;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+}
+.btn4:hover{
+    background-color: var(--color1);
+    opacity: 0.5;
+    color: var(--color7);
+}
+
+.btn5{
+    background-color: var(--color5);
+    color: var(--color7);
+    border: solid 2px var(--color7);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    transition: 500ms;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+}
+.btn5:hover{
+    opacity: .5;
+    color: var(--color7);
+}
+
+.btn6{
+    border: solid 1.7px var(--color4);
+    color: var(--color4);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    transition: 500ms;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+}
+.btn6:hover{
+    background-color: var(--color4);
+    color: var(--color7);
+}
+
+.btn7{
+
+    transition: 500ms;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+}
+.btn7:hover{
+    font-size: calc(100% + 2px);
+    color: var(--color2);
+    text-shadow: rgba(0, 0, 0, 0.233) 0px 0px 8px;
+}
+
+/* ? SOMBRAS */
+
+.sbr-1{
+    box-shadow: rgba(0, 0, 0, 0.250) 0px 0px 18px;
+}
+.sbr-2{
+    box-shadow: inset rgba(0, 0, 0, 0.250) 0px 0px 18px;
+}
+.sbr-text{
+    text-shadow: rgba(0, 0, 0, 0.365) 0px 0px 8px;
+}

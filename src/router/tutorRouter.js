@@ -8,6 +8,9 @@ router.get('/registros-preescolar', TutorController.indexPre);
 router.get('/registros-primaria', TutorController.indexPri);
 router.get('/registros-secundaria', TutorController.indexSec);
 
+router.get('', TutorController.homepage);
+router.get('/ayuda', TutorController.help);
+
 router.get('/contactanos', TutorController.redesContactanos);
 router.post('/enviar-mensaje', TutorController.enviarMessage);
 

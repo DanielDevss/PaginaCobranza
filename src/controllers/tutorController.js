@@ -99,6 +99,16 @@ function enviarMessage(req, res) {
     console.log(datosMensaje)
 }
 
+function homepage(req, res){
+    res.render('tutor/home',{
+        title:'HomePage'
+    })
+}
+function help(req, res){
+    res.render('tutor/ayuda', {
+        title:'Ayuda'
+    })
+}
 
 module.exports = {
     index:index,
@@ -106,6 +116,9 @@ module.exports = {
     indexPre:indexPre,
     indexPri:indexPri,
     indexSec:indexSec,
+
+    homepage:homepage,
+    help:help,
 
     redesContactanos:redesContactanos,
     enviarMessage:enviarMessage,

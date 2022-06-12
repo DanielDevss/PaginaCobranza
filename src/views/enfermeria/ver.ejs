@@ -15,12 +15,20 @@
 }
     .container{
         border-radius: 30px;
+        padding-left: 70px !important;
+        padding-right: 70px !important;
 }
     .izquierda{
         text-align: left !important;
     }
     .izquierda div div textarea{
         background-color: white;
+    }
+    .botones-ver-editar{
+        font-size: 1.8rem;
+    }
+    .botones-ver-editar a:hover{
+        text-decoration: none !important;
     }
     .option1{
         color: gray;
@@ -58,9 +66,9 @@
         <% enfermeria.forEach((datosEnfermeria) => { %>
             
             <div class="container sbr-1 mt-4 p-4 bg-c7 text-center">
-                <div class="d-flex justify-content-between">
-                    <a href="javascript: history.go(-1)"><i class="bi bi-box-arrow-left option1" style="font-size: 35px;"></i></a>
-                    <a href="/enfermeria/editar-registro/<%= datosEnfermeria.id_estudiante %>"><i class="option2 bi bi-pencil-square" style="font-size: 35px;"></i></a>
+                <div class="d-flex botones-ver-editar justify-content-between">
+                    <a href="/enfermeria" class="option1"><i class="bi bi-box-arrow-left" style="font-size: 35px;"></i> Volver</a>
+                    <a href="/enfermeria/editar-registro/<%= datosEnfermeria.id_estudiante %>" class="option2">Editar <i class="bi bi-pencil-square" style="font-size: 35px;"></i></a>
                 </div>
                 <div class="">
                     <h3 class="text-center txt-c4">Datos de Alumno - Enfermería</h3>
@@ -98,19 +106,19 @@
                     <div class="row mb-4">
                         <div class="col-12">
                             <h4 class="txt-c2">Alergías</h4>
-                            <textarea class="textareaContainer"><%= datosEnfermeria.alergias %></textarea>
+                            <textarea  readonly="readonly" disabled class="textareaContainer"><%= datosEnfermeria.alergias %></textarea>
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-12">
                             <h4 class="txt-c2">Enfermedades</h4>
-                            <textarea  class="textareaContainer"><%= datosEnfermeria.enfermedades %></textarea>
+                            <textarea  readonly="readonly" disabled  class="textareaContainer"><%= datosEnfermeria.enfermedades %></textarea>
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-12">
                             <h4 class="txt-c2">Observaciones</h4>
-                            <textarea class="textareaContainer"><%= datosEnfermeria.observaciones %></textarea>
+                            <textarea  readonly="readonly" disabled class="textareaContainer"><%= datosEnfermeria.observaciones %></textarea>
                         </div>
                     </div>
                 </div>

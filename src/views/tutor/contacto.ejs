@@ -7,7 +7,7 @@
 
   <br>
   <div>
-    <h1>Contactanos</h1>
+    <h1 class="sbr-text">Contactanos</h1>
   </div>
   <br>
     <section class="container">
@@ -42,10 +42,17 @@
                 <hr>
               </div>
               <% tutorContactos.forEach(datos => { %>
+                <% if (datos.sitio_nombre == 'Whatsapp'){ %>
+                  <div class="red-contactanos m-3">
+                    <p hidden id="contacto"><%= datos.contacto %> </p>
+                    <a href="https://api.whatsapp.com/send?phone=<%= datos.contacto %> " style="background-color: <%= datos.color %> ;" class="btn btn2 sbr-1" onclick="copyToClipboard('#contacto')"><i class="<%= datos.icon %> "></i> <%= datos.sitio_nombre %> </a>
+                  </div>  
+                <% }else{ %>  
                 <div class="red-contactanos m-3">
                   <p hidden id="contacto"><%= datos.contacto %> </p>
                   <a href="<%= datos.contacto %> " style="background-color: <%= datos.color %> ;" class="btn btn2 sbr-1" onclick="copyToClipboard('#contacto')"><i class="<%= datos.icon %> "></i> <%= datos.sitio_nombre %> </a>
                 </div>
+                <% } %> 
               <% }) %>
             </div>
         </aside>

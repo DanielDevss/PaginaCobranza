@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <%- include('../partials/head.ejs') %> 
+<body>
+    <%- include('./partials/navbar.ejs') %> <br>
+    <%- include('./partials/navSettings.ejs') %> <br>
+    <section>
+        <h1 class="sbr-text">Configuración de Contraseñas</h1>
+    </section>
+    <br>
+    <section class="container bg-c7 sbr-1 p-5" style="border-radius: 30px; border: none;">
+        <article class="row p-2">
+            <div class="col-md-3">
+                <h2 class="txt-c2">Nuevo Usuario</h2>
+                <hr>
+                <form action="/admin-userRegister" method="POST">
+                    <div>
+                        <input type="hidden" name="id_user" value="">
+                        <label><i class="bi bi-person"></i> Usuario</label>
+                        <input autocomplete="off" name="user"  placeholder="Ingresa un Usuario" type="text" style="text-align: center; padding: 5px; width: 100%; border-radius: 10px; border: none;" class="sbr-2">
+                    </div>
+                    <br>
+                    <div>
+                        <label><i class="bi bi-key"></i> Contraseña</label>
+                        <input autocomplete="off" placeholder="Ingresa una contraseña" type="password" id="pass" style=" padding: 5px; border-radius:10px; text-align: center; width: 100%; border-radius: 10px; border: none;" name="pass" class="sbr-2">
+                    </div>
+                    <br>
+                    <div>
+                        <label><i class="bi bi-check2-circle"></i> Confirmar Contraseña</label>
+                        <input autocomplete="off" placeholder="Ingresa una contraseña" type="password" id="pass" style=" padding: 5px; border-radius:10px; text-align: center; width: 100%; border-radius: 10px; border: none;" name="passConfirm" class="sbr-2">
+                    </div>
+                    <div class="mt-4">
+                        <input type="submit" class="btn btn3" style="width: 100%;">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-9">
+                <h2 class="txt-c2">Usuarios Registrados</h2>
+                <div class="row">
+                    <% passwordsDB.forEach((bodyUser) => { %> 
+                    <div class="col-md-6 ">
+                        <form class="m-3 card p-3" action="/datos-setting-Usuarios/delete" method="POST">
+                            <div>
+                                <label for=""><i class="bi bi-person"></i> Usuario:</label>
+                                <input type="hidden" value="<%= bodyUser.id_user %>" name="id_user">
+                                <input disabled class="sbr-2" type="text" value="<%= bodyUser.user %>" style=" padding: 5px; border-radius:10px; text-align: center; width: 100%; border-radius: 10px; border: none;">
+                            </div>
+                            <div>
+                                <label for=""><i class="bi bi-key"></i> Contraseña:</label>
+                                <input disabled class="sbr-2" type="text" value="<%= bodyUser.passConfirm %>" style=" padding: 5px; border-radius:10px; text-align: center; width: 100%; border-radius: 10px; border: none;">
+                            </div>
+                            <div class="mt-3 text-center">
+                                <div>
+                                    <button type="submit"  class="btn btn2 bg-c4" style="width: 100%;"><i class="bi bi-person-x"></i>localll Borrar Usuario</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <% }) %> 
+            </div>
+        </article>
+    </section>
+
+
+
+    <%- include('../partials/footer.ejs') %> 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    
+    <% if(typeof alert != "undefined") {%>
+    <script>
+        Swal.fire({
+            title: '<%= alertTitle %>',
+            text:'<%= alertMessage %>',
+            icon:'<%= alertIcon %>',
+            showConfirmButton:'<%= showConfirmButton %>',
+            timer:'<%= timer %>'
+        }).then(()=>{
+            window.location='/<%= ruta %>'
+        })
+    </script>
+    <% } %> 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+</body>
+
+</html>

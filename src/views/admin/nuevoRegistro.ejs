@@ -1,59 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
+<%- include('./partials/head.ejs') %>
+
 <body>
-    
-    <form action="" method="POST">
+    <%- include('./partials/navbar') %> 
 
-        <div>
-            <div>
-                <label>Matricula</label>
-                <input type="number" name="id_estudiante" id="id">
-            </div>
-            <div>
-                <label>Nombre</label>
-                <input type="text" name="nombre" id="">
-            </div>
-            <div>
-                <label>Sección</label>
-                <select name="seccion">
-                    <option value="">--- Selecciona ---</option>
-                    <option value="Educacion Inicial">Esducacion Inicial</option>
-                    <option value="Preescolar">Preescolar</option>
-                    <option value="Primaria">Primaria</option>
-                    <option value="Secundaria">Secundaria</option>
-                </select>
-            </div>
-            <div>
-                <label>Grupo</label>
-                <input type="text" name="grupo" id="">
-            </div>
-            <div>
-                <label>Nombre del Tutor</label>
-                <input type="text" name="nombre_tutor" id="">
-            </div>
-            <div>
-                <label>Telefono del Tutor</label>
-                <input type="text" name="tel_tutor" id="">
-            </div>
-            <div>
-                <label>Enlace Boleta</label>
-                <input type="text" name="link_boleta" id="">
-            </div>
-            <div>
-                <input type="hidden" value="1200" name="colegiatura">
-            </div>
-            <div>
-                <input type="submit" value="Guardar Registro">
-            </div>
+    <section class="contact_form sbr-1">
+        <div class="formulario">
+            <h2>Registrar Alumno</h2>
+            <form action="" method="POST">
+                <div>
+                    <div>
+                        <label><i class="bi bi-key"></i> Matricula</label>
+                        <input required type="number" name="id_estudiante" id="id">
+                    </div>
+                    <div>
+                        <label><i class="bi bi-file-person"></i> Nombre</label>
+                        <input autocomplete="off" required type="text" name="nombre" id="">
+                    </div>
+                    <h2>Nivel Educativo</h2>
+                    <div>
+                        <label><i class="bi bi-view-list"></i> Sección</label>
+                        <select name="seccion" required>
+                            <option value="">--- Selecciona ---</option>
+                            <option value="Educacion Inicial">Esducacion Inicial</option>
+                            <option value="Preescolar">Preescolar</option>
+                            <option value="Primaria">Primaria</option>
+                            <option value="Secundaria">Secundaria</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label><i class="bi bi-collection"></i> Grupo</label>
+                        <input autocomplete="off" type="text" name="grupo" required id="">
+                    </div>
+                    <h2>Información De Tutor</h2>
+                    <div>
+                        <label><i class="bi bi-file-person"></i> Nombre del Tutor</label>
+                        <input autocomplete="off" type="text" name="nombre_tutor" required id="">
+                    </div>
+                    <div>
+                        <label><i class="bi bi-telephone"></i> Telefono del Tutor</label>
+                        <input autocomplete="off" type="tell" maxlength="10" name="tel_tutor" required id="">
+                    </div>
+                    <div hidden>
+                        <label>Enlace Boleta</label>
+                        <input autocomplete="off" type="url" name="link_boleta" id="">
+                    </div>
+                    <div>
+                        <input type="hidden" value="1200" name="colegiatura">
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn2 bg-c3" value="Guardar Registro">
+                    </div>
+                </div>
+            </form>
         </div>
-
-    </form>
-
+    </section>
+    
+    <%- include('../partials/footer.ejs') %> 
 </body>
+
+
+
 </html>

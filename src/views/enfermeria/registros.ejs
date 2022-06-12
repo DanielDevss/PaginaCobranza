@@ -7,11 +7,11 @@
 <!--Nav-->
 <nav class="navbar navbar-light bg-c4 mb-2">
     <div class="container-fluid">
-      <a class="navbar-brand txt-c7" href="#">
+      <a class="navbar-brand txt-c7" href="/enfermeria">
         <img src="img\otros\iconCCP.svg" alt="" width="30" height="40" style="margin: -5px; margin-right: 10px;" class="d-inline-block align-text-top">
         Centro Cultural de Petatlán - Enfermería
       </a>
-      <a href="/" class="btn btn1 navbar-brand txt-c7"><i class="bi bi-door-open"></i> Salir de Enfermeria</a>
+      <a href="/logout" class="btn btn1 navbar-brand txt-c7"><i class="bi bi-door-open"></i> Salir de Enfermeria</a>
     </div>
   </nav>
   
@@ -34,9 +34,9 @@
           </div>
           <!--Barra de busqueda-->
             <div class="text-center">
-                <form action="#"> 
+                <form> 
                 <div>
-                <input type="text" placeholder="&#xF52A; Buscar Alumnos" id="Buscador" class="busqueda" >
+                <input autocomplete="off" type="search" placeholder="&#xF52A; Buscar Alumnos" id="Buscador" class="busqueda" >
                 </div>
                 </form>
             </div>
@@ -60,7 +60,7 @@
                         <td><%= datosEnfermeria.id_estudiante %></td>
                         <td><%= datosEnfermeria.nombre %></td>
                         <td><%= datosEnfermeria.seccion %> del <%= datosEnfermeria.grupo %></td>
-                        <td><a class="btn txt-c7 bg-c5 btn2" href="/enfermeria/mas-informacion/<%= datosEnfermeria.id_estudiante %>"><i class="bi bi-info-circle"></i> Ver más</a></td>
+                        <td><a class="btn btn2" style="background-color: #4285F4;" href="/enfermeria/mas-informacion/<%= datosEnfermeria.id_estudiante %>"><i class="bi bi-info-circle"></i> Ver más</a></td>
                     </tr>
                 <% }) %>
             </tbody>
