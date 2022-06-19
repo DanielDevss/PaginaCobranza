@@ -14,4 +14,6 @@ router.get('/ayuda', TutorController.help);
 router.get('/contactanos', TutorController.redesContactanos);
 router.post('/enviar-mensaje', TutorController.enviarMessage);
 
+//router.post('/create-checkout-session', TutorController.pagarColegiatura)
+
 module.exports = router;

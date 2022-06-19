@@ -1,3 +1,5 @@
+
+
 function index(req,res) {
     const datos = req.body
     req.getConnection((err, conn) => {
@@ -110,6 +112,7 @@ function help(req, res){
     })
 }
 
+
 module.exports = {
     index:index,
     indexEduInc:indexEduInc,
@@ -122,4 +125,6 @@ module.exports = {
 
     redesContactanos:redesContactanos,
     enviarMessage:enviarMessage,
+
+
 }

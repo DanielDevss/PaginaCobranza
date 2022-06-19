@@ -2,7 +2,7 @@ function index(req,res) {
     if(req.session.loggedin){
         const datosEnfermeria = req.body;
         req.getConnection((err,conn)=> {
-            conn.query('SELECT * FROM vista_enfermeria', (err,enfermeria) => {
+            conn.query('select datos_enfermeria.id_estudiante, nombre, seccion, grupo, nombre_tutor, tel_tutor, IMC,peso,talla,alergias,enfermedades,observaciones from estudiantes inner join datos_enfermeria on estudiantes.id_estudiante = datos_enfermeria.id_estudiante', (err,enfermeria) => {
                 if(err){
                     res.json(err)
                 }
@@ -22,7 +22,7 @@ function verMas(req,res) {
     if(req.session.loggedin){
         const id = req.params.id
         req.getConnection((req,conn) => {
-            conn.query('SELECT * FROM vista_enfermeria WHERE id_estudiante = ?', [id], (err,enfermeria) => {
+            conn.query('select datos_enfermeria.id_estudiante AS id_estudiante, nombre, seccion, grupo, nombre_tutor, tel_tutor, IMC,peso,talla,alergias,enfermedades,observaciones from estudiantes inner join datos_enfermeria on estudiantes.id_estudiante = datos_enfermeria.id_estudiante WHERE estudiantes.id_estudiante = ?', [id], (err,enfermeria) => {
                 if(err){
                     res.json(err)
                 }
@@ -40,7 +40,7 @@ function editar(req,res) {
     if(req.session.loggedin){
         const id = req.params.id
         req.getConnection((req,conn) => {
-            conn.query('SELECT * FROM vista_enfermeria WHERE id_estudiante = ?', [id], (err,enfermeria) => {
+            conn.query('select datos_enfermeria.id_estudiante AS id_estudiante, nombre, seccion, grupo, nombre_tutor, tel_tutor, IMC,peso,talla,alergias,enfermedades,observaciones from estudiantes inner join datos_enfermeria on estudiantes.id_estudiante = datos_enfermeria.id_estudiante WHERE estudiantes.id_estudiante = ?', [id], (err,enfermeria) => {
                 if(err){
                     res.json(err)
                 }
@@ -75,7 +75,7 @@ function indexEduIni(req,res) {
     if(req.session.loggedin){
         const datosEnfermeria = req.body;
         req.getConnection((err,conn)=> {
-            conn.query('SELECT * FROM vista_enfermeria WHERE seccion = "Educacion Inicial"', (err,enfermeria) => {
+            conn.query('select datos_enfermeria.id_estudiante AS id_estudiante, nombre, seccion, grupo, nombre_tutor, tel_tutor, IMC,peso,talla,alergias,enfermedades,observaciones from estudiantes inner join datos_enfermeria on estudiantes.id_estudiante = datos_enfermeria.id_estudiante WHERE estudiantes.seccion="Educacion Inicial";', (err,enfermeria) => {
                 if(err){
                     res.json(err)
                 }
@@ -94,7 +94,7 @@ function indexPres(req,res) {
     if(req.session.loggedin){
         const datosEnfermeria = req.body;
         req.getConnection((err,conn)=> {
-            conn.query('SELECT * FROM vista_enfermeria WHERE seccion = "Preescolar"', (err,enfermeria) => {
+            conn.query('select datos_enfermeria.id_estudiante AS id_estudiante, nombre, seccion, grupo, nombre_tutor, tel_tutor, IMC,peso,talla,alergias,enfermedades,observaciones   from estudiantes inner join datos_enfermeria on estudiantes.id_estudiante = datos_enfermeria.id_estudiante WHERE estudiantes.seccion="Preescolar"', (err,enfermeria) => {
                 if(err){
                     res.json(err)
                 }
@@ -113,7 +113,7 @@ function indexPri(req,res) {
     if(req.session.loggedin){
         const datosEnfermeria = req.body;
         req.getConnection((err,conn)=> {
-            conn.query('SELECT * FROM vista_enfermeria WHERE seccion = "Primaria"', (err,enfermeria) => {
+            conn.query('select datos_enfermeria.id_estudiante AS id_estudiante, nombre, seccion, grupo, nombre_tutor, tel_tutor, IMC,peso,talla,alergias,enfermedades,observaciones from estudiantes inner join datos_enfermeria on estudiantes.id_estudiante = datos_enfermeria.id_estudiante WHERE estudiantes.seccion="Primaria";', (err,enfermeria) => {
                 if(err){
                     res.json(err)
                 }
@@ -132,7 +132,7 @@ function indexSec(req,res) {
     if(req.session.loggedin){
         const datosEnfermeria = req.body;
         req.getConnection((err,conn)=> {
-            conn.query('SELECT * FROM vista_enfermeria WHERE seccion = "Secundaria"', (err,enfermeria) => {
+            conn.query('select datos_enfermeria.id_estudiante AS id_estudiante, nombre, seccion, grupo, nombre_tutor, tel_tutor, IMC,peso,talla,alergias,enfermedades,observaciones from estudiantes inner join datos_enfermeria on estudiantes.id_estudiante = datos_enfermeria.id_estudiante WHERE estudiantes.seccion="Secundaria";', (err,enfermeria) => {
                 if(err){
                     res.json(err)
                 }

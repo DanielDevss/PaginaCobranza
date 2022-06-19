@@ -40,9 +40,9 @@ function subirENF(req,res){
                 conn.query('INSERT INTO datos_enfermeria SET ?;', [datosSubirEnfermeria], (err,rows)=>{
                     res.redirect('/admin')
                     console.log(datosSubirEnfermeria)
-                })
-            })
-}
+                });
+            });
+};
 
 
 

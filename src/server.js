@@ -1,9 +1,14 @@
 const { urlencoded } = require('express');
 const express = require('express');
+const myconnection = require('express-myconnection');
+const mysql = require('mysql')
 const session = require('express-session');
 const bcryptjs = require('bcryptjs')
 const bodyParser = require('body-parser')
 const app = express();
+
+//STRIPE
+//const stripe = require('stripe')('sk_test_51L8pPNJpziZXWqtXkwB7vjzgcgYdhhPIBp9wPy98uUv2zJd7K73JaEX9HHvJbsbFawO2ZuMUp1KPnBGcJNGNeFol00WPOxShAd')
 
 //RUTAS
 const tutorRoutes = require('./router/tutorRouter')
@@ -11,8 +16,6 @@ const adminRoutes = require('./router/adminRouter')
 const enfermeriaRoutes = require('./router/enfermeriaRouter')
 
 //PARA BASES DE DATOS
-const myconnection = require('express-myconnection');
-const mysql = require('mysql')
 
 // * Declaración de rutas
 app.set('views', './src/views')
@@ -32,7 +35,7 @@ app.use(myconnection(mysql,{
     password: '',
     port: 3306,
     database: 'centroculturaldepetatlan'
-},console.log('Base de datos Conectada')));
+}));
 
 // NOTE Configuración de Express session
 app.use(session({
@@ -40,6 +43,25 @@ app.use(session({
     resave:true,
     saveUninitialized:true
 }))
+
+
+// ! stripe
+/*app.post('/create-checkout-session', async(req,res)=>{
+    const session = await stripe.checkout.sessions.create({
+        line_items:[
+            {
+                price: 'price_1LBZgjJpziZXWqtXSuu7XbnU',
+                quantity: 1
+            },
+        ],
+        payment_method_types:['card', 'oxxo'],
+        mode: 'payment',
+        success_url: `${YOUR_DOMAIN}/success.html`,
+        cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+    });
+    res.redirect(303, session.url);
+})
+*/
 // ! Configuración del Servidor
 const host = process.env.HOST || '0.0.0.0'; //En caso de no tener un host se asignara el host 0.0.0.0
 const port = process.env.PORT || 3000; //En caso de no tener un post se asignara el puerto 3000
