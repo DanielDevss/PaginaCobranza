@@ -14,6 +14,10 @@ router.get('/ayuda', TutorController.help);
 router.get('/contactanos', TutorController.redesContactanos);
 router.post('/enviar-mensaje', TutorController.enviarMessage);
 
-//router.post('/create-checkout-session', TutorController.pagarColegiatura)
+router.post('/create-checkout-session/:id', TutorController.pagar);
+router.get('/pago-realizado', TutorController.pagado);
+router.get('/pago-cancelado', TutorController.pagoCancelado);
+
+router.get('/SubirData/:id_student', TutorController.subirData);
 
 module.exports = router;

@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const app = express();
 
 //STRIPE
-//const stripe = require('stripe')('sk_test_51L8pPNJpziZXWqtXkwB7vjzgcgYdhhPIBp9wPy98uUv2zJd7K73JaEX9HHvJbsbFawO2ZuMUp1KPnBGcJNGNeFol00WPOxShAd')
+const stripe = require('stripe')('sk_test_51L8pPNJpziZXWqtXkwB7vjzgcgYdhhPIBp9wPy98uUv2zJd7K73JaEX9HHvJbsbFawO2ZuMUp1KPnBGcJNGNeFol00WPOxShAd')
 
 //RUTAS
 const tutorRoutes = require('./router/tutorRouter')
@@ -44,24 +44,6 @@ app.use(session({
     saveUninitialized:true
 }))
 
-
-// ! stripe
-/*app.post('/create-checkout-session', async(req,res)=>{
-    const session = await stripe.checkout.sessions.create({
-        line_items:[
-            {
-                price: 'price_1LBZgjJpziZXWqtXSuu7XbnU',
-                quantity: 1
-            },
-        ],
-        payment_method_types:['card', 'oxxo'],
-        mode: 'payment',
-        success_url: `${YOUR_DOMAIN}/success.html`,
-        cancel_url: `${YOUR_DOMAIN}/cancel.html`,
-    });
-    res.redirect(303, session.url);
-})
-*/
 // ! Configuración del Servidor
 const host = process.env.HOST || '0.0.0.0'; //En caso de no tener un host se asignara el host 0.0.0.0
 const port = process.env.PORT || 3000; //En caso de no tener un post se asignara el puerto 3000

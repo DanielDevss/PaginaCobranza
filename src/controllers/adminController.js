@@ -311,10 +311,6 @@ function borrarMensajes(req,res){
     })
 }
 
-
-
-
-
 module.exports = {
     index:index,
     indexEduIni:indexEduIni,

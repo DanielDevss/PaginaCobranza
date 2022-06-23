@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin enlace</title>
+</head>
+<body>
+    <main>
+        <h1>Aun no se ha subido el enlace...</h1>
+        <section>
+            <div>
+                <p>Por el momento la escuela aun no ha realizado cambio de enlace.</p>
+                <p>Regresa más tarde o espera indicaciones del Centro Cultural de Petatlán.</p>
+            </div>
+            <div>
+                <div class="img">
+                </div>
+                <a href="/registros">
+                    Volver a Estudiantes
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        background-color: rgb(71, 162, 254);
+        line-height: 1.5;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    p{
+        color: rgb(52, 52, 52);
+    }
+    main{
+        margin-top: 7%;
+        max-width: 460px;
+        width: 100%;
+        background-color: beige;
+        padding: 2rem;
+        border-radius: 20px;
+
+    }
+    h1{
+        text-align: center;
+    }
+    section{
+        padding-top: 20px;
+        border-top: ridge rgb(72, 72, 72) 1px;
+        gap: 1rem;
+        display: block;
+    }
+    @media (min-width: 768px){ 
+        section{
+            display: flex;
+            flex-direction: row;
+            /*justify-content: space-between;*/
+            align-items: center;
+        }
+        section div{
+            width: 50%;
+        }
+     }
+
+a{
+    display: block;
+    width: 100%;
+    background-color: black;
+    border: none;
+    text-decoration: none;
+    color: white;
+    padding: 15px 0;
+    margin-top: 10px;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 500ms;
+}
+a:hover{
+    background-color: rgb(42, 42, 42);
+    box-shadow: black 0 9px 18px;
+}
+.img{
+    background-image: url('/img/otros/eror-404.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 100%;
+    height: 200px;
+}
+</style>
+</html>

@@ -37,7 +37,12 @@
                      <td><%= datos.nombre %></td>
                      <td><%= datos.seccion %> del <%= datos.grupo %></td>
                      <td><a class="btn btn-info btn-res" href="<%= datos.link_boleta %>"><i class="bi bi-card-checklist"></i><p> Ver</p></a></td>
-                     <td><a class="btn btn-success btn-res" href="#"><i class="bi bi-cash-coin"></i><p> $<%= datos.colegiatura %></p></a></td>
+                     <td>
+                        <form action="/create-checkout-session/<%=datos.id_estudiante%>" method="POST">
+                            <button class="btn btn-success btn-res"> <i class="bi bi-cash-coin"></i><p> $<%= datos.colegiatura %></p></button>
+                        </form>
+                        
+                    </td>
                  </tr>
                 <% }) %>
             </tbody>

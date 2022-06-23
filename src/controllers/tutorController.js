@@ -1,4 +1,5 @@
-
+const stripe = require('stripe')('sk_test_51L8pPNJpziZXWqtXkwB7vjzgcgYdhhPIBp9wPy98uUv2zJd7K73JaEX9HHvJbsbFawO2ZuMUp1KPnBGcJNGNeFol00WPOxShAd');
+const YOUR_DOMAIN = "http://localhost:3000";
 
 function index(req,res) {
     const datos = req.body
@@ -112,6 +113,36 @@ function help(req, res){
     })
 }
 
+async function pagar(req,res){
+    const id_student = req.params.id
+    console.log(id_student)
+    const session = await stripe.checkout.sessions.create({
+        line_items:[
+            {
+                price: 'price_1LBZgjJpziZXWqtXSuu7XbnU',
+                quantity: 1
+            },
+        ],
+        payment_method_types:['card', 'oxxo'],
+        mode: 'payment',
+        success_url: `${YOUR_DOMAIN}/SubirData/`+id_student,
+        cancel_url: `${YOUR_DOMAIN}/NoPagado`,
+    });
+    res.redirect(303, session.url);
+}
+
+function subirData (req,res){
+    const id_student = req.params.id_student
+    console.log('El usuario: ',id_student,' a pagado su colegiatura')
+    res.redirect('/');
+}
+
+function pagado(req,res){
+    res.render('tutor/success')
+};
+function pagoCancelado(req,res){
+    res.render('tutor/pagoCancelado')
+}
 
 module.exports = {
     index:index,
@@ -125,6 +156,11 @@ module.exports = {
 
     redesContactanos:redesContactanos,
     enviarMessage:enviarMessage,
+    
+    pagar:pagar,
+    pagado:pagado,
+    pagoCancelado:pagoCancelado,
 
+    subirData:subirData,
 
 }
