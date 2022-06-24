@@ -5,43 +5,32 @@
     <body>
         <%- include('./partials/navbar.ejs') %>
 
-        <section class="container ">
+        <section class="container">
             <br>
             <h1 class="sbr-text">Mensajes Disponibles</h1>
             <br>
-            <div class="bg-c7 p-4 sbr-1 container-roud">
-
                 <% adminMensajes.forEach( datosAdmin => {%>
-                   <% if (datosAdmin.num == 0) {%> 
-                        <article class="m-3">
-                            <form action="/admin-mensajes/delete" method="POST">
-                                <div class="card mensaje-ver sbr-1">
-                                    <div class="card-header d-flex justify-content-between"><h6><%= datosAdmin.nombre %></h6>
-                                        <input type="hidden" name="idmensajes" value="<%= datosAdmin.idmensajes %>">
-                                        <button type="submit" class="btn btn2 bg-c4"><i class="bi bi-trash-fill"></i> Borrar</button>
-                                    </div>
-                                    <div class="card-body">
-                                        <textarea disabled class="textareaCountainer"><%= datosAdmin.mensaje %></textarea>
-                                        <hr>
-                                        <div class="d-flex justify-content-between footercard">
-                                            <i><%= datosAdmin.contacto %></i><p><%= datosAdmin.fecha %> </p>
+                        <article>
+                            <form class="mensaje" action="/admin-mensajes/delete" method="POST">
+                                <div class="mensaje_contenedor sbr-1">
+                                    <input type="hidden" name="idmensajes" value="<%= datosAdmin.idmensajes %>">
+                                    <div class="mensaje__datos">
+                                        <div class="mensaje_datos_persons">
+                                            <i class="bi bi-person-lines-fill"></i>
+                                            <p><%= datosAdmin.nombre %></p>
+                                            <p><%= datosAdmin.contacto %></p>
+                                        </div><!--fin de .mensaje_datos_persons-->
+                                        <div class="mensaje_datos_body">
+                                            <textarea disabled readonly class="mensaje__textarea"><%= datosAdmin.mensaje %></textarea>
+                                        <p><i class="bi bi-calendar3"></i> <%= datosAdmin.fecha %></p>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div><!--fin de .mensaje__datos-->
+                                    <button class="mensaje_eliminar"><i class="bi bi-trash3"></i></button>
+                                </div> <!--fin de .mensaje__contenedor-->
                             </form>
                         </article>
-                    <% }else{ %> 
-                            <div class="text-center">
-                                <h4><i class="bi bi-envelope-exclamation"></i> Por el momento no hay nuevos mensajes...</h4>
-                                <hr>
-                                <a href="javascript: history.go(-1)" class="btn btn7">Volver atrás</a>
-                            </div>  
-                        <% } %> 
                 <% }) %>
-
-                    
-            </div>
-        </section>
+                </section>
         <script>
             $("textarea").each(function () {
               this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");

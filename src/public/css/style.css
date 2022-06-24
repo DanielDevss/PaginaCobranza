@@ -185,44 +185,149 @@ thead{
 }
 
 /*MENSAJES ADMIN*/
-.mensaje-ver{
-    border-radius: 10px;
+.mensaje{
+    margin: 10px 10px;
 }
-.container-roud{
-    border-radius: 25px !important;
+.mensaje_contenedor {
+    width: 100%;
+    border-radius: 20px;
+    background-color: #ffffff;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
-.footercard{
-    margin-bottom: -20px !important;
+.mensaje__datos{
+    height: 100%;
 }
-
+.mensaje_datos_persons{
+    background-color: #dddddd;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    border-radius: 20px 20px 0 0;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    -ms-border-radius:;
+    -o-border-radius:;
+}
+.mensaje_datos_persons p{
+    margin-bottom: 0;
+}
+.mensaje_datos_body{
+    padding: 0 15px;
+}
+.mensaje_datos_body p{
+    font-style: italic;
+}
+.mensaje__textarea{
+    width: 100%;
+    border: none;
+    -webkit-border-radius: none;
+    -moz-border-radius: none;
+    -ms-border-radius: none;
+    -o-border-radius: none;
+    resize: none;
+    color: rgb(69, 69, 69);
+    background-color: rgba(255, 255, 255, 0);
+}
+.mensaje_eliminar{
+    border-radius: 0 0 20px 20px;
+    width: 100%;
+    background-color: red;
+    border: none;
+    font-size: 100%;
+    color:white;
+    transition: 500ms;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    -ms-transition: 500ms;
+    -o-transition: 500ms;
+    -webkit-border-radius: 0 0 20px 20px;
+    -moz-border-radius: 0 0 20px 20px;
+    -ms-border-radius: 0 0 20px 20px;
+    -o-border-radius: 0 0 20px 20px;
+}
+@media (min-width: 768px){ 
+  .mensaje_eliminar{
+    font-size: 150%;
+  }
+ }
+.mensaje_eliminar:hover{
+    background-color: rgb(61, 1, 1);
+    text-shadow: 0px 0 18px;
+}
 /*REGISTRAR ALUMNOS*/
-
-.contact_form{  
-    width: 460px; 
-    height: auto;
-    margin: 80px auto;
-    border-radius: 10px;  
-    padding-top: 30px;
-    padding-bottom: 20px;  
-    background-color: #fbfbfb; 
-    padding-left: 30px; 
-  }  
-.contact_form input, select{
-    background-color: #fbfbfb; 
-    width: 408px; 
-    height: 40px; 
-    border-radius: 5px;  
-    border-style: solid; 
-    border-width: 1px; 
-    border-color: #9292CD; 
-    margin-top: 10px;  
-    padding-left: 10px;
-    margin-bottom: 20px; 
-}
-.contact_form label{
+.nuevoRegistro{
+    width: 100%;
+    max-width: 900px;
     display: block;
-    float: center;
+    margin: auto;
 }
+.nuevoRegistro h2{
+    font-size: 1.6rem;
+}
+.nuevoRegistro select{
+    text-align: center;
+    background-color: #e3e3e3;
+}
+.contenedor__campos{
+    width: 100%;
+}
+.nuevoRegistro__contenedores{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    gap: 10px;
+}
+.input_nuevoRegistro{
+    width: 100%;
+    background-color: white;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.contenedor_principal{
+    grid-row: 1 / 3;
+    padding: 50px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.contenedor__secundiario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.contenedor__secundiario p{
+    text-align: center;
+    font-size: .7rem;
+    font-style: italic;
+    color: #3b3b3b;
+}
+.btn_nuevoRegistro{
+    grid-column: -3 / -1;
+    padding: 10px 0;
+}
+
+
 /* *ANCHOR login*/
 .login{
     width: 350px;

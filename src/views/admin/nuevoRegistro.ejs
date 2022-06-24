@@ -1,19 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <%- include('./partials/head.ejs') %>
 
 <body>
     <%- include('./partials/navbar') %> 
+    <form method="POST">
+        <main class="mt-4 nuevoRegistro">
+            <article class="row nuevoRegistro__contenedores">
+                <div class="contenedor_principal sbr-1 bg-c7">
+                    <h2>Datos del Alumno</h2>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-key"></i> Matricula</label>
+                        <input required class="input_nuevoRegistro sbr-2" type="number" name="id_estudiante" placeholder="Ingresa una matricula">
+                    </div>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-person-lines-fill"></i> Nombre del Alumno</label>
+                        <input required class="input_nuevoRegistro sbr-2" type="text" name="nombre" placeholder="Ingresa el nombre del estudiante">
+                    </div>
+                    <hr>
+                    <h2>Datos del Tutor</h2>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-person-square"></i> Nombre del Tutor</label>
+                        <input required class="input_nuevoRegistro sbr-2" type="text" name="nombre_tutor" placeholder="Ingresa el nombre del Tutor">
+                    </div>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-telephone-forward"></i> Telefono del Tutor</label>
+                        <input required class="input_nuevoRegistro sbr-2" type="tel" maxlength="10" name="tel_tutor" placeholder="Ingresa el telefono del Tutor">
+                    </div>
+                </div><!--fin de .contenedor__principal-->
 
-    <section class="contact_form sbr-1">
+                
+                    <div class="bg-c7 contenedor__secundiario sbr-1">
+                        <h2>Información Escolar</h2>
+                        <div class="contenedor__campos">
+                            <label><i class="bi bi-box2-fill"></i> Sección Escolar</label>
+                            <select required class="input_nuevoRegistro" name="seccion">
+                                <option value="">--- Selecciona ---</option>
+                                <option value="Educacion Inicial">Esducacion Inicial</option>
+                                <option value="Preescolar">Preescolar</option>
+                                <option value="Primaria">Primaria</option>
+                                <option value="Secundaria">Secundaria</option>
+                            </select>
+                        </div>
+                        <div class="contenedor__campos">
+                            <label><i class="bi bi-people"></i> Grado y Grupo</label>
+                            <input required class="input_nuevoRegistro sbr-2" type="text" name="grupo" placeholder="Ingresa el Grado y Grupo">
+                        </div>
+                    </div><!--fin de .contenedor__secundario-->
+                    <div class="bg-c7 contenedor__secundiario sbr-1">
+                        <h2><i class="bi bi-bookmark-star"></i> Información Extra</h2>
+                        <p>Esta Información no es configurable, si desea cambiarla lo puede hacer desde registros/editar</p>
+                        <div class="contenedor__campos">
+                            <label><i class="bi bi-cash-coin"></i> Colegiatura</label>
+                            <input class="input_nuevoRegistro sbr-2" type="text" disabled value="Sin pagar">
+                            <input class="input_nuevoRegistro sbr-2" type="hidden" name="colegiatura" value="0">
+                        </div>
+                        <div class="contenedor__campos">
+                            <label><i class="bi bi-link-45deg"></i> Enlace Boleta</label>
+                            <input class="input_nuevoRegistro sbr-2" type="text" disabled value="/html/sin-enlace.html">
+                            <input class="input_nuevoRegistro sbr-2" type="hidden" name="link_boleta" value="/html/sin-enlace.html">
+                        </div>
+                        
+                    </div><!--fin de .contenedor__secundario-->
+                
+                    <button class="btn btn4 btn_nuevoRegistro sbr-1"><i class="bi bi-person-plus"></i> Registrar Nuevo Estudiante</button>
+                </div>
+            </article> <!--fin de .nuevoRegistro__contenedores-->
+        </main>
+    </form>
+ <!--<section class="contact_form sbr-1">
         <div class="formulario">
             <h2>Registrar Alumno</h2>
-            <form action="" method="POST">
+
+            <form method="POST">
                 <div>
                     <div>
                         <label><i class="bi bi-key"></i> Matricula</label>
-                        <input required type="number" name="id_estudiante" id="id">
+                        <input required required type="number" name="id_estudiante" id="id">
                     </div>
                     <div>
                         <label><i class="bi bi-file-person"></i> Nombre</label>
@@ -37,11 +101,11 @@
                     <h2>Información De Tutor</h2>
                     <div>
                         <label><i class="bi bi-file-person"></i> Nombre del Tutor</label>
-                        <input autocomplete="off" type="text" name="nombre_tutor" required id="">
+                        <input autocomplete="off" type="text" name="nombre_tutor" required>
                     </div>
                     <div>
                         <label><i class="bi bi-telephone"></i> Telefono del Tutor</label>
-                        <input autocomplete="off" type="tell" maxlength="10" name="tel_tutor" required id="">
+                        <input autocomplete="off" type="tell" maxlength="10" name="tel_tutor" required>
                     </div>
                     <div hidden>
                         <label>Enlace Boleta</label>
@@ -57,10 +121,9 @@
             </form>
         </div>
     </section>
-    
+-->
+
     <%- include('../partials/footer.ejs') %> 
 </body>
-
-
 
 </html>

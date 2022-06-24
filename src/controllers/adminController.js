@@ -45,8 +45,6 @@ function subirENF(req,res){
             });
 };
 
-
-
 function create(req,res) {
     res.render('admin/nuevoRegistro', {
         title: 'Nuevo Registro'
