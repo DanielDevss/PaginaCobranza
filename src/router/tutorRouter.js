@@ -14,10 +14,11 @@ router.get('/ayuda', TutorController.help);
 router.get('/contactanos', TutorController.redesContactanos);
 router.post('/enviar-mensaje', TutorController.enviarMessage);
 
+router.post('/create-checkout-session-incremento/:id', TutorController.incremento);
 router.post('/create-checkout-session/:id', TutorController.pagar);
-router.get('/pago-realizado', TutorController.pagado);
+router.get('/pago-realizado/:id', TutorController.pagado);
+router.post('/pago-realizado/:id', TutorController.subirData);
 router.get('/pago-cancelado', TutorController.pagoCancelado);
 
-router.get('/SubirData/:id_student', TutorController.subirData);
 
 module.exports = router;

@@ -64,11 +64,25 @@ h1{
                     </div>
                     <div>
                         <label>Enlace Boleta</label>
-                        <input autocomplete="off" value="<%= datosAdmin.link_boleta %>" type="url" name="link_boleta" id="">
+                        <input autocomplete="off" value="<%= datosAdmin.link_boleta %>" type="text" name="link_boleta" id="">
                     </div>
                     <div>
                         <label>colegiatura</label>
-                        <input type="number" value="<%= datosAdmin.colegiatura %>" name="colegiatura">
+                        <select name="colegiatura">
+                            <option value="<%= datosAdmin.colegiatura %>">
+                                <% if( datosAdmin.colegiatura == 0 ) { %>
+                                    Colegiatura sin Pagar
+                                <% }else if (datosAdmin.colegiatura == 1) { %>
+                                    Colegiatura con atraso
+                                <% }else if (datosAdmin.colegiatura == 2) { %>
+                                    Colegiatura Pagada
+                                <% } %>
+                            </option>
+                            <option value="0">Colegiatura sin Pagar</option>
+                            <option value="1">Colegiatura con atraso</option>
+                            <option value="2">Colegiatura Pagada</option>
+                        </select>
+                     
                     </div>
                     <h2>Nivel Educativo</h2>
                     <div>

@@ -21,12 +21,13 @@ function index(req,res) {
     }
 }
 function store(req,res) {
+    console.log('intento 1')
     if(req.session.loggedin){
         const datosAdmin = req.body;
         req.getConnection((err,conn) => {
             conn.query('INSERT INTO estudiantes SET ?;', [datosAdmin],(err,rows) => {
                 res.redirect('/admin')
-                //console.log(datosAdmin)
+                console.log(datosAdmin)
             })
         })
     }else{

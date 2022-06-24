@@ -52,7 +52,15 @@
                         <td><%= datosAdmin.grupo %> </td>
                         <td><%= datosAdmin.nombre_tutor %> </td>
                         <td><%= datosAdmin.tel_tutor %> </td>
-                        <td>$ <%= datosAdmin.colegiatura %></td>
+                        <td>
+                            <% if( datosAdmin.colegiatura == 0 ) { %>
+                                Colegiatura sin Pagar
+                            <% }else if (datosAdmin.colegiatura == 1) { %>
+                                Colegiatura con atraso
+                            <% }else if (datosAdmin.colegiatura == 2) { %>
+                                Colegiatura Pagada
+                            <% } %>
+                        </td>
                         <!--<td><a href="<%= datosAdmin.link_boleta %>" class="btn btn2 bg-c3 hint--top hint--medium hint--bounce" aria-label="Editar enlace de boleta" style="font-family: Bootstrap-icons;">&#xF470;</a></td> -->
                         <td class="d-flex justify-content-center acciones">
                         <!--ANCHOR BUTTON ELIMINAR-->

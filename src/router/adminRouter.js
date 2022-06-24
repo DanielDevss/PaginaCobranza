@@ -4,10 +4,10 @@ const AdminController = require('../controllers/adminController');
 const router = express.Router();
 
 router.get('/admin', AdminController.index);
-router.get('/admin-Educacion_Inicial', AdminController.indexEduIni)
-router.get('/admin-Preescolar', AdminController.indexPre)
-router.get('/admin-Primaria', AdminController.indexPri)
-router.get('/admin-Secundaria', AdminController.indexSec)
+router.get('/admin-Educacion_Inicial', AdminController.indexEduIni);
+router.get('/admin-Preescolar', AdminController.indexPre);
+router.get('/admin-Primaria', AdminController.indexPri);
+router.get('/admin-Secundaria', AdminController.indexSec);
 
 router.get('/admin-nuevoRegistro', AdminController.create);
 router.post('/admin-nuevoRegistro', AdminController.store);

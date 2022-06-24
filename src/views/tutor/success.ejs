@@ -12,35 +12,40 @@
     <style>
         body{
             background: rgb(249, 190, 28) !important;
-            display: flex;
-            justify-content: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            line-height: 2;
         }
+        
         main{
+            display: block;
+            margin: auto;
             width: 100%;
-            margin-top: 40%;
             max-width: 500px;
             background-color: rgb(244, 244, 244);
             padding: 10px;
             border-radius: 0px;
         }
         @media (min-width:768px){
-            main{
-                margin-top: 15%;
+            div{
+            margin-top: 15%;
+            }
+            main{      
                 padding: 20px;
                 border-radius: 20px;
                 box-shadow: 0 0 18px rgba(0, 0, 0, 0.300);
             }
         }
-        h1{
+        h2{
             text-align: center;
             color: #242424;
         }
-        p, a {
+        p, button {
             line-height: 1.5;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             text-align: center;
         }
-        a{
+        button{
+            border: none;
             display: block;
             width: 100%;
             text-align: center;
@@ -53,20 +58,28 @@
             transition: 300ms all;
             background-color: rgb(151, 151, 151);
         }
-        a:hover{
+        button:hover{
             background-color: rgb(255, 195, 43);
             box-shadow: rgba(248, 210, 114, 0.438) 0 5px 5px;
         }
+        h1{
+            text-align: center;
+        }
         </style>
-        
+        <div>
+        <h1>¡Pago realizado con Exito!</h1>
         <main>
-            <h1>¡Importante Leer!</h1>
-            <hr>
+
             <section>
+                <h2>¡Importante Leer!</h2>
                 <p>Es importante guardar tu comprobante, el cual llegara al correo electronico ingresado. Si realizaste un pago por OXXO es importante guardar el ticket para alguna reclamación o problema.</p>
-                <a href="/">Regresar a Registros</a>
+                <form action="" method="POST">
+                    <input type="hidden" name="colegiatura" value="2">
+                    <button>Regresar a Registros</button>
+                </form>
             </section>
         </main>
+        </div>
 
 </body>
 </html>

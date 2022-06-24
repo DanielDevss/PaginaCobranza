@@ -4,7 +4,7 @@ const YOUR_DOMAIN = "http://localhost:3000";
 function index(req,res) {
     const datos = req.body
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM vista_tutores', (err, tutor) => {
+        conn.query('SELECT * FROM estudiantes', (err, tutor) => {
             if(err){
                 res.json(err);
             }
@@ -19,7 +19,7 @@ function index(req,res) {
 function indexEduInc(req,res) {
     const datos = req.body
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM vista_tutores WHERE seccion = "Educacion Inicial"', (err, tutor) => {
+        conn.query('SELECT * FROM estudiantes WHERE seccion = "Educacion Inicial"', (err, tutor) => {
             if(err){
                 res.json(err);
             }
@@ -34,7 +34,7 @@ function indexEduInc(req,res) {
 function indexPre(req,res) {
     const datos = req.body
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM vista_tutores WHERE seccion = "Preescolar"', (err, tutor) => {
+        conn.query('SELECT * FROM estudiantes WHERE seccion = "Preescolar"', (err, tutor) => {
             if(err){
                 res.json(err);
             }
@@ -49,7 +49,7 @@ function indexPre(req,res) {
 function indexPri(req,res) {
     const datos = req.body
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM vista_tutores WHERE seccion = "Primaria"', (err, tutor) => {
+        conn.query('SELECT * FROM estudiantes WHERE seccion = "Primaria"', (err, tutor) => {
             if(err){
                 res.json(err);
             }
@@ -64,7 +64,7 @@ function indexPri(req,res) {
 function indexSec(req,res) {
     const datos = req.body
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM vista_tutores WHERE seccion = "Secundaria"', (err, tutor) => {
+        conn.query('SELECT * FROM estudiantes WHERE seccion = "Secundaria"', (err, tutor) => {
             if(err){
                 res.json(err);
             }
@@ -119,26 +119,50 @@ async function pagar(req,res){
     const session = await stripe.checkout.sessions.create({
         line_items:[
             {
-                price: 'price_1LBZgjJpziZXWqtXSuu7XbnU',
+                price: 'price_1LDiK8JpziZXWqtXMs7hI7mT',
                 quantity: 1
             },
         ],
         payment_method_types:['card', 'oxxo'],
         mode: 'payment',
-        success_url: `${YOUR_DOMAIN}/SubirData/`+id_student,
+        success_url: `${YOUR_DOMAIN}/pago-realizado/`+id_student,
         cancel_url: `${YOUR_DOMAIN}/NoPagado`,
     });
     res.redirect(303, session.url);
 }
-
+async function incremento(req,res){
+    const id_student = req.params.id
+    console.log(id_student)
+    const session = await stripe.checkout.sessions.create({
+        line_items:[
+            {
+                price: 'price_1LDiK8JpziZXWqtXXv5sZdyb',
+                quantity: 1
+            },
+        ],
+        payment_method_types:['card', 'oxxo'],
+        mode: 'payment',
+        success_url: `${YOUR_DOMAIN}/pago-realizado/`+id_student,
+        cancel_url: `${YOUR_DOMAIN}/NoPagado`,
+    });
+    res.redirect(303, session.url);
+}
 function subirData (req,res){
-    const id_student = req.params.id_student
-    console.log('El usuario: ',id_student,' a pagado su colegiatura')
-    res.redirect('/');
+    const id_student = req.params.id;
+    const pagado = req.body
+    //console.log('El usuario: ',id_student,' a pagado su colegiatura');
+    req.getConnection((err,conn) => {
+        conn.query('UPDATE estudiantes SET ? WHERE id_estudiante = ?', [pagado,id_student], (err,rows)=>{
+            //console.log('pagado')
+            res.redirect('/')
+        })
+    }) 
 }
 
 function pagado(req,res){
-    res.render('tutor/success')
+    //console.log('id llego a pagado')
+    res.render('tutor/success', {
+    })
 };
 function pagoCancelado(req,res){
     res.render('tutor/pagoCancelado')
@@ -157,6 +181,8 @@ module.exports = {
     redesContactanos:redesContactanos,
     enviarMessage:enviarMessage,
     
+
+    incremento:incremento,
     pagar:pagar,
     pagado:pagado,
     pagoCancelado:pagoCancelado,

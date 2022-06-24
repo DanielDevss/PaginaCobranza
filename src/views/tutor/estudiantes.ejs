@@ -19,8 +19,9 @@
                 </div>
                 </form>
             </div>
-    </section>
-<br>
+        </section>
+        <br>
+        <p class="text-center">La Colegiatura deberá ser pagada antes de la fecha limite. En caso de no ser así se aumentara la cantidad de pago y se mostrara en la tabla el boton de pago color amarillo</p>
       <section class="container">
         <table class="table table-striped bg-c7 sbr-1 text-center">
             <thead>
@@ -38,10 +39,17 @@
                      <td><%= datos.seccion %> del <%= datos.grupo %></td>
                      <td><a class="btn btn-info btn-res" href="<%= datos.link_boleta %>"><i class="bi bi-card-checklist"></i><p> Ver</p></a></td>
                      <td>
-                        <form action="/create-checkout-session/<%=datos.id_estudiante%>" method="POST">
-                            <button class="btn btn-success btn-res"> <i class="bi bi-cash-coin"></i><p> $<%= datos.colegiatura %></p></button>
-                        </form>
-                        
+                        <% if( datos.colegiatura == 0 ) { %>
+                            <form action="/create-checkout-session/<%=datos.id_estudiante%>" method="POST">
+                                <button class="btn btn-success btn-res"> <i class="bi bi-cash-coin"></i><p>Pagar</p></button>
+                            </form>
+                        <% }else if (datos.colegiatura == 1) { %>
+                            <form action="/create-checkout-session-incremento/<%=datos.id_estudiante%>" method="POST">
+                                <button class="btn btn-warning btn-res"> <i class="bi bi-cash-coin"></i><p>Pagar</p></button>
+                            </form>
+                        <% }else if (datos.colegiatura == 2) { %>
+                            <p><i class="bi bi-check2-circle"> </i>Pagado</p>
+                        <% } %>
                     </td>
                  </tr>
                 <% }) %>
