@@ -9,7 +9,8 @@ function index(req,res) {
                 if (err){
                     res.json(err);
                 }
-                res.render('admin/index', { 
+                res.render('admin/index', {
+                    total:admin.length,
                     admin:admin,//Se exportan los datos de la base de datos
                     subtitle: 'Estudiantes Registrados',//"variables" para agregar a html por medio del motor de plantillas EJS
                     title: 'Registros Administracion' 
@@ -21,7 +22,6 @@ function index(req,res) {
     }
 }
 function store(req,res) {
-    console.log('intento 1')
     if(req.session.loggedin){
         const datosAdmin = req.body;
         req.getConnection((err,conn) => {
@@ -100,7 +100,8 @@ function indexEduIni(req,res) {
                 res.render('admin/index', {
                     admin:admin,
                     subtitle: 'Estudiantes de Eduación Inicial',
-                    title: 'Registros Administracion'
+                    title: 'Registros Administracion',
+                    total:admin.length
                 })
             })
         })
@@ -119,7 +120,8 @@ function indexPre(req,res) {
                 res.render('admin/index', {
                     admin:admin,
                     subtitle: 'Estudiantes de Preescolar',
-                    title: 'Registros Administracion'
+                    title: 'Registros Administracion',
+                    total:admin.length
                 })
             })
         })
@@ -137,7 +139,8 @@ function indexPri(req,res) {
                 res.render('admin/index', {
                     admin:admin,
                     subtitle: 'Estudiantes Primaria',
-                    title: 'Registros Administracion'
+                    title: 'Registros Administracion',
+                    total:admin.length
                 })
             })
         })
@@ -155,7 +158,8 @@ function indexSec(req,res) {
                 res.render('admin/index', {
                     admin:admin,
                     subtitle: 'Estudiantes de Secundaria',
-                    title: 'Registros Administracion'
+                    title: 'Registros Administracion',
+                    total:admin.length
                 })
             })
         })
@@ -238,6 +242,46 @@ async function settingRegister( req,res){
     })
 }
 
+function noticias(req,res){
+    if(req.session.loggedin){
+        const noticia = req.body
+        req.getConnection((err,conn) => {
+            conn.query('SELECT * FROM noticias ORDER BY fecha DESC', (err,noticias) =>{
+                if(err){
+                    res.json()
+                }
+                res.render('admin/noticias', {
+                    title:'Configuracion de noticias',
+                    noticias:noticias,
+                    numNoticias:noticias.length
+                })
+            })
+        })
+    }else{
+        console.log('No se ha iniciado sesion')
+        res.redirect('login')
+    }
+}
+function noticiaInsert(req,res){
+    const noticia = req.body;
+    req.getConnection((err,conn)=>{
+        conn.query('INSERT INTO noticias SET ?;', [noticia], (err,rows)=>{
+            res.redirect('/admin-noticias')
+            console.log(noticia)
+        });
+    });
+}
+function eliminarNoticia (req,res){
+    const id_noticia = req.body.id_noticia;
+    req.getConnection((err,conn)=>{
+        conn.query('DELETE FROM noticias WHERE id_noticia = ?', [id_noticia], (err,rows)=>{
+            if(err){
+                console.log(err)
+            }
+            res.redirect('/admin-noticias')
+        })
+    })
+}
 async function autenticate(req,res){
     const user = req.body.user;
     const pass = req.body.pass;
@@ -328,10 +372,15 @@ module.exports = {
     settingContac:settingContac,
     settingContacUpdate:settingContacUpdate,
     settingRegister:settingRegister,
+    
     passwordsDB:passwordsDB,
     borrarUser:borrarUser,
     autenticate:autenticate,
     logout:logout,
+    
+    noticias:noticias,
+    noticiaInsert:noticiaInsert,
+    eliminarNoticia:eliminarNoticia,
 
     adminMensajes:adminMensajes,
     borrarMensajes:borrarMensajes,

@@ -1,4 +1,5 @@
 const express = require('express');
+const adminController = require('../controllers/adminController');
 const { storefactura } = require('../controllers/adminController');
 const AdminController = require('../controllers/adminController');
 const router = express.Router();
@@ -19,6 +20,11 @@ router.post('/admin/editarRegistro/:id', AdminController.actualizar);
 router.get('/admin-setting-contactos', AdminController.settingContac);
 router.post('/admin-settingUpdate', AdminController.settingContacUpdate);
 router.post('/admin-userRegister', AdminController.settingRegister);
+
+router.get('/admin-noticias', adminController.noticias);
+router.post('/admin-noticias', adminController.noticiaInsert);
+router.post('/admin-noticias/eliminar', adminController.eliminarNoticia);
+
 router.post('/auth', AdminController.autenticate);
 router.get('/logout', AdminController.logout);
 router.get('/datos-setting-Usuarios', AdminController.passwordsDB);

@@ -17,8 +17,9 @@
       <br>
       <h1 class="sbr-text"><%- subtitle %></h1>
 <hr>
-  <div>
-    <h4 class="text-center txt-c2 ">Administración</h4>
+  <div class="text-center ">
+    <h4 class="txt-c2 ">Administración</h4>
+    <p>Cantidad de registros actuales: <b><%= total%></b></p>
   </div>
         <div class="text-center">
             <form action="#"> 
@@ -44,7 +45,8 @@
                 </tr>
             </thead>
             <tbody class="table align-middle" id="Tbody">
-                <% admin.forEach((datosAdmin) => { %>
+                <% if(total > 0) { 
+                admin.forEach((datosAdmin) => { %>
                     <tr class="border text-center align-items-center align-center">
                         <td><%= datosAdmin.id_estudiante %></td>
                         <td><%= datosAdmin.nombre %> </td>
@@ -78,7 +80,11 @@
                             <a class="btn editRegist hint--top-right hint--info hint--medium hint--bounce btn-gestion-admin" aria-label="Editar el registro <%= datosAdmin.id_estudiante %>" href="/admin/editarRegistro/<%= datosAdmin.id_estudiante %>"><!--&#xF4CA;--><i class="bi bi-pencil-square"></i></a>
                         </td>
                     </tr>
-                <% }) %>
+                <% }) } else {%>
+                    <tr>
+                        <td colspan="8" class="text-center"><i class="bi bi-file-excel"></i> No hay Registros</td>
+                    </tr>
+                <%}%>
             </tbody>
         </table>
     </section>

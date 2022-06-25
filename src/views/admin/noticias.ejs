@@ -1,0 +1,135 @@
+<html>
+    <%- include('../partials/head.ejs') %>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <body>
+        <%- include('./partials/navbar.ejs') %>
+        <br>
+        <%- include('./partials/navSettings.ejs') %>
+        <br>
+        <h1 class="sbr-text"><%= title %></h1>
+        <div class="container">
+            <div class="noticia__contenedores">
+
+                <main class="noticia__form sbr-1 bg-c7 col-6">
+                    <h2>Crear Noticia</h2>
+                    <form method="POST">
+                        <fieldset>
+                            <legend>Noticia Información</legend>
+                            <div>
+                                <label>Titulo</label>
+                                <input placeholder="Ingresa un Titulo" name="titulo" type="text" required class="sbr-2 contenedor__campos">
+                            </div>
+                            <div>
+                                <label>Noticia o Información</label>
+                                <textarea placeholder="Ingresa el cuerpo de la Noticia" name="bodyNoticia"  required class="sbr-2 contenedor__campos"></textarea>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Configuración de Noticia</legend>
+                            <div>
+                                <label>Tipo de Noticia</label>
+                                <select name="tipoNoticia" required class="contenedor__campos">
+                                    <option value=""> ---Selecciona una Opción--- </option>
+                                    <option value="Importante">Importante</option>
+                                    <option value="Informativa">Informativa</option>
+                                    <option value="Advertencia">Advertencia</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Agregar Enlace</label>
+                                <input placeholder="Inserta un enlace (opcional)" value="sin enlace" name="link_noticia" type="text" class="sbr-2 contenedor__campos">
+                            </div>
+                        </fieldset>
+                        <button class="noticia__btn__registrar">Agregar a Noticias</button>
+                    </form>
+                </main>
+
+                <section class="col-6 sbr-1 noticia__form bg-c7">
+                    <h2>Noticias Actuales</h2>
+                    
+                    <%if(numNoticias >= 1){%>
+                        <% noticias.forEach((noticia) => { %>
+                            <%if(noticia.tipoNoticia === 'Informativa'){%>
+                                <div class="admin_noticia noticia-informativa">
+                                    <div class="noticia__header">
+                                        <h3><i class="bi bi-info-circle"></i> <%= noticia.titulo %></h3>
+                                        <p><i class="bi bi-calendar3"></i> <%= noticia.fecha %></p>
+                                    </div>                    
+                                    <div class="noticia__body">
+                                        <textarea disabled><%= noticia.bodyNoticia %></textarea>
+                                        <%if(noticia.link_noticia === 'sin enlace'){%>
+                                        <%}else{%>
+                                            <a class="btn" href="<%= noticia.link_noticia %>">Abrir enlace</a>
+                                        <%}%>
+                                    </div>
+                                    <form class="noticia__botones__admin" action="/admin-noticias/eliminar" method="POST">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">Editar Noticia</button>
+                                        <input name="id_noticia" type="hidden" value="<%=noticia.id_noticia%>">
+                                        <button class="btn btn-danger">Eliminar Noticia</button>
+                                    </form>
+                                </div><!--fin de .admin__noticia-->
+                            <%}else if(noticia.tipoNoticia === 'Importante'){%>
+                                <div class="admin_noticia noticia-importante">
+                                    <div class="noticia__header">
+                                        <h3><i class="bi bi-exclamation-triangle"></i> <%= noticia.titulo %></h3>
+                                        <p><i class="bi bi-calendar3"></i> <%= noticia.fecha %></p>
+                                    </div>                    
+                                    <div class="noticia__body">
+                                        <textarea disabled><%= noticia.bodyNoticia %></textarea>
+                                        <%if(noticia.link_noticia === 'sin enlace'){%>
+                                        <%}else{%>
+                                            <a class="btn" href="<%= noticia.link_noticia %>">Abrir enlace</a>
+                                        <%}%>
+                                    </div>
+                                    <form class="noticia__botones__admin" action="/admin-noticias/eliminar" method="POST">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">Editar Noticia</button>
+                                        <input name="id_noticia" type="hidden" value="<%=noticia.id_noticia%>">
+                                        <button class="btn btn-danger">Eliminar Noticia</button>
+                                    </form>
+                                </div><!--fin de .admin__noticia-->
+                            <%}else if(noticia.tipoNoticia === 'Advertencia'){%>
+                                <div class="admin_noticia noticia-advertencia">
+                                    <div class="noticia__header">
+                                        <h3><i class="bi bi-exclamation-diamond"></i> <%= noticia.titulo %></h3>
+                                        <p><i class="bi bi-calendar3"></i> <%= noticia.fecha %></p>
+                                    </div>                    
+                                    <div class="noticia__body">
+                                        <textarea disabled><%= noticia.bodyNoticia %></textarea>
+                                        <%if(noticia.link_noticia === 'sin enlace'){%>
+                                        <%}else{%>
+                                            <a class="btn" href="<%= noticia.link_noticia %>">Abrir enlace</a>
+                                        <%}%>
+                                    </div>
+                                    
+
+
+                                    <form class="noticia__botones__admin" action="/admin-noticias/eliminar" method="POST">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">Editar Noticia</button>
+                                            <input name="id_noticia" type="hidden" value="<%=noticia.id_noticia%>">
+                                            <button class="btn btn-danger">Eliminar Noticia</button>
+                                    </form>
+                                </div><!--fin de .admin__noticia-->
+                       
+                        <%}})%>
+                    <%}else{%>
+                        <div style="width: 100%; text-align:center;font-style: italic; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                            <h5>No hay noticias</h5>
+                        </div>
+                    <%}%>                
+                </section>
+            </div><!--fin del .row-->
+        </div><!--fin del .container-->
+
+        <%- include('../partials/footer.ejs') %>
+        <script>
+            $("textarea").each(function () {
+              this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+            }).on("input", function () {
+              this.style.height = "auto";
+              this.style.height = (this.scrollHeight) + "px";
+            });
+          </script>
+    </body>
+</html>

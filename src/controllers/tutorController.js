@@ -103,8 +103,19 @@ function enviarMessage(req, res) {
 }
 
 function homepage(req, res){
-    res.render('tutor/home',{
-        title:'HomePage'
+    const noticia = req.body;
+    req.getConnection((err,conn)=>{
+        conn.query('SELECT * FROM noticias ORDER BY fecha DESC;', (err, noticiaHome) => {
+            if(err){
+                console.log(err)
+            }
+            res.render('tutor/home',{
+
+                noticiaHome:noticiaHome,
+                title:'HomePage',
+                numNoticias:noticiaHome.length
+            })
+        })
     })
 }
 function help(req, res){

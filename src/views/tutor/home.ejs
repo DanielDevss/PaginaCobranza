@@ -25,8 +25,64 @@
             </div>
           </div>
         </article>
-
     </section>
+
+    <div style="background-color: rgb(81, 81, 81); padding:20px; margin-top: 2rem;" >
+      <main class="container">
+        <h1 class="sbr-text">Noticias de la Ecuela</h1>
+        <%if(numNoticias >= 1){%>
+          <% noticiaHome.forEach((noticia) => { %>
+              <%if(noticia.tipoNoticia === 'Informativa'){%>
+                  <div class="admin_noticia noticia-informativa">
+                      <div class="noticia__header">
+                          <h3><i class="bi bi-info-circle"></i> <%= noticia.titulo %></h3>
+                          <p><i class="bi bi-calendar3"></i> <%= noticia.fecha %></p>
+                      </div>                    
+                      <div class="noticia__body">
+                          <textarea disabled><%= noticia.bodyNoticia %></textarea>
+                          <%if(noticia.link_noticia === 'sin enlace'){%>
+                          <%}else{%>
+                              <a class="btn" href="<%= noticia.link_noticia %>">Abrir enlace</a>
+                          <%}%>
+                      </div>
+                  </div><!--fin de .admin__noticia-->
+              <%}else if(noticia.tipoNoticia === 'Importante'){%>
+                  <div class="admin_noticia noticia-importante">
+                      <div class="noticia__header">
+                          <h3><i class="bi bi-exclamation-triangle"></i> <%= noticia.titulo %></h3>
+                          <p><i class="bi bi-calendar3"></i> <%= noticia.fecha %></p>
+                      </div>                    
+                      <div class="noticia__body">
+                          <textarea disabled><%= noticia.bodyNoticia %></textarea>
+                          <%if(noticia.link_noticia === 'sin enlace'){%>
+                          <%}else{%>
+                              <a class="btn" href="<%= noticia.link_noticia %>">Abrir enlace</a>
+                          <%}%>
+                      </div>
+                  </div><!--fin de .admin__noticia-->
+              <%}else if(noticia.tipoNoticia === 'Advertencia'){%>
+                  <div class="admin_noticia noticia-advertencia">
+                      <div class="noticia__header">
+                          <h3><i class="bi bi-exclamation-diamond"></i> <%= noticia.titulo %></h3>
+                          <p><i class="bi bi-calendar3"></i> <%= noticia.fecha %></p>
+                      </div>                    
+                      <div class="noticia__body">
+                          <textarea disabled><%= noticia.bodyNoticia %></textarea>
+                          <%if(noticia.link_noticia === 'sin enlace'){%>
+                          <%}else{%>
+                              <a class="btn" href="<%= noticia.link_noticia %>">Abrir enlace</a>
+                          <%}%>
+                      </div>
+                  </div><!--fin de .admin__noticia-->
+         
+          <%}})%>
+      <%}else{%>
+          <div class="bg-c7 sbr-1" style="width: 100%;text-align: center; border-radius: 20px;">
+            <h5 style="padding: 20px;">No hay Noticias por el momento</h5>
+          </div>
+      <%}%>     
+      </main>
+    </div>
 
 
 
