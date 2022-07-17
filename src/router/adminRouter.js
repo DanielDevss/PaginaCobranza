@@ -4,6 +4,10 @@ const { storefactura } = require('../controllers/adminController');
 const AdminController = require('../controllers/adminController');
 const router = express.Router();
 
+router.get('/admin-Colegiaturas/:id', AdminController.colegiaturas)
+router.post('/actualizarColegiatura/:mes/:id', AdminController.colegiaturasUpdate)
+router.post('/admin-reset-colegiaturas/:id', AdminController.colegiaturasReset)
+
 router.get('/admin', AdminController.index);
 router.get('/admin-Educacion_Inicial', AdminController.indexEduIni);
 router.get('/admin-Preescolar', AdminController.indexPre);
@@ -12,8 +16,9 @@ router.get('/admin-Secundaria', AdminController.indexSec);
 
 router.get('/admin-nuevoRegistro', AdminController.create);
 router.post('/admin-nuevoRegistro', AdminController.store);
+router.post('/admin/subirColegiatura/:id', AdminController.storeColegiatura);
 router.post('/admin/borrar', AdminController.borrar)
-router.post('/admin/enviarEnfermeria', AdminController.subirENF);
+router.post('/admin/enviarEnfermeria/:id', AdminController.subirENF);
 router.get('/admin/editarRegistro/:id', AdminController.editar);
 router.post('/admin/editarRegistro/:id', AdminController.actualizar);
 

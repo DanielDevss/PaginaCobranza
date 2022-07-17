@@ -55,14 +55,22 @@
                 </tr>
               </thead>
               <tbody id="Tbody">
-                <% enfermeria.forEach((datosEnfermeria) => { %>
+                
+                <% if (total > 0) {
+                  enfermeria.forEach((datosEnfermeria) => { %>
                     <tr class="text-center">
                         <td><%= datosEnfermeria.id_estudiante %></td>
                         <td><%= datosEnfermeria.nombre %></td>
                         <td><%= datosEnfermeria.seccion %> del <%= datosEnfermeria.grupo %></td>
                         <td><a class="btn btn2" style="background-color: #4285F4;" href="/enfermeria/mas-informacion/<%= datosEnfermeria.id_estudiante %>"><i class="bi bi-info-circle"></i> Ver más</a></td>
                     </tr>
-                <% }) %>
+                <% })}else{ %>
+                  <tr>
+                    <td colspan="4" class="text-center">
+                      No hay Registros Actualmente
+                    </td>
+                  </tr>
+                <%}%>
             </tbody>
           </table>
           </div>

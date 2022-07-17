@@ -38,7 +38,7 @@
                           <h3><i class="bi bi-info-circle"></i> <%= noticia.titulo %></h3>
                           <p><i class="bi bi-calendar3"></i> <%= noticia.fecha %></p>
                       </div>                    
-                      <div class="noticia__body">
+                      <div class="noticia__body" style="border-radius: 0 0 10px 10px;">
                           <textarea disabled><%= noticia.bodyNoticia %></textarea>
                           <%if(noticia.link_noticia === 'sin enlace'){%>
                           <%}else{%>
@@ -52,7 +52,7 @@
                           <h3><i class="bi bi-exclamation-triangle"></i> <%= noticia.titulo %></h3>
                           <p><i class="bi bi-calendar3"></i> <%= noticia.fecha %></p>
                       </div>                    
-                      <div class="noticia__body">
+                      <div class="noticia__body" style="border-radius: 0 0 10px 10px;">
                           <textarea disabled><%= noticia.bodyNoticia %></textarea>
                           <%if(noticia.link_noticia === 'sin enlace'){%>
                           <%}else{%>
@@ -66,7 +66,7 @@
                           <h3><i class="bi bi-exclamation-diamond"></i> <%= noticia.titulo %></h3>
                           <p><i class="bi bi-calendar3"></i> <%= noticia.fecha %></p>
                       </div>                    
-                      <div class="noticia__body">
+                      <div class="noticia__body" style="border-radius: 0 0 10px 10px;">
                           <textarea disabled><%= noticia.bodyNoticia %></textarea>
                           <%if(noticia.link_noticia === 'sin enlace'){%>
                           <%}else{%>
@@ -87,7 +87,28 @@
 
 
 
-<%- include('../partials/footer.ejs') %> 
+  <footer class="mainfooter bg-c7 p-3" role="contentinfo">
+      <div class="footer-middle">
+        <div class="copy text-center">
+          <h4>Redes Sociales</h4>
+          <a href="https://www.facebook.com/ControlMediosCCP" class="btn"><i class="bi bi-facebook"></i> Centro Cultural de Petatlan</a>
+          <hr>
+          <p class="text-center">&copy; Copyright 2022 - Centro Cultural Petatlan.  All rights reserved.</p>
+        </div>
+        <hr>
+        <div class="text-center">
+          <h5>Desarrolladores:</h5>
+          <br>
+          <div>
+            <p>Luis Daniel de la Rosa Lucrecia</p>
+            <p>Saydel Gomez Manriquez</p>
+            <p>Miguel Angel Chavez Avila</p>
+            <p>Node Lugardo Bravo</p>
+          </div>
+  
+        </div>
+    </div>
+  </footer>
   <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Colegiatura</title>
+</head>
+<body> 
+    <style>
+        .calendario{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 5px;
+        }
+
+        .mes select{
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .mes button{
+            width: 100%;
+        }
+        .container{
+            margin-top: 30px;
+        }
+        .label-adv{
+            font-style: italic;
+
+        }
+        .label-adv span{
+            font-weight: 700;
+        }
+    </style>
+
+    <div class="container">
+        <% admin.forEach((datos) => { %>
+        <style>
+            .mes{
+            border-radius: 8px;
+            width: 100%;
+            text-align: center;
+            padding: 10px 10px;
+        }
+        </style>
+
+        <section class="text-center">
+            <h1>Colegiaturas de: <span><%=datos.nombre%></span></h1>
+            <form action="/admin-reset-colegiaturas/<%=datos.matricula%>" method="POST">
+                <a href="/admin" class="btn btn-warning">Regresar</a>
+                <button type="submit" class="btn btn-danger">Formatear Estados</button>
+            </form>
+            <br>
+            <p class="label-adv"><span>¡¡Atención!!</span> Si precionas Formatear Estados, todas las colegiaturas regresaran a su estado inicial (sin pagar)</p>
+        </section>
+        <main>
+            <div class="calendario">
+
+                    <%if(datos.enero === 'pagado'){%>
+                    <div style="background-color: rgb(220, 254, 220);" class="mes">
+                        <h3>Enero</h3>
+                        <form action="/actualizarColegiatura/enero/<%=datos.matricula%>" method="POST">
+                            <label>Cambiar Estatus</label>
+                            <select name="estado">
+                                <option selected disabled value="<%=datos.enero%>"><%=datos.enero%></option>
+                                <option value="sin pagar">Sin Pagar</option>
+                                <option value="atrasado">Atrasado</option>
+                                <option value="pagado">Pagado</option>
+                            </select>
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                        </form>
+                    </div>
+                    <%}else{%>
+                        <div style="background-color: rgb(222,222,222);" class="mes">
+                            <h3>Enero</h3>
+                            <form action="/actualizarColegiatura/enero/<%=datos.matricula%>" method="POST">
+                                <label>Cambiar Estatus</label>
+                                <select name="estado">
+                                    <option selected disabled value="<%=datos.enero%>"><%=datos.enero%></option>
+                                    <option value="sin pagar">Sin Pagar</option>
+                                    <option value="atrasado">Atrasado</option>
+                                    <option value="pagado">Pagado</option>
+                                </select>
+                                <button class="btn btn-success">Guardar</button>
+                            </form>
+                        </div>
+                    <%}%>
+                    <!--Fin del mes-->
+
+                    <%if(datos.febrero === 'pagado'){%>
+                        <div style="background-color: rgb(220, 254, 220);" class="mes">
+                            <h3>Febrero</h3>
+                            <form action="/actualizarColegiatura/febrero/<%=datos.matricula%>" method="POST">
+                                <label>Cambiar Estatus</label>
+                                <select name="estado">
+                                    <option selected disabled value="<%=datos.febrero%>"><%=datos.febrero%></option>
+                                    <option value="sin pagar">Sin Pagar</option>
+                                    <option value="atrasado">Atrasado</option>
+                                    <option value="pagado">Pagado</option>
+                                </select>
+                                <button class="btn btn-success">Guardar</button>
+                            </form>
+                        </div>
+                        <%}else{%>
+                            <div style="background-color: rgb(222,222,222);" class="mes">
+                                <h3>febrero</h3>
+                                <form action="/actualizarColegiatura/febrero/<%=datos.matricula%>" method="POST">
+                                    <label>Cambiar Estatus</label>
+                                    <select name="estado">
+                                        <option selected disabled value="<%=datos.febrero%>"><%=datos.febrero%></option>
+                                        <option value="sin pagar">Sin Pagar</option>
+                                        <option value="atrasado">Atrasado</option>
+                                        <option value="pagado">Pagado</option>
+                                    </select>
+                                    <button class="btn btn-success">Guardar</button>
+                                </form>
+                            </div>
+                        <%}%>
+                        <!--Fin del mes-->
+
+                        <%if(datos.marzo === 'pagado'){%>
+                            <div style="background-color: rgb(220, 254, 220);" class="mes">
+                                <h3>Marzo</h3>
+                                <form action="/actualizarColegiatura/marzo/<%=datos.matricula%>" method="POST">
+                                    <label>Cambiar Estatus</label>
+                                    <select name="estado">
+                                        <option selected disabled value="<%=datos.marzo%>"><%=datos.marzo%></option>
+                                        <option value="sin pagar">Sin Pagar</option>
+                                        <option value="atrasado">Atrasado</option>
+                                        <option value="pagado">Pagado</option>
+                                    </select>
+                                    <button class="btn btn-success">Guardar</button>
+                                </form>
+                            </div>
+                            <%}else{%>
+                                <div style="background-color: rgb(222, 222, 222);" class="mes">
+                                    <h3>marzo</h3>
+                                    <form action="/actualizarColegiatura/marzo/<%=datos.matricula%>" method="POST">
+                                        <label>Cambiar Estatus</label>
+                                        <select name="estado">
+                                            <option selected disabled value="<%=datos.marzo%>"><%=datos.marzo%></option>
+                                            <option value="sin pagar">Sin Pagar</option>
+                                            <option value="atrasado">Atrasado</option>
+                                            <option value="pagado">Pagado</option>
+                                        </select>
+                                        <button class="btn btn-success">Guardar</button>
+                                    </form>
+                                </div>
+                            <%}%>
+                            <!--Fin del mes-->
+
+                            <%if(datos.abril === 'pagado'){%>
+                                <div style="background-color: rgb(220, 254, 220);" class="mes">
+                                    <h3>Abril</h3>
+                                    <form action="/actualizarColegiatura/abril/<%=datos.matricula%>" method="POST">
+                                        <label>Cambiar Estatus</label>
+                                        <select name="estado">
+                                            <option selected disabled value="<%=datos.abril%>"><%=datos.abril%></option>
+                                            <option value="sin pagar">Sin Pagar</option>
+                                            <option value="atrasado">Atrasado</option>
+                                            <option value="pagado">Pagado</option>
+                                        </select>
+                                        <button class="btn btn-success">Guardar</button>
+                                    </form>
+                                </div>
+                                <%}else{%>
+                                    <div style="background-color: rgb(222, 222, 222);" class="mes">
+                                        <h3>Abril</h3>
+                                        <form action="/actualizarColegiatura/abril/<%=datos.matricula%>" method="POST">
+                                            <label>Cambiar Estatus</label>
+                                            <select name="estado">
+                                                <option selected disabled value="<%=datos.abril%>"><%=datos.abril%></option>
+                                                <option value="sin pagar">Sin Pagar</option>
+                                                <option value="atrasado">Atrasado</option>
+                                                <option value="pagado">Pagado</option>
+                                            </select>
+                                            <button class="btn btn-success">Guardar</button>
+                                        </form>
+                                    </div>
+                                <%}%>
+                                <!--Fin del mes-->
+
+                                <%if(datos.mayo === 'pagado'){%>
+                                    <div style="background-color: rgb(220, 254, 220);" class="mes">
+                                        <h3>Mayo</h3>
+                                        <form action="/actualizarColegiatura/mayo/<%=datos.matricula%>" method="POST">
+                                            <label>Cambiar Estatus</label>
+                                            <select name="estado">
+                                                <option selected disabled value="<%=datos.mayo%>"><%=datos.mayo%></option>
+                                                <option value="sin pagar">Sin Pagar</option>
+                                                <option value="atrasado">Atrasado</option>
+                                                <option value="pagado">Pagado</option>
+                                            </select>
+                                            <button class="btn btn-success">Guardar</button>
+                                        </form>
+                                    </div>
+                                    <%}else{%>
+                                        <div style="background-color: rgb(222, 222, 222);" class="mes">
+                                            <h3>Mayo</h3>
+                                            <form action="/actualizarColegiatura/mayo/<%=datos.matricula%>" method="POST">
+                                                <label>Cambiar Estatus</label>
+                                                <select name="estado">
+                                                    <option selected disabled value="<%=datos.mayo%>"><%=datos.mayo%></option>
+                                                    <option value="sin pagar">Sin Pagar</option>
+                                                    <option value="atrasado">Atrasado</option>
+                                                    <option value="pagado">Pagado</option>
+                                                </select>
+                                                <button class="btn btn-success">Guardar</button>
+                                            </form>
+                                        </div>
+                                    <%}%>
+                                    <!--Fin del mes-->
+
+                                    <%if(datos.junio === 'pagado'){%>
+                                        <div style="background-color: rgb(220, 254, 220);" class="mes">
+                                            <h3>Junio</h3>
+                                            <form action="/actualizarColegiatura/junio/<%=datos.matricula%>" method="POST">
+                                                <label>Cambiar Estatus</label>
+                                                <select name="estado">
+                                                    <option selected disabled value="<%=datos.junio%>"><%=datos.junio%></option>
+                                                    <option value="sin pagar">Sin Pagar</option>
+                                                    <option value="atrasado">Atrasado</option>
+                                                    <option value="pagado">Pagado</option>
+                                                </select>
+                                                <button class="btn btn-success">Guardar</button>
+                                            </form>
+                                        </div>
+                                        <%}else{%>
+                                            <div style="background-color: rgb(222, 222, 222);" class="mes">
+                                                <h3>Junio</h3>
+                                                <form action="/actualizarColegiatura/junio/<%=datos.matricula%>" method="POST">
+                                                    <label>Cambiar Estatus</label>
+                                                    <select name="estado">
+                                                        <option selected disabled value="<%=datos.junio%>"><%=datos.junio%></option>
+                                                        <option value="sin pagar">Sin Pagar</option>
+                                                        <option value="atrasado">Atrasado</option>
+                                                        <option value="pagado">Pagado</option>
+                                                    </select>
+                                                    <button class="btn btn-success">Guardar</button>
+                                                </form>
+                                            </div>
+                                        <%}%>
+                                        <!--Fin del mes-->
+
+                                        <%if(datos.julio === 'pagado'){%>
+                                            <div style="background-color: rgb(220, 254, 220);" class="mes">
+                                                <h3>Julio</h3>
+                                                <form action="/actualizarColegiatura/julio/<%=datos.matricula%>" method="POST">
+                                                    <label>Cambiar Estatus</label>
+                                                    <select name="estado">
+                                                        <option selected disabled value="<%=datos.julio%>"><%=datos.julio%></option>
+                                                        <option value="sin pagar">Sin Pagar</option>
+                                                        <option value="atrasado">Atrasado</option>
+                                                        <option value="pagado">Pagado</option>
+                                                    </select>
+                                                    <button class="btn btn-success">Guardar</button>
+                                                </form>
+                                            </div>
+                                            <%}else{%>
+                                                <div style="background-color: rgb(222, 222, 222);" class="mes">
+                                                    <h3>Julio</h3>
+                                                    <form action="/actualizarColegiatura/julio/<%=datos.matricula%>" method="POST">
+                                                        <label>Cambiar Estatus</label>
+                                                        <select name="estado">
+                                                            <option selected disabled value="<%=datos.julio%>"><%=datos.julio%></option>
+                                                            <option value="sin pagar">Sin Pagar</option>
+                                                            <option value="atrasado">Atrasado</option>
+                                                            <option value="pagado">Pagado</option>
+                                                        </select>
+                                                        <button class="btn btn-success">Guardar</button>
+                                                    </form>
+                                                </div>
+                                            <%}%>
+                                            <!--Fin del mes-->
+
+                                            <%if(datos.agosto === 'pagado'){%>
+                                                <div style="background-color: rgb(220, 254, 220);" class="mes">
+                                                    <h3>Agosto</h3>
+                                                    <form action="/actualizarColegiatura/agosto/<%=datos.matricula%>" method="POST">
+                                                        <label>Cambiar Estatus</label>
+                                                        <select name="estado">
+                                                            <option selected disabled value="<%=datos.agosto%>"><%=datos.agosto%></option>
+                                                            <option value="sin pagar">Sin Pagar</option>
+                                                            <option value="atrasado">Atrasado</option>
+                                                            <option value="pagado">Pagado</option>
+                                                        </select>
+                                                        <button class="btn btn-success">Guardar</button>
+                                                    </form>
+                                                </div>
+                                                <%}else{%>
+                                                    <div style="background-color: rgb(222, 222, 222);" class="mes">
+                                                        <h3>Agosto</h3>
+                                                        <form action="/actualizarColegiatura/agosto/<%=datos.matricula%>" method="POST">
+                                                            <label>Cambiar Estatus</label>
+                                                            <select name="estado">
+                                                                <option selected disabled value="<%=datos.agosto%>"><%=datos.agosto%></option>
+                                                                <option value="sin pagar">Sin Pagar</option>
+                                                                <option value="atrasado">Atrasado</option>
+                                                                <option value="pagado">Pagado</option>
+                                                            </select>
+                                                            <button class="btn btn-success">Guardar</button>
+                                                        </form>
+                                                    </div>
+                                                <%}%>
+                                                <!--Fin del mes-->
+
+                        <%if(datos.septiembre === 'pagado'){%>
+                            <div style="background-color: rgb(220, 254, 220);" class="mes">
+                                <h3>Septiembre</h3>
+                                <form action="/actualizarColegiatura/septiembre/<%=datos.matricula%>" method="POST">
+                                    <label>Cambiar Estatus</label>
+                                    <select name="estado">
+                                        <option selected disabled value="<%=datos.septiembre%>"><%=datos.septiembre%></option>
+                                        <option value="sin pagar">Sin Pagar</option>
+                                        <option value="atrasado">Atrasado</option>
+                                        <option value="pagado">Pagado</option>
+                                    </select>
+                                    <button class="btn btn-success">Guardar</button>
+                                </form>
+                            </div>
+                            <%}else{%>
+                                <div style="background-color: rgb(222, 222, 222);" class="mes">
+                                    <h3>Septiembre</h3>
+                                    <form action="/actualizarColegiatura/septiembre/<%=datos.matricula%>" method="POST">
+                                        <label>Cambiar Estatus</label>
+                                        <select name="estado">
+                                            <option selected disabled value="<%=datos.septiembre%>"><%=datos.septiembre%></option>
+                                            <option value="sin pagar">Sin Pagar</option>
+                                            <option value="atrasado">Atrasado</option>
+                                            <option value="pagado">Pagado</option>
+                                        </select>
+                                        <button class="btn btn-success">Guardar</button>
+                                    </form>
+                                </div>
+                            <%}%>
+                            <!--Fin del mes-->
+                        <%if(datos.octubre === 'pagado'){%>
+                            <div style="background-color: rgb(220, 254, 220);" class="mes">
+                                <h3>Octubre</h3>
+                                <form action="/actualizarColegiatura/octubre/<%=datos.matricula%>" method="POST">
+                                    <label>Cambiar Estatus</label>
+                                    <select name="estado">
+                                        <option selected disabled value="<%=datos.octubre%>"><%=datos.octubre%></option>
+                                        <option value="sin pagar">Sin Pagar</option>
+                                        <option value="atrasado">Atrasado</option>
+                                        <option value="pagado">Pagado</option>
+                                    </select>
+                                    <button class="btn btn-success">Guardar</button>
+                                </form>
+                            </div>
+                            <%}else{%>
+                                <div style="background-color: rgb(222, 222, 222);" class="mes">
+                                    <h3>Octubre</h3>
+                                    <form action="/actualizarColegiatura/octubre/<%=datos.matricula%>" method="POST">
+                                        <label>Cambiar Estatus</label>
+                                        <select name="estado">
+                                            <option selected disabled value="<%=datos.octubre%>"><%=datos.octubre%></option>
+                                            <option value="sin pagar">Sin Pagar</option>
+                                            <option value="atrasado">Atrasado</option>
+                                            <option value="pagado">Pagado</option>
+                                        </select>
+                                        <button class="btn btn-success">Guardar</button>
+                                    </form>
+                                </div>
+                            <%}%>
+                            <!--Fin del mes-->
+
+                        <%if(datos.noviembre === 'pagado'){%>
+                            <div style="background-color: rgb(220, 254, 220);" class="mes">
+                                <h3>Noviembre</h3>
+                                <form action="/actualizarColegiatura/noviembre/<%=datos.matricula%>" method="POST">
+                                    <label>Cambiar Estatus</label>
+                                    <select name="estado">
+                                        <option selected disabled value="<%=datos.noviembre%>"><%=datos.noviembre%></option>
+                                        <option value="sin pagar">Sin Pagar</option>
+                                        <option value="atrasado">Atrasado</option>
+                                        <option value="pagado">Pagado</option>
+                                    </select>
+                                    <button class="btn btn-success">Guardar</button>
+                                </form>
+                            </div>
+                            <%}else{%>
+                                <div style="background-color: rgb(222, 222, 222);" class="mes">
+                                    <h3>Noviembre</h3>
+                                    <form action="/actualizarColegiatura/noviembre/<%=datos.matricula%>" method="POST">
+                                        <label>Cambiar Estatus</label>
+                                        <select name="estado">
+                                            <option selected disabled value="<%=datos.noviembre%>"><%=datos.noviembre%></option>
+                                            <option value="sin pagar">Sin Pagar</option>
+                                            <option value="atrasado">Atrasado</option>
+                                            <option value="pagado">Pagado</option>
+                                        </select>
+                                        <button class="btn btn-success">Guardar</button>
+                                    </form>
+                                </div>
+                            <%}%>
+                            <!--Fin del mes-->
+
+                        <%if(datos.diciembre === 'pagado'){%>
+                            <div style="background-color: rgb(220, 254, 220);" class="mes">
+                                <h3>Diciembre</h3>
+                                <form action="/actualizarColegiatura/diciembre/<%=datos.matricula%>" method="POST">
+                                    <label>Cambiar Estatus</label>
+                                    <select name="estado">
+                                        <option selected disabled value="<%=datos.diciembre%>"><%=datos.diciembre%></option>
+                                        <option value="sin pagar">Sin Pagar</option>
+                                        <option value="atrasado">Atrasado</option>
+                                        <option value="pagado">Pagado</option>
+                                    </select>
+                                    <button class="btn btn-success">Guardar</button>
+                                </form>
+                            </div>
+                            <%}else{%>
+                                <div style="background-color: rgb(222, 222, 222);" class="mes">
+                                    <h3>Diciembre</h3>
+                                    <form action="/actualizarColegiatura/diciembre/<%=datos.matricula%>" method="POST">
+                                        <label>Cambiar Estatus</label>
+                                        <select name="estado">
+                                            <option selected disabled value="<%=datos.diciembre%>"><%=datos.diciembre%></option>
+                                            <option value="sin pagar">Sin Pagar</option>
+                                            <option value="atrasado">Atrasado</option>
+                                            <option value="pagado">Pagado</option>
+                                        </select>
+                                        <button class="btn btn-success">Guardar</button>
+                                    </form>
+                                </div>
+                            <%}%>
+                            <!--Fin del mes-->
+            </div>
+        </main>
+    <%})%>
+    </div>
+
+
+</body>
+</html>

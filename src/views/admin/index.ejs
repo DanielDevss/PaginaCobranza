@@ -55,28 +55,14 @@
                         <td><%= datosAdmin.nombre_tutor %> </td>
                         <td><%= datosAdmin.tel_tutor %> </td>
                         <td>
-                            <% if( datosAdmin.colegiatura == 0 ) { %>
-                                Colegiatura sin Pagar
-                            <% }else if (datosAdmin.colegiatura == 1) { %>
-                                Colegiatura con atraso
-                            <% }else if (datosAdmin.colegiatura == 2) { %>
-                                Colegiatura Pagada
-                            <% } %>
+                            <a href="/admin-Colegiaturas/<%= datosAdmin.id_estudiante %>">Ver Colegiaturas</a>
                         </td>
-                        <!--<td><a href="<%= datosAdmin.link_boleta %>" class="btn btn2 bg-c3 hint--top hint--medium hint--bounce" aria-label="Editar enlace de boleta" style="font-family: Bootstrap-icons;">&#xF470;</a></td> -->
                         <td class="d-flex justify-content-center acciones">
                         <!--ANCHOR BUTTON ELIMINAR-->
                             <form action="/admin/borrar" method="POST">
                                 <input type="hidden" value="<%= datosAdmin.id_estudiante %>" name="id">
                                 <button class="btn delr hint--top-left hint--error hint--medium hint--bounce btn-gestion-admin" aria-label="Eliminar el registro de la base de datos"><!--&#xF78A;--><i class="bi bi-person-dash"></i></button>
                             </form>
-                        <!--ANCHOR BUTTON SUBIR A ENFERMEIA-->
-                            <form action="/admin/enviarEnfermeria" method="POST">
-                                <input type="hidden" value="<%= datosAdmin.id_estudiante %>" name="id_estudiante">
-                                <input type="hidden" value="" name="talla"><input type="hidden" value="" name="peso"><input type="hidden" value="" name="IMC"><input type="hidden" value="Sin Informaciòn" name="alergias"><input type="hidden" value="Sin Informaciòn" name="enfermedades"><input type="hidden" value="Sin Informaciòn" name="observaciones">
-                                <button class="btn subirenf hint--top hint--medium hint--bounce btn-gestion-admin" aria-label="Subir registro a enfermeria. Esto solo funciona una vez""><!--&#xF783;--><i class="bi bi-clipboard2-pulse"></i></button>
-                            </form>
-                        <!--ANCHOR BUTTON EDITAR-->
                             <a class="btn editRegist hint--top-right hint--info hint--medium hint--bounce btn-gestion-admin" aria-label="Editar el registro <%= datosAdmin.id_estudiante %>" href="/admin/editarRegistro/<%= datosAdmin.id_estudiante %>"><!--&#xF4CA;--><i class="bi bi-pencil-square"></i></a>
                         </td>
                     </tr>

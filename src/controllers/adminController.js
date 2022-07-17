@@ -1,6 +1,54 @@
 const bcryptjs = require("bcryptjs");
+const res = require("express/lib/response");
 const { redirect } = require("express/lib/response");
+const { post } = require("../router/tutorRouter");
 const router = require("../router/tutorRouter");
+
+function colegiaturas(req,res) {
+    const id = req.params.id
+    const datos = req.body
+    req.getConnection((err,conn) => {
+        conn.query('SELECT * FROM alumnos_colegiaturas WHERE matricula = ?',[id], (err,admin)=>{
+            res.render('admin/colegiaturas', {
+                admin:admin,
+            })
+        })
+    })
+}
+function colegiaturasUpdate(req,res){
+    const matricula = req.params.id
+    const mes = req.params.mes
+    const estado = req.body.estado
+    console.log(estado, mes, matricula)
+    req.getConnection((err,conn)=>{
+        conn.query(`UPDATE colegiaturas SET ${mes} = '${estado}' WHERE matricula=${matricula}`, (err, rows) => {
+            res.redirect(`/admin-Colegiaturas/${matricula}`)
+        })
+    })
+}
+
+function colegiaturasReset(req,res){
+    const matricula = req.params.id
+    req.getConnection((err,conn)=>{
+        conn.query(`UPDATE colegiaturas SET 
+        enero = 'sin pagar',
+        febrero = 'sin pagar',
+        marzo = 'sin pagar',
+        abril = 'sin pagar',
+        mayo = 'sin pagar',
+        junio = 'sin pagar',
+        julio = 'sin pagar',
+        agosto = 'sin pagar',
+        septiembre = 'sin pagar',
+        octubre = 'sin pagar',
+        noviembre = 'sin pagar',
+        diciembre = 'sin pagar'
+        WHERE matricula = ${matricula}
+        `, (err,rows) => {
+            res.redirect(`/admin-Colegiaturas/${matricula}`)
+        })
+    })
+}
 
 function index(req,res) {
     if(req.session.loggedin){ //Se confirma que existe un usuario logeado en el sistema, y si es si se adentra en el codigo
@@ -24,10 +72,10 @@ function index(req,res) {
 function store(req,res) {
     if(req.session.loggedin){
         const datosAdmin = req.body;
+        const matricula = datosAdmin.id_estudiante
         req.getConnection((err,conn) => {
             conn.query('INSERT INTO estudiantes SET ?;', [datosAdmin],(err,rows) => {
-                res.redirect('/admin')
-                console.log(datosAdmin)
+                res.redirect(307, '/admin/subirColegiatura/'+matricula)
             })
         })
     }else{
@@ -35,12 +83,25 @@ function store(req,res) {
         res.redirect('login')}
 }
 
+function storeColegiatura(req,res){
+    const matricula = req.params.id
+    console.log(matricula)
+    req.getConnection((err,conn)=> {
+        conn.query(`INSERT INTO colegiaturas(matricula) VALUES(${matricula})`, (err, rows) => {
+            if(err){
+                console.log('Error al subir a Colegiaturas')
+            }
+            res.redirect(307,'/admin/enviarEnfermeria/'+matricula)
+
+        })
+    })
+}
+
 function subirENF(req,res){
-            const datosSubirEnfermeria = req.body;
+            const id = req.params.id;
             req.getConnection((err,conn)=>{
-                conn.query('INSERT INTO datos_enfermeria SET ?;', [datosSubirEnfermeria], (err,rows)=>{
+                conn.query(`INSERT INTO datos_enfermeria(id_estudiante) VALUES(${id})`, (err,rows)=>{
                     res.redirect('/admin')
-                    console.log(datosSubirEnfermeria)
                 });
             });
 };
@@ -355,6 +416,11 @@ function borrarMensajes(req,res){
 }
 
 module.exports = {
+
+    colegiaturas:colegiaturas,
+    colegiaturasUpdate:colegiaturasUpdate,
+    colegiaturasReset:colegiaturasReset,
+
     index:index,
     indexEduIni:indexEduIni,
     indexPre:indexPre,
@@ -362,6 +428,7 @@ module.exports = {
     indexSec:indexSec,
 
     store:store,
+    storeColegiatura: storeColegiatura,
     create:create,
     borrar:borrar,
     subirENF:subirENF,

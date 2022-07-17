@@ -8,6 +8,7 @@ function index(req,res) {
                 }
                 res.render('enfermeria/registros', {
                     enfermeria:enfermeria,
+                    total:enfermeria.length,
                     title:'Enfermeria',
                     subtitle: 'Estudiantes Registrados'
                 })
@@ -81,6 +82,7 @@ function indexEduIni(req,res) {
                 }
                 res.render('enfermeria/registros', {
                     enfermeria:enfermeria,
+                    total:enfermeria.length,
                     title:'Enfermeria',
                     subtitle: 'Estudiantes de Educación Inicial'
                 })
@@ -100,6 +102,7 @@ function indexPres(req,res) {
                 }
                 res.render('enfermeria/registros', {
                     enfermeria:enfermeria,
+                    total:enfermeria.length,
                     title:'Enfermeria',
                     subtitle: 'Estudiantes de Preescolar'
                 })
@@ -119,6 +122,7 @@ function indexPri(req,res) {
                 }
                 res.render('enfermeria/registros', {
                     enfermeria:enfermeria,
+                    total:enfermeria.length,
                     title:'Enfermeria',
                     subtitle: 'Estudiantes de Primaria'
                 })
@@ -138,6 +142,7 @@ function indexSec(req,res) {
                 }
                 res.render('enfermeria/registros', {
                     enfermeria:enfermeria,
+                    total:enfermeria.length,
                     title:'Enfermeria',
                     subtitle: 'Estudiantes de Secundaria'
                 })

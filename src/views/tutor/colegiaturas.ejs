@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/framework.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Colegiaturas</title>
+</head>
+<body>
+   <style>
+    html,body{
+    height:100%;
+    }
+    h1{
+        text-align: center;
+    }
+    .contenedor__colegiaturas{
+        width: min(68rem, 100%);
+        border-radius: 30px;
+        padding: 30px 30px;
+        margin: auto;
+    }
+    .col__textoInfo{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+
+    }
+    .col__textoInfo input{
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+    h1{
+        font-weight: 600;
+    }
+    h5{
+        text-align: center;
+    }
+    .mes{
+        text-transform: capitalize;
+    }
+    .tabla-col{
+        overflow-x: auto;
+    }
+
+   </style>
+   <div class="colegiaturas">
+    <br>
+    <br>
+       <h1 class="sbr-text">Pagos de Colegiatura</h1>
+        <div class="bg-c7 sbr-1 contenedor__colegiaturas">
+            <section>
+                
+                <% colegiatura.forEach(datosCol => { %>
+                <div class="row">
+                    <div class="col__textoInfo">
+                        <h5>Alumno: <span><%=datosCol.nombre%></span></h5>
+                        <h5>Matricula: <span><%=datosCol.matricula%></span></h5>
+                    </div>
+                </div>
+                <br>
+
+                <table class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>Precio en el sitio</th>
+                            <th>Precio en caja</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ah tiempo</td>
+                            <td>$ 1136.00</td>
+                            <td>$ 1100.00</td>
+                        </tr>
+                        <tr>
+                            <td>Con retardo</td>
+                            <td>$ 1249.30</td>
+                            <td>$ 1200.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="font-italic">
+                                Los pagos desde la plataforma tienen un pequeño aumento, debido a que la pasarela de pago cobra una comisión al usuario que realiza el pago. El aumento es del 3.6% + 3 pesos.
+                                Para mas información revisa la información de <a href="https://stripe.com/mx/pricing">Stripe</a>
+                            </td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+
+                <div class="tabla-col">
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th>Colegiaturas</th>
+                                <th>Fechas Limites</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                               <!--?ENERO-->
+                                <tr>
+                                    <td class="mes">enero</td>
+                                    <td>25 de enero</td>
+                                    <td><%= datosCol.enero %></td>
+                                    <td>
+                                        <% if( datosCol.enero === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/enero/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.enero === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/enero/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.enero === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+    
+                                <!--?FEBRERO-->
+                                <tr>
+                                    <td class="mes">Febrero</td>
+                                    <td>25 de Febrero</td>
+                                    <td><%= datosCol.enero %></td>
+                                    <td>
+                                        <% if( datosCol.febrero === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/febrero/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.febrero === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/febrero/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.febrero === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+    
+                                <!--?MARZO-->
+                                <tr>
+                                    <td class="mes">marzo</td>
+                                    <td>25 de Marzo</td>
+                                    <td><%= datosCol.marzo %></td>
+                                    <td>
+                                        <% if( datosCol.marzo === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/marzo/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.marzo === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/marzo/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.marzo === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+    
+                                <!--?ABRIL-->
+                                <tr>
+                                    <td class="mes">Abril</td>
+                                    <td>25 de Abril</td>
+                                    <td><%= datosCol.abril %></td>
+                                    <td>
+                                        <% if( datosCol.abril === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/abril/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.abril === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/abril/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.abril === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+    
+                                <!--?MAYO-->
+                                <tr>
+                                    <td class="mes">Mayo</td>
+                                    <td>25 de Mayo</td>
+                                    <td><%= datosCol.mayo %></td>
+                                    <td>
+                                        <% if( datosCol.mayo === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/mayo/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.mayo === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/mayo/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.mayo === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+    
+                                <!--?JUNIO-->
+                                <tr>
+                                    <td class="mes">Junio</td>
+                                    <td>25 de Junio</td>
+                                    <td><%= datosCol.junio %></td>
+                                    <td>
+                                        <% if( datosCol.junio === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/junio/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.junio === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/junio/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.junio === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+    
+                                <!--?JULIO-->
+                                <tr>
+                                    <td class="mes">Julio</td>
+                                    <td>25 de Julio</td>
+                                    <td><%= datosCol.julio %></td>
+                                    <td>
+                                        <% if( datosCol.julio === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/julio/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.julio === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/julio/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.julio === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+                                
+                                <!--?AGOSTO-->
+                                <tr>
+                                    <td class="mes">agosto</td>
+                                    <td>25 de Agosto</td>
+                                    <td><%= datosCol.agosto %></td>
+                                    <td>
+                                        <% if( datosCol.agosto === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/agosto/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.agosto === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/agosto/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.agosto === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+    
+                                <!--?SEPTIEMBRE-->
+                                <tr>
+                                    <td class="mes">septiembre</td>
+                                    <td>25 de Septiembre</td>
+                                    <td><%= datosCol.septiembre %></td>
+                                    <td>
+                                        <% if( datosCol.septiembre === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/septiembre/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.septiembre === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/septiembre/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.septiembre === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+    
+                                <!--?OCTUBRE-->
+                                <tr>
+                                    <td class="mes">octubre</td>
+                                    <td>25 de Octubre</td>
+                                    <td><%= datosCol.octubre %></td>
+                                    <td>
+                                        <% if( datosCol.octubre === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/octubre/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.octubre === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/octubre/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.octubre === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+    
+                                <!--?NOVIEMBRE-->
+                                <tr>
+                                    <td class="mes">noviembre</td>
+                                    <td>25 de Noviembre</td>
+                                    <td><%= datosCol.noviembre %></td>
+                                    <td>
+                                        <% if( datosCol.noviembre === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/noviembre/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.noviembre === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/noviembre/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.noviembre === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+    
+                                <!--?DICIEMBRE-->
+                                <tr>
+                                    <td class="mes">diciembre</td>
+                                    <td>25 de Diciembre</td>
+                                    <td><%= datosCol.diciembre %></td>
+                                    <td>
+                                        <% if( datosCol.diciembre === "sin pagar" ) { %>
+                                            <form action="/create-checkout-session/diciembre/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-success btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.diciembre === "atrasado") { %>
+                                            <form action="/create-checkout-session-incremento/diciembre/<%=datosCol.matricula%>" method="POST">
+                                                <button class="btn btn-warning btn-res">Pagar</button>
+                                            </form>
+                                        <% }else if (datosCol.diciembre === "pagado") { %>
+                                            ---
+                                        <% } %>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <a href="/registros" class="btn btn-danger">Regresar</a>
+                    <% }) %>
+            </section> 
+        </div>
+        
+   </div>
+</body>
+</html>

@@ -10,6 +10,7 @@ function index(req,res) {
             }
             res.render('tutor/estudiantes', {
                 tutor:tutor,
+                total:tutor.length,
                 title: 'Estudiantes Registrados',
                 subtitle: 'Estudiantes Registrados'
             })
@@ -25,12 +26,30 @@ function indexEduInc(req,res) {
             }
             res.render('tutor/estudiantes', {
                 tutor:tutor,
+                total:tutor.length,
                 title: 'Estudiantes Registrados',
                 subtitle: 'Estudiantes de Educación Inicial'
             })
         })
     })
 }
+
+function colegiaturasCajaTutor(req, res){
+    const id_alumno = req.params.id
+    const datosCol = req.body
+    req.getConnection((req,conn) => {
+        conn.query('SELECT * FROM alumnos_colegiaturas WHERE matricula = ?', [id_alumno], (err, colegiatura) => {
+            if(err){
+                res.json(err);
+            }
+            //console.log(colegiatura)
+            res.render('tutor/colegiaturas', {
+                colegiatura: colegiatura
+            })
+        })
+    })
+}
+
 function indexPre(req,res) {
     const datos = req.body
     req.getConnection((err, conn) => {
@@ -40,6 +59,7 @@ function indexPre(req,res) {
             }
             res.render('tutor/estudiantes', {
                 tutor:tutor,
+                total:tutor.length,
                 title: 'Estudiantes Registrados',
                 subtitle: 'Estudiantes de Preescolar'
             })
@@ -55,6 +75,7 @@ function indexPri(req,res) {
             }
             res.render('tutor/estudiantes', {
                 tutor:tutor,
+                total:tutor.length,
                 title: 'Estudiantes Registrados',
                 subtitle: 'Estudiantes de Primaria'
             })
@@ -70,6 +91,7 @@ function indexSec(req,res) {
             }
             res.render('tutor/estudiantes', {
                 tutor:tutor,
+                total:tutor.length,
                 title: 'Estudiantes Registrados',
                 subtitle: 'Estudiantes de Secundaria'
             })
@@ -118,6 +140,7 @@ function homepage(req, res){
         })
     })
 }
+
 function help(req, res){
     res.render('tutor/ayuda', {
         title:'Ayuda'
@@ -126,44 +149,46 @@ function help(req, res){
 
 async function pagar(req,res){
     const id_student = req.params.id
+    const mes = req.params.mes
     console.log(id_student)
     const session = await stripe.checkout.sessions.create({
         line_items:[
             {
-                price: 'price_1LDiK8JpziZXWqtXMs7hI7mT',
+                price: 'price_1LMN3fJpziZXWqtX5ldu4Kcr',
                 quantity: 1
             },
         ],
         payment_method_types:['card', 'oxxo'],
         mode: 'payment',
-        success_url: `${YOUR_DOMAIN}/pago-realizado/`+id_student,
+        success_url: `${YOUR_DOMAIN}/pago-realizado/${mes}/${id_student}`,
         cancel_url: `${YOUR_DOMAIN}/NoPagado`,
     });
     res.redirect(303, session.url);
 }
 async function incremento(req,res){
     const id_student = req.params.id
+    const mes = req.params.mes
     console.log(id_student)
     const session = await stripe.checkout.sessions.create({
         line_items:[
             {
-                price: 'price_1LDiK8JpziZXWqtXXv5sZdyb',
+                price: 'price_1LMNAyJpziZXWqtX41ebtaA8',
                 quantity: 1
             },
         ],
         payment_method_types:['card', 'oxxo'],
         mode: 'payment',
-        success_url: `${YOUR_DOMAIN}/pago-realizado/`+id_student,
+        success_url: `${YOUR_DOMAIN}/pago-realizado/${mes}/${id_student}`,
         cancel_url: `${YOUR_DOMAIN}/NoPagado`,
     });
     res.redirect(303, session.url);
 }
 function subirData (req,res){
     const id_student = req.params.id;
-    const pagado = req.body
+    const mes = req.params.mes
     //console.log('El usuario: ',id_student,' a pagado su colegiatura');
     req.getConnection((err,conn) => {
-        conn.query('UPDATE estudiantes SET ? WHERE id_estudiante = ?', [pagado,id_student], (err,rows)=>{
+        conn.query(`UPDATE colegiaturas SET ${mes}='pagado' WHERE matricula = '${id_student}'`, (err,rows)=>{
             //console.log('pagado')
             res.redirect('/')
         })
@@ -187,7 +212,9 @@ module.exports = {
     indexSec:indexSec,
 
     homepage:homepage,
+  //  colegiaturaAlumno: colegiaturaAlumno,
     help:help,
+    colegiaturasCajaTutor:colegiaturasCajaTutor,
 
     redesContactanos:redesContactanos,
     enviarMessage:enviarMessage,
