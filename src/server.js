@@ -30,11 +30,11 @@ app.use(express.static('./src/public'))
 
 // !CONEXIÓN DE LA BASE DE DATOS
 app.use(myconnection(mysql,{
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    port: 3306,
-    database: 'centroculturaldepetatlan'
+    host: '162.241.61.130',
+    user: 'centr287_root',
+    password: '9nA_nB+WBD08',
+   // port: 3306,
+    database: 'centr287_centroculturaldepetatlan'
 }));
 
 // NOTE Configuración de Express session
