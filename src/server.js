@@ -31,7 +31,7 @@ app.use(express.static('./src/public'))
 
 // !CONEXIÓN DE LA BASE DE DATOS
 app.use(myconnection(mysql,{
-    host: 'localhost',
+    host: '143.198.114.187',
     user: 'root',
     password: '',
    // port: 3306,
