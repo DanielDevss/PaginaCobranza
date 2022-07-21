@@ -1,5 +1,6 @@
 const stripe = require('stripe')('sk_test_51L8pPNJpziZXWqtXkwB7vjzgcgYdhhPIBp9wPy98uUv2zJd7K73JaEX9HHvJbsbFawO2ZuMUp1KPnBGcJNGNeFol00WPOxShAd');
 const YOUR_DOMAIN = "http://localhost:3000";
+const pdf = require('html-pdf')
 
 function index(req,res) {
     const datos = req.body
@@ -18,7 +19,6 @@ function index(req,res) {
     })
 }
 function indexEduInc(req,res) {
-    const datos = req.body
     req.getConnection((err, conn) => {
         conn.query('SELECT * FROM estudiantes WHERE seccion = "Educacion Inicial"', (err, tutor) => {
             if(err){
@@ -150,7 +150,7 @@ function help(req, res){
 async function pagar(req,res){
     const id_student = req.params.id
     const mes = req.params.mes
-    console.log(id_student)
+    const name = req.params.name
     const session = await stripe.checkout.sessions.create({
         line_items:[
             {
@@ -168,6 +168,7 @@ async function pagar(req,res){
 async function incremento(req,res){
     const id_student = req.params.id
     const mes = req.params.mes
+    const name = req.params.name
     console.log(id_student)
     const session = await stripe.checkout.sessions.create({
         line_items:[
@@ -196,7 +197,18 @@ function subirData (req,res){
 }
 
 function pagado(req,res){
+    const matricula = req.params.id
+    const mes = req.params.mes
     //console.log('id llego a pagado')
+    const pdfcontenido = (`<html> <?xml version="1.0" encoding="utf-8"?><!-- Generator: Adobe Illustrator 25.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) --><style> html{ background-color: rgb(226, 226, 226); display: flex; flex-direction: column; align-items: center; line-height: .5; font-family: Arial, Helvetica, sans-serif; } h1{line-height:1} svg{ margin: -100px; width: 150px; } .comprobante{ padding: 30px 30px; box-shadow: 0 0 80px rgba(0, 0, 0, 0.192); background-color: white; border-radius: 1rem; text-align: center; } .header{ display: flex; flex-direction: row; align-items: center; font-size: 2rem; padding: 20px; border-bottom: solid 1px gray; } .cuerpo-head{ display: flex; justify-content: space-evenly; padding: 20px; }</style><div class="comprobante"> <div class="header"> <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve"> <style type="text/css"> .st0{fill:#FFFFFF;stroke:url(#SVGID_1_);stroke-width:5;stroke-miterlimit:10;} .st1{fill:#593284;} .st2{fill:#D32D3C;} .st3{fill:#FFED00;} </style> <g id="Escudo"> <g> <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="145.0153" y1="252.9046" x2="356.6582" y2="252.9046"> <stop offset="6.926126e-08" style="stop-color:#CBBBA0"/> <stop offset="0.3906" style="stop-color:#B89873"/> <stop offset="0.786" style="stop-color:#A87C50"/> <stop offset="1" style="stop-color:#A27144"/> </linearGradient> <path class="st0" d="M160.94,177.53v-26.55c0,0,60.05,6.21,89.06-37.29c7.11,8.58,25.09,27.77,54.63,35.36 c12.74,3.27,24.07,3.48,32.58,2.84c0,8.54,0,17.09,0,25.63h16.95v53.11h-14.69c0,0,5.81,100-89.47,162.71 c-14.72-9-37.59-25.72-56.73-53.78c-30.59-44.85-32.55-90.68-32.33-108.93h-12.99c-0.14-17.84-0.27-35.68-0.41-53.52 C152,177.25,156.47,177.39,160.94,177.53z"/> <path class="st1" d="M169.01,178.03h70.62L250,158.38l10.27,19.66h70.62v-21.11c0,0-55.1,0.26-80.9-30.87 c0,0-19.38,28.1-80.99,30.47V178.03z"/> <path class="st2" d="M243.46,378.9V230.31h-74.45C169.01,230.31,167.64,314.24,243.46,378.9z"/> <path class="st2" d="M257.27,378.9V230.31h74.45C331.72,230.31,333.09,314.24,257.27,378.9z"/> <g> <path class="st1" d="M197.03,191.8v6.09h-2.18c-0.35-1.27-0.8-2.29-1.34-3.04c-0.54-0.75-1.17-1.29-1.89-1.61 s-1.58-0.48-2.59-0.48c-1.51,0-2.85,0.5-4.03,1.51s-2.11,2.51-2.78,4.53s-1.01,4.45-1.01,7.31c0,2.87,0.28,5.32,0.83,7.35 c0.56,2.03,1.38,3.56,2.46,4.59c1.08,1.03,2.42,1.55,4,1.55c1.2,0,2.18-0.17,2.94-0.52c0.76-0.34,1.4-0.89,1.92-1.64 c0.52-0.75,1.01-1.85,1.48-3.3h2.18v6.28c-1.38,0.37-2.79,0.64-4.23,0.82c-1.44,0.18-3.03,0.27-4.76,0.27 c-3.72,0-6.53-1.26-8.44-3.78s-2.86-6.28-2.86-11.27c0-3.13,0.49-5.88,1.48-8.24c0.99-2.36,2.44-4.18,4.36-5.47 s4.21-1.93,6.88-1.93c1.33,0,2.56,0.07,3.69,0.21C194.29,191.16,195.58,191.42,197.03,191.8z"/> <path class="st1" d="M260.96,191.8v6.09h-2.17c-0.35-1.27-0.8-2.29-1.34-3.04c-0.54-0.75-1.17-1.29-1.89-1.61 s-1.58-0.48-2.59-0.48c-1.51,0-2.85,0.5-4.03,1.51s-2.11,2.51-2.78,4.53s-1.01,4.45-1.01,7.31c0,2.87,0.28,5.32,0.83,7.35 c0.56,2.03,1.38,3.56,2.46,4.59c1.08,1.03,2.42,1.55,4,1.55c1.2,0,2.18-0.17,2.94-0.52c0.76-0.34,1.4-0.89,1.92-1.64 c0.52-0.75,1.01-1.85,1.48-3.3h2.17v6.28c-1.38,0.37-2.79,0.64-4.23,0.82c-1.44,0.18-3.03,0.27-4.76,0.27 c-3.72,0-6.53-1.26-8.44-3.78s-2.86-6.28-2.86-11.27c0-3.13,0.49-5.88,1.48-8.24c0.99-2.36,2.44-4.18,4.36-5.47 s4.21-1.93,6.88-1.93c1.33,0,2.56,0.07,3.69,0.21C258.23,191.16,259.51,191.42,260.96,191.8z"/> <path class="st1" d="M311.34,215.6c0,0.86,0.05,1.55,0.14,2.07c0.09,0.51,0.24,0.92,0.44,1.22c0.2,0.3,0.46,0.54,0.8,0.7 c0.34,0.17,0.86,0.33,1.58,0.49v1.08h-9.65v-1.08c0.91-0.23,1.52-0.49,1.82-0.78c0.31-0.29,0.51-0.69,0.6-1.22 c0.09-0.53,0.14-1.33,0.14-2.42v-19.01c0-1.01-0.04-1.75-0.11-2.21c-0.07-0.46-0.19-0.82-0.36-1.08 c-0.17-0.26-0.39-0.46-0.67-0.62c-0.28-0.15-0.75-0.33-1.43-0.52v-1.08h10.9c3.43,0,5.98,0.66,7.66,1.97 c1.68,1.31,2.52,3.31,2.52,5.99c0,1.52-0.26,2.89-0.79,4.11s-1.27,2.21-2.24,2.99s-2.11,1.33-3.43,1.67s-2.7,0.51-4.15,0.51 c-1.62,0-2.89-0.03-3.78-0.09V215.6z M311.34,206.48h2.55c1.66,0,3.02-0.22,4.1-0.65c1.08-0.43,1.9-1.15,2.47-2.15 c0.57-1,0.86-2.33,0.86-3.99c0-1.26-0.17-2.31-0.51-3.15s-0.8-1.52-1.4-2.03c-0.59-0.51-1.3-0.88-2.12-1.09s-1.71-0.32-2.68-0.32 c-1.45,0-2.54,0.03-3.27,0.09V206.48z"/> </g> <g> <g id="layer1_1_"> <path class="st3" d="M249.96,151.47l-0.89,2.01l-2.18-0.24l1.3,1.77l-1.3,1.77l2.18-0.24l0.89,2.01l0.88-2.01l2.18,0.24 l-1.29-1.77l1.29-1.77l-2.18,0.24L249.96,151.47z"/> </g> </g> </g> </g> <g id="Capa_2"> </g> </svg> <h1>Comprobante de pago</h1> </div> <div class="body"> <div class="cuerpo-head"> <div> </div> <div> <h3>Matricula:</h3><p>${matricula}</p> </div> <div> <h3>Fecha:</h3> <div id="current_date"></div> </div> </div> <div> <p>Importante guardar el comprobante, en caso de tener problemas puede presentar el mismo en caja.</p> </div> <br> <div class="status"> <h2>Comprobante de colegiatura del Mes de: ${mes}</h2> <p>id_de_pagado</p> </div> </div></div><script> date = new Date(); year = date.getFullYear(); month = date.getMonth() + 1; day = date.getDate(); document.getElementById("current_date").innerHTML = month + "/" + day + "/" + year; </script></html>`)
+//RUTAS
+    pdf.create(pdfcontenido).toFile('./src/public/docs/comprobantePDF.pdf', function(err,res){
+        if(err){
+            console.log(err);
+        }else{
+            console.log(res)
+        }
+    });
     res.render('tutor/success', {
     })
 };

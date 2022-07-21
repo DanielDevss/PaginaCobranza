@@ -75,7 +75,11 @@ function store(req,res) {
         const matricula = datosAdmin.id_estudiante
         req.getConnection((err,conn) => {
             conn.query('INSERT INTO estudiantes SET ?;', [datosAdmin],(err,rows) => {
-                res.redirect(307, '/admin/subirColegiatura/'+matricula)
+                if(err){
+                    console.log(err)
+                }else{
+                    res.redirect(307, '/admin/subirColegiatura/'+matricula)
+                }
             })
         })
     }else{
@@ -90,6 +94,7 @@ function storeColegiatura(req,res){
         conn.query(`INSERT INTO colegiaturas(matricula) VALUES(${matricula})`, (err, rows) => {
             if(err){
                 console.log('Error al subir a Colegiaturas')
+                console.log(err)
             }
             res.redirect(307,'/admin/enviarEnfermeria/'+matricula)
 

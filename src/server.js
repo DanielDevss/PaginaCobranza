@@ -6,11 +6,12 @@ const session = require('express-session');
 const bcryptjs = require('bcryptjs')
 const bodyParser = require('body-parser')
 const app = express();
-
+const pdf = require('html-pdf')
 //STRIPE
 const stripe = require('stripe')('sk_test_51L8pPNJpziZXWqtXkwB7vjzgcgYdhhPIBp9wPy98uUv2zJd7K73JaEX9HHvJbsbFawO2ZuMUp1KPnBGcJNGNeFol00WPOxShAd')
 
-//RUTAS
+
+
 const tutorRoutes = require('./router/tutorRouter')
 const adminRoutes = require('./router/adminRouter')
 const enfermeriaRoutes = require('./router/enfermeriaRouter')
@@ -30,11 +31,11 @@ app.use(express.static('./src/public'))
 
 // !CONEXIÓN DE LA BASE DE DATOS
 app.use(myconnection(mysql,{
-    host: '162.241.61.130',
-    user: 'centr287_root',
-    password: '9nA_nB+WBD08',
+    host: 'localhost',
+    user: 'root',
+    password: '',
    // port: 3306,
-    database: 'centr287_centroculturaldepetatlan'
+    database: 'centroculturaldepetatlan'
 }));
 
 // NOTE Configuración de Express session
@@ -62,6 +63,7 @@ app.get('/login', (req, res) => {
         title: 'Autorización'
     })
 });
+
 
 /**  ANCHOR VISTAS DE ADMIN, TUTORES Y ENFERMERIA **/
 app.use('/', adminRoutes);

@@ -13,8 +13,85 @@
       </style>
       <ul class="nav bg-c7">
         <li class="btn7"><a class="no-decoracion-text" href="/admin"><span class="icon-user"><i class="bi bi-table"></i></span> Registros</a></li>
-        <li class="btn7"><a class="no-decoracion-text" href="/admin-nuevoRegistro"><span class="icon-address-book"><i class="bi bi-file-earmark-plus"></i></span> Agregar Alumnos</a></li>
+        <li class="btn7"><a data-toggle="modal" data-target="#estudianteModal" class="no-decoracion-text"><span class="icon-address-book"><i class="bi bi-file-earmark-plus"></i></span> Agregar Alumnos</a></li>
         <li class="btn7"><a class="no-decoracion-text" href="/admin-setting-contactos"><span class="icon-user"><i class="bi bi-gear-wide-connected"></i></span> Configuración</a></li>
         <li class="btn7"><a class="no-decoracion-text" href="/admin-mensajes"><span class="icon-home"><i class="bi bi-envelope"></i></span> Mensajes</a></li>
         <li class="btn7"><a class="no-decoracion-text" href="/logout"><span class="icon-home"><i class="bi bi-door-open"></i></span> Salir de Administrador</a></li>
       </ul>
+
+      <div class="modal fade" id="estudianteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Estudiante</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <form action="/admin-nuevoRegistro" style="padding: 30px;" class="row" method="POST">
+                <div class="modal-body col-md-6">
+                    <h2>Datos del Alumno</h2>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-key"></i> Matricula</label>
+                        <input required class="input_nuevoRegistro sbr-2" type="number" name="id_estudiante" placeholder="Ingresa una matricula">
+                    </div>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-person-lines-fill"></i> Nombre del Alumno</label>
+                        <input required class="input_nuevoRegistro sbr-2" type="text" name="nombre" placeholder="Ingresa el nombre del estudiante">
+                    </div>
+                    <hr>
+                    <h2>Datos del Tutor</h2>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-person-square"></i> Nombre del Tutor</label>
+                        <input required class="input_nuevoRegistro sbr-2" type="text" name="nombre_tutor" placeholder="Ingresa el nombre del Tutor">
+                    </div>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-telephone-forward"></i> Telefono del Tutor</label>
+                        <input required class="input_nuevoRegistro sbr-2" type="tel" maxlength="10" name="tel_tutor" placeholder="Ingresa el telefono del Tutor">
+                    </div>
+                </div><!--fin de .contenedor__principal-->
+                <div class="col-md-6">
+
+                  <div class="bg-c7 contenedor__secundiario">
+                    <h2>Información Escolar</h2>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-box2-fill"></i> Sección Escolar</label>
+                        <select required class="input_nuevoRegistro" name="seccion">
+                            <option value="">--- Selecciona ---</option>
+                            <option value="Educacion Inicial">Esducacion Inicial</option>
+                            <option value="Preescolar">Preescolar</option>
+                            <option value="Primaria">Primaria</option>
+                            <option value="Secundaria">Secundaria</option>
+                        </select>
+                    </div>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-people"></i> Grado y Grupo</label>
+                        <input required class="input_nuevoRegistro sbr-2" type="text" name="grupo" placeholder="Ingresa el Grado y Grupo">
+                    </div>
+                </div><!--fin de .contenedor__secundario-->
+                <div class="bg-c7 contenedor__secundiario ">
+                    <h2><i class="bi bi-bookmark-star"></i> Información Extra</h2>
+                    <p>Esta Información no es configurable, si desea cambiarla lo puede hacer desde registros/editar</p>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-cash-coin"></i> Colegiatura</label>
+                        <input class="input_nuevoRegistro sbr-2" type="text" disabled value="Sin pagar">
+                        <input class="input_nuevoRegistro sbr-2" type="hidden" name="colegiatura" value="0">
+                    </div>
+                    <div class="contenedor__campos">
+                        <label><i class="bi bi-link-45deg"></i> Enlace Boleta</label>
+                        <input class="input_nuevoRegistro sbr-2" type="text" disabled value="/html/sin-enlace.html">
+                        <input class="input_nuevoRegistro sbr-2" type="hidden" name="link_boleta" value="/html/sin-enlace.html">
+                    </div>
+                </div>
+                  
+              </div>
+                <!--fin de card-body-->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+              </form>
+          </div>
+        </div>
+    </div>

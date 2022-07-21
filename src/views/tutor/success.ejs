@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <title>Pago Realizado</title>
 </head>
 <body>
@@ -73,8 +74,10 @@
             <section>
                 <h2>¡Importante Leer!</h2>
                 <p>Es importante guardar tu comprobante, el cual llegara al correo electronico ingresado. Si realizaste un pago por OXXO es importante guardar el ticket para alguna reclamación o problema.</p>
-                <form action="" method="POST">
+                <form action="" method="POST" style="text-align: center;">
                     <input type="hidden" name="colegiatura" value="2">
+                    <h2 style="color:red;margin-bottom: 0;">¡¡Descarga tu comprobante!!</h2>
+                    <a href="/docs/comprobantePDF.pdf" style="text-decoration: none;font-size: 1.5rem;" download="/docs/comprobantePDF.pdf (comprobante).pdf" required><i class="bi bi-download"></i> Click aquí para descargar</a>
                     <button>Regresar a Registros</button>
                 </form>
             </section>
