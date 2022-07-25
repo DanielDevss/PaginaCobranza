@@ -29,11 +29,11 @@ app.use(express.static('./src/public'))
 
 // !CONEXIÓN DE LA BASE DE DATOS
 app.use(myconnection(mysql,{
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
+    host: process.env.DB_HOST || 'mysql-danieldlr.alwaysdata.net',
+    user: process.env.DB_USER || 'danieldlr',
+    password: process.env.DB_PASS || 'x/C?6sVn8+F,9>v3',
    // port: 3306,
-    database: process.env.DB_NOMBRE,
+    database: process.env.DB_NOMBRE || 'danieldlr_cpp',
 }))
 
 // NOTE Configuración de Express session
