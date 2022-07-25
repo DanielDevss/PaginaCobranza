@@ -11,11 +11,15 @@
     progid: DXImageTransform.Microsoft.gradient(startColorstr="#aae0f9", endColorstr="#ead1d3", GradientType=1);
     -webkit-filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#aae0f9", endColorstr="#ead1d3", GradientType=1);
 }
+html,body{
+    height: 100%;
+}
 h1{
     margin-top: 30px !important;
+    color: white;
+    text-shadow: 0 0 18px rgba(0, 0, 0, 0.452);
 }
-    .contact_form{  
-    width: 460px; 
+.contact_form{ 
     height: auto;
     margin: 80px auto;
     margin-top: 10px;
@@ -40,83 +44,116 @@ h1{
 .contact_form label{
     display: block;
     float: center;
+}  color: white;
+
+.content-header{
+    display: flex;
+    justify-content: space-around;
+}
+h2{
+    text-align: center;
+    color: #9292CD;
+}
+.agrupar{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.alinear{
+    display: flex;
+    align-items: center ;
+}
+.alinear a{
+    width: 50%;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.buttons button{
+    border: none;
+    color: white;
+    transition: 505ms;
+}
+.save {
+    background-color: green;
+}
+.cancel {
+    background-color: red;
+}
+section{
+    width: 900px;
+    margin: 0;
+    padding: 0 !important;
+    padding-top: 30px !important;
+    padding-bottom: 20px !important;
 }
 </style>
     <body>
 
+        <form action="" method="POST">
     <% admin.forEach((datosAdmin) => { %>
         <div align="center">
             <h1 class="txt-c7">Editar Alumno: <%= datosAdmin.id_estudiante %></h1>
         </div>
-    <section class="contact_form sbr-1">
-        <div class="formulario">
-            <h2>Información Alumno <a href="javascript: history.go(-1)" class="btn btn6">Volver</a></h2>
-            <form action="" method="POST">
-                
-                <div>
-                    <div>
-                        <label>Matricula</label>
-                        <input value="<%= datosAdmin.id_estudiante %>" type="number" name="id_estudiante" id="id">
+    <section class="contact_form">
+        <div class="agrupar">
+            <div class="content1">
+                    <div class="content-header">
+                        <h2>Información Alumno</h2>
                     </div>
                     <div>
-                        <label>Nombre</label>
-                        <input autocomplete="off" value="<%= datosAdmin.nombre %>" type="text" name="nombre" id="">
-                    </div>
-                    <div>
-                        <label>Enlace Boleta</label>
-                        <input autocomplete="off" value="<%= datosAdmin.link_boleta %>" type="text" name="link_boleta" id="">
-                    </div>
-                    <div>
-                        <label>colegiatura</label>
-                        <select name="colegiatura">
-                            <option value="<%= datosAdmin.colegiatura %>">
-                                <% if( datosAdmin.colegiatura == 0 ) { %>
-                                    Colegiatura sin Pagar
-                                <% }else if (datosAdmin.colegiatura == 1) { %>
-                                    Colegiatura con atraso
-                                <% }else if (datosAdmin.colegiatura == 2) { %>
-                                    Colegiatura Pagada
-                                <% } %>
-                            </option>
-                            <option value="0">Colegiatura sin Pagar</option>
-                            <option value="1">Colegiatura con atraso</option>
-                            <option value="2">Colegiatura Pagada</option>
-                        </select>
-                     
-                    </div>
-                    <h2>Nivel Educativo</h2>
-                    <div>
-                        <label>Sección</label>
-                        <select name="seccion" required>
-                            <option value=""><%= datosAdmin.seccion %></option>
-                            <option value="Educacion Inicial">Esducacion Inicial</option>
-                            <option value="Preescolar">Preescolar</option>
-                            <option value="Primaria">Primaria</option>
-                            <option value="Secundaria">Secundaria</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Grupo</label>
-                        <input autocomplete="off" value="<%= datosAdmin.grupo %>" type="text" name="grupo"id="">
-                    </div>
-                    <h2>Información De Tutor</h2>
-                    <div>
-                        <label>Nombre del Tutor</label>
-                        <input autocomplete="off" type="text" value="<%= datosAdmin.nombre_tutor %>" name="nombre_tutor" required id="">
-                    </div>
-                    <div>
-                        <label>Telefono del Tutor</label>
-                        <input autocomplete="off" value="<%= datosAdmin.tel_tutor %>" type="tell" maxlength="10" name="tel_tutor" required id="">
+                        <div>
+                            <label>Matricula</label>
+                            <input value="<%= datosAdmin.id_estudiante %>" type="number" name="id_estudiante" id="id">
+                        </div>
+                        <div>
+                            <label>Nombre</label>
+                            <input autocomplete="off" value="<%= datosAdmin.nombre %>" type="text" name="nombre" id="">
+                        </div>
+                        <div>
+                            <label>Enlace Boleta</label>
+                            <input autocomplete="off" value="<%= datosAdmin.link_boleta %>" type="text" name="link_boleta" id="">
+                        </div>
                     </div>
 
-                    <div>
-                        <input type="submit" class="btn btn2 bg-c3" value="Guardar Registro">
-                    </div>
                 </div>
-            </form>
+
+            <div class="content1">
+                <h2>Nivel Educativo</h2>
+                <div>
+                    <label>Sección</label>
+                    <select name="seccion" required>
+                        <option value=""><%= datosAdmin.seccion %></option>
+                        <option value="Educacion Inicial">Esducacion Inicial</option>
+                        <option value="Preescolar">Preescolar</option>
+                        <option value="Primaria">Primaria</option>
+                        <option value="Secundaria">Secundaria</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Grupo</label>
+                    <input autocomplete="off" value="<%= datosAdmin.grupo %>" type="text" name="grupo"id="">
+                </div>
+                <h2>Información De Tutor</h2>
+                <div>
+                    <label>Nombre del Tutor</label>
+                    <input autocomplete="off" type="text" value="<%= datosAdmin.nombre_tutor %>" name="nombre_tutor" required id="">
+                </div>
+                <div>
+                    <label>Telefono del Tutor</label>
+                    <input autocomplete="off" value="<%= datosAdmin.tel_tutor %>" type="tell" maxlength="10" name="tel_tutor" required id="">
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="save" type="submit">Guardar</button>
+            <button class="cancel" onclick="history.back()">Cancelar</button>
         </div>
     </section>
-    <% }) %>
+        <% }) %>
+    </form>
     
 </body>
 </html>

@@ -396,7 +396,7 @@ function logout (req,res){
 function adminMensajes(req,res) {
     if(req.session.loggedin){
         req.getConnection((err,conn) => {
-            conn.query('SELECT idmensajes, @num2:=@num2+1 AS num,date_format(fecha, "%y/%m/%d - %h:%m:%s hrs") as fecha, nombre, mensaje, contacto FROM mensajes t,(SELECT @num2:=0) r  ORDER BY fecha DESC;', (err,adminMensajes) => {
+            conn.query('SELECT idmensajes,,date_format(fecha, "%y/%m/%d - %h:%m:%s hrs") as fecha, nombre, mensaje, contacto FROM mensajes t,(SELECT @num2:=0) r  ORDER BY fecha DESC;', (err,adminMensajes) => {
                 if (err){
                     res.json(err);
                 }

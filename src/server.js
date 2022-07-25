@@ -8,9 +8,7 @@ const bodyParser = require('body-parser')
 const app = express();
 const pdf = require('html-pdf')
 //STRIPE
-const stripe = require('stripe')('sk_test_51L8pPNJpziZXWqtXkwB7vjzgcgYdhhPIBp9wPy98uUv2zJd7K73JaEX9HHvJbsbFawO2ZuMUp1KPnBGcJNGNeFol00WPOxShAd')
-
-
+const stripe = require('stripe')('sk_test_51L8pPNJpziZXWqtXkwB7vjzgcgYdhhPIBp9wPy98uUv2zJd7K73JaEX9HHvJbsbFawO2ZuMUp1KPnBGcJNGNeFol00WPOxShAd');
 
 const tutorRoutes = require('./router/tutorRouter')
 const adminRoutes = require('./router/adminRouter')
@@ -31,11 +29,11 @@ app.use(express.static('./src/public'))
 
 // !CONEXIÓN DE LA BASE DE DATOS
 app.use(myconnection(mysql,{
-    host: 'localhost',
-    user: 'root',
-    password: '',
+    host: process.env.DB_HOST || '162.241.61.130',
+    user: process.env.DB_USER || 'centr287_root',
+    password: process.env.DB_PASS || '9nA_nB+WBD08',
    // port: 3306,
-    database: 'centroculturaldepetatlan'
+    database: process.env.DB_NOMBRE ||'centr287_centroculturaldepetatlan'
 }));
 
 // NOTE Configuración de Express session
