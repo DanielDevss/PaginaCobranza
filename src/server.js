@@ -34,7 +34,7 @@ app.use(myconnection(mysql,{
     password: process.env.DB_PASS || '9nA_nB+WBD08',
    // port: 3306,
     database: process.env.DB_NOMBRE ||'centr287_centroculturaldepetatlan'
-}));
+}))
 
 // NOTE Configuración de Express session
 app.use(session({
