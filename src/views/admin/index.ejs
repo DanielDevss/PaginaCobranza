@@ -59,7 +59,7 @@
                         </td>
                         <td class="d-flex justify-content-center acciones">
                         <!--ANCHOR BUTTON ELIMINAR-->
-                            <form action="/admin/borrar" method="POST">
+                            <form action="/admin/borrar" onsubmit="return seguro()" method="POST">
                                 <input type="hidden" value="<%= datosAdmin.id_estudiante %>" name="id">
                                 <button class="btn delr hint--top-left hint--error hint--medium hint--bounce btn-gestion-admin" aria-label="Eliminar el registro de la base de datos"><!--&#xF78A;--><i class="bi bi-person-dash"></i></button>
                             </form>
