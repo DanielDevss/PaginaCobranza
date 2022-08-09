@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function validar(){
 
     if((/^\d{5,11}$/).test(document.getElementById('matricula').value)){
@@ -48,7 +47,6 @@ function validar(){
     }
 }
 
-=======
 function validar(){
 
     if((/^\d{5,11}$/).test(document.getElementById('matricula').value)){
@@ -98,5 +96,4 @@ function validar(){
     }
 }
 
->>>>>>> 9c8afea0f2cd7888fa8ccd0e6803012033d79558
     
