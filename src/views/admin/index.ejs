@@ -59,9 +59,9 @@
                         </td>
                         <td class="d-flex justify-content-center acciones">
                         <!--ANCHOR BUTTON ELIMINAR-->
-                            <form action="/admin/borrar" method="POST">
+                            <form action="/admin/borrar" onsubmit="return seguro()" method="POST">
                                 <input type="hidden" value="<%= datosAdmin.id_estudiante %>" name="id">
-                                <button class="btn delr hint--top-left hint--error hint--medium hint--bounce btn-gestion-admin" aria-label="Eliminar el registro de la base de datos"><!--&#xF78A;--><i class="bi bi-person-dash"></i></button>
+                                <button id="del" class="btn delr hint--top-left hint--error hint--medium hint--bounce btn-gestion-admin" aria-label="Eliminar el registro de la base de datos"><!--&#xF78A;--><i class="bi bi-person-dash"></i></button>
                             </form>
                             <a class="btn editRegist hint--top-right hint--info hint--medium hint--bounce btn-gestion-admin" aria-label="Editar el registro <%= datosAdmin.id_estudiante %>" href="/admin/editarRegistro/<%= datosAdmin.id_estudiante %>"><!--&#xF4CA;--><i class="bi bi-pencil-square"></i></a>
                         </td>
@@ -78,6 +78,15 @@
     <%- include('../partials/footer.ejs') %>
  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function seguro(){
+            var seguro = window.confirm('Seguro que deseas eliminar esté registro?');
+            if(seguro === false){
+                return false
+            }
+
+        }
+    </script>
     <script>
       $(document).ready(function(){
             $("#Buscador").on("keyup",function(){

@@ -51,7 +51,7 @@ function colegiaturasReset(req,res){
 }
 
 function index(req,res) {
-    if(req.session.loggedin){ //Se confirma que existe un usuario logeado en el sistema, y si es si se adentra en el codigo
+    //if(req.session.loggedin){ //Se confirma que existe un usuario logeado en el sistema, y si es si se adentra en el codigo
         req.getConnection((err,conn) => {
             conn.query('SELECT * FROM estudiantes', (err,admin) => { //Realización de consulta
                 if (err){
@@ -65,26 +65,50 @@ function index(req,res) {
                 })
             })
         })
-    }else{
+    /*}else{
         res.redirect('/login') //Si el usuario no está autenticado es regresado a login
-    }
+    }*/
 }
 function store(req,res) {
-    if(req.session.loggedin){
+    /*if(req.session.loggedin){*/
         const datosAdmin = req.body;
         const matricula = datosAdmin.id_estudiante
-        req.getConnection((err,conn) => {
-            conn.query('INSERT INTO estudiantes SET ?;', [datosAdmin],(err,rows) => {
-                if(err){
-                    console.log(err)
+        const tutor = datosAdmin.nombre_tutor
+        req.getConnection((err, conn)=>{
+            conn.query(`SELECT id_estudiante FROM estudiantes WHERE id_estudiante = ${matricula};`, (err, id)=>{
+                if (id.length == 0){
+                    console.log('no hay registro con este id')
+                    req.getConnection((err,conn) => {
+                        conn.query('INSERT INTO estudiantes SET ?;', [datosAdmin],(err,rows) => {
+                            if(err){
+                                console.log(err)
+                            }else{
+                                res.redirect(307, '/admin/subirColegiatura/'+matricula)
+                            }
+                        })
+                    });
                 }else{
-                    res.redirect(307, '/admin/subirColegiatura/'+matricula)
+                    res.render('admin/index', {
+                        title:'Estudiantes Registrados',
+                        subtitle:'Estudiantes Registrados',
+                        total:'',
+                        alert:true,
+                        alertTitle: '¡Matricula en uso!',
+                        alertMessage: "Esta matricula ya no está disponible, prueba con una diferente",
+                        alertIcon: 'error',
+                        showConfirmButton: true,
+                        timer: 5000,
+                        ruta:'admin'
+                    })
                 }
-            })
+
+            });
         })
+
+        /*
     }else{
         console.log('No se ha Iniciado Session')
-        res.redirect('login')}
+        res.redirect('login')}*/
 }
 
 function storeColegiatura(req,res){
@@ -106,7 +130,19 @@ function subirENF(req,res){
             const id = req.params.id;
             req.getConnection((err,conn)=>{
                 conn.query(`INSERT INTO datos_enfermeria(id_estudiante) VALUES(${id})`, (err,rows)=>{
-                    res.redirect('/admin')
+                    //res.redirect('/admin')
+                    res.render('admin/index', {
+                        title:'Estudiantes Registrados',
+                        subtitle:'Estudiantes Registrados',
+                        total:'',
+                        alert:true,
+                        alertTitle: '¡Alumno Registrado correctamente!',
+                        alertMessage: "Se ha incluido un nuevo estudiante a los registros",
+                        alertIcon: 'success',
+                        showConfirmButton: false,
+                        timer: 5000,
+                        ruta:'admin'
+                    })
                 });
             });
 };
@@ -121,7 +157,18 @@ function borrar(req,res){
     const id = req.body.id;
     req.getConnection((err,conn)=>{
         conn.query('DELETE FROM estudiantes WHERE id_estudiante = ?',[id],(err,rows)=>{
-            res.redirect('/admin')
+            res.render('admin/index', {
+                title:'Estudiantes Registrados',
+                subtitle:'Estudiantes Registrados',
+                total:'',
+                alert:true,
+                alertTitle: '"¡Se ha Eliminado Correctamente!"',
+                alertMessage: `El Alumno de Matricula (${id}) ya no se encuentra entre los registros`,
+                alertIcon: 'success',
+                showConfirmButton: false,
+                timer: 5000,
+                ruta:'admin'
+            })
         })
     })
 }
@@ -393,10 +440,10 @@ function logout (req,res){
 
 //MENSAJES
 
-function adminMensajes(req,res) {
+async function adminMensajes(req,res) {
     if(req.session.loggedin){
         req.getConnection((err,conn) => {
-            conn.query('SELECT idmensajes,,date_format(fecha, "%y/%m/%d - %h:%m:%s hrs") as fecha, nombre, mensaje, contacto FROM mensajes t,(SELECT @num2:=0) r  ORDER BY fecha DESC;', (err,adminMensajes) => {
+            conn.query('SELECT idmensajes,date_format(fecha, "%y/%m/%d - %h:%m:%s hrs") as fecha, nombre, mensaje, contacto FROM mensajes t,(SELECT @num2:=0) r  ORDER BY fecha DESC;', (err,adminMensajes) => {
                 if (err){
                     res.json(err);
                 }

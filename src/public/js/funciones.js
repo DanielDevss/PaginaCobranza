@@ -11,7 +11,7 @@ document.querySelector('.login div div .verOcultar').addEventListener('click', e
         passwordInput.type = 'password'
     }
 })
-
+/*
 (function($) {
     $.copy = function(t) {
         var ruta = "swf/copy.swf"
@@ -33,3 +33,4 @@ document.querySelector('.login div div .verOcultar').addEventListener('click', e
         }
     }
 })(jQuery);
+*/
