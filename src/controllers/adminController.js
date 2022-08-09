@@ -70,7 +70,7 @@ function index(req,res) {
     }
 }
 function store(req,res) {
-    if(req.session.loggedin){*/
+    if(req.session.loggedin){
         const datosAdmin = req.body;
         const matricula = datosAdmin.id_estudiante
         const tutor = datosAdmin.nombre_tutor
