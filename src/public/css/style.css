@@ -430,6 +430,11 @@ thead{
 .contenedor__secundiario .input_nuevoRegistro{
     margin-bottom:;
 }
+.text-validador{
+    font-size: .7rem;
+    font-style: italic;
+    color: #3a3a3a;
+}
 .contenedor_principal{
     grid-row: 1 / 3;
     padding: 50px 50px;
