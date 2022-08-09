@@ -51,7 +51,7 @@ function colegiaturasReset(req,res){
 }
 
 function index(req,res) {
-    //if(req.session.loggedin){ //Se confirma que existe un usuario logeado en el sistema, y si es si se adentra en el codigo
+    if(req.session.loggedin){ //Se confirma que existe un usuario logeado en el sistema, y si es si se adentra en el codigo
         req.getConnection((err,conn) => {
             conn.query('SELECT * FROM estudiantes', (err,admin) => { //Realización de consulta
                 if (err){
@@ -65,12 +65,12 @@ function index(req,res) {
                 })
             })
         })
-    /*}else{
+    }else{
         res.redirect('/login') //Si el usuario no está autenticado es regresado a login
-    }*/
+    }
 }
 function store(req,res) {
-    /*if(req.session.loggedin){*/
+    if(req.session.loggedin){*/
         const datosAdmin = req.body;
         const matricula = datosAdmin.id_estudiante
         const tutor = datosAdmin.nombre_tutor
@@ -104,11 +104,9 @@ function store(req,res) {
 
             });
         })
-
-        /*
     }else{
         console.log('No se ha Iniciado Session')
-        res.redirect('login')}*/
+        res.redirect('login')}
 }
 
 function storeColegiatura(req,res){
